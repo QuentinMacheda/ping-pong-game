@@ -1,4 +1,4 @@
-package src.view.gameComponents;
+package src.view.components;
 
 import javafx.scene.shape.Circle;
 import src.view.GameView;

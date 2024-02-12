@@ -3,12 +3,10 @@ package src.model;
 public class PlayerModel {
     private String name;
     private int score;
-    private String side;
 
-    public PlayerModel(String name, int score, String side) {
+    public PlayerModel(String name, int score) {
         this.name = name;
         this.score = score;
-        this.side = side;
     }
 
     public String getName() {
@@ -25,9 +23,5 @@ public class PlayerModel {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public String getSide() {
-        return this.side;
     }
 }

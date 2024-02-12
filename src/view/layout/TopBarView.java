@@ -1,4 +1,4 @@
-package src.view;
+package src.view.layout;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.control.Menu;
@@ -25,12 +25,14 @@ public class TopBarView extends VBox {
     public MenuItem player1;
     public MenuItem player2;
 
-    public TopBarView(GameView gameView) {
-        // Players/Scores
+    public TopBarView() {
+        // Adding players names/scores
         playersContainer = new BorderPane();
         playersContainer.setPadding(new Insets(50));
-        playerLeftController = new PlayerController("Player1", 0, "Left", playersContainer);
-        playerRightController = new PlayerController("Player2", 0, "Right", playersContainer);
+        playerLeftController = new PlayerController("Player1", 0);
+        playerRightController = new PlayerController("Player2", 0);
+        playersContainer.setLeft(playerLeftController.playerView);
+        playersContainer.setRight(playerRightController.playerView);
 
         // Menu
         menuBar = new MenuBar();
@@ -45,19 +47,16 @@ public class TopBarView extends VBox {
         ballSpeed = new MenuItem("Set ball speed");
         increaseRate = new MenuItem("Set speed increase rate");
         exit = new MenuItem("Exit");
-
         player1 = new MenuItem(playerLeftController.playerModel.getName());
         player2 = new MenuItem(playerRightController.playerModel.getName());
 
-        // Adding
+        // Adding to the menu items
         gameSettings.getItems().addAll(endingScore, racketsSize, ballSpeed, increaseRate, exit);
         playersName.getItems().addAll(player1, player2);
         menuBar.getMenus().addAll(gameSettings, playersName);
 
-        // Adding the childrens
+        // Adding to the top bar
         this.getChildren().add(menuBar);
         this.getChildren().add(playersContainer);
-
-        gameView.setTop(this);
     }
 }
