@@ -39,7 +39,7 @@ public class TopBarView extends VBox {
         menuBar = new MenuBar();
 
         // Items
-        gameSettings = new Menu("Game");
+        gameSettings = new Menu("Game settings");
         playersName = new Menu("Players settings");
 
         // subItems
