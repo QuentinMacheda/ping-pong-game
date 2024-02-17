@@ -4,21 +4,26 @@ import src.view.SettingsView;
 
 public class SettingsController {
     public SettingsView settingsView;
+    private double racketCurrentWidth;
+    private double racketCurrentHeight;
 
     public SettingsController(String type) {
         settingsView = new SettingsView();
+        racketCurrentWidth = GameController.getInstance().racketLeftController.getView().racket.getWidth();
+        racketCurrentHeight = GameController.getInstance().racketLeftController.getView().racket.getHeight();
 
         // Display the right setting view
         switch (type) {
             case "player1":
-                settingsView.updatePlayerName();
+                settingsView.playerNameView();
                 break;
             case "player2":
-                settingsView.updatePlayerName();
+                settingsView.playerNameView();
+                break;
+            case "racketSize":
+                settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
                 break;
             default:
-                // Error because type of setting not recognized
-                // To do : Handle error with a message
                 break;
         }
 
@@ -34,9 +39,13 @@ public class SettingsController {
             case "player2":
                 GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
                 break;
+            case "racketSize":
+                GameController.getInstance().racketLeftController.updateSize(settingsView.widthSlider.getValue(),
+                        settingsView.heightSlider.getValue());
+                GameController.getInstance().racketRightController.updateSize(settingsView.widthSlider.getValue(),
+                        settingsView.heightSlider.getValue());
+                break;
             default:
-                // Error because type of setting not recognized
-                // To do : Handle error with a message
                 break;
         }
 

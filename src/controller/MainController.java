@@ -83,7 +83,10 @@ public class MainController {
     public void hideSettings() {
         // Remove the settings view
         MainView.getInstance().hideSettings();
+        this.displayLastViewBeforeSettings();
+    }
 
+    private void displayLastViewBeforeSettings() {
         // Get the last state before settings
         MainState lastState = MainState.SETTINGS;
         int count = mainStateHistory.size() - 1;

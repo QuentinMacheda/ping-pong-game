@@ -17,8 +17,8 @@ public class GameController {
         playerLeftController = new PlayerController("Player1", 0);
         playerRightController = new PlayerController("Player2", 0);
 
-        racketLeftController = new RacketController(20, 100);
-        racketRightController = new RacketController(20, 100);
+        racketLeftController = new RacketController(20, 120);
+        racketRightController = new RacketController(20, 120);
     }
 
     public GameView getView() {

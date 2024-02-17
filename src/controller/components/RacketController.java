@@ -9,6 +9,10 @@ public class RacketController {
         racketView = new RacketView(width, height);
     }
 
+    public void updateSize(double newWidth, double newHeight) {
+        racketView.updateSize(newWidth, newHeight);
+    }
+
     public RacketView getView() {
         return racketView;
     }

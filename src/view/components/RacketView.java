@@ -15,4 +15,9 @@ public class RacketView extends VBox {
         this.getChildren().add(racket); // Add racket to VBox
         this.setAlignment(Pos.CENTER); // Set Alignment to Center
     }
+
+    public void updateSize(double newWidth, double newHeight) {
+        this.racket.setWidth(newWidth);
+        this.racket.setHeight(newHeight);
+    }
 }

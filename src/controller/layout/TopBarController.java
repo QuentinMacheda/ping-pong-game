@@ -12,10 +12,6 @@ public class TopBarController {
     private TopBarController() {
         topBarView = new TopBarView();
 
-        // Handling onclick menu buttons
-        // Exit Game
-        topBarView.exit.setOnAction(e -> System.exit(0));
-
         // Change Players Name
         topBarView.player1.setOnAction(e -> {
             MainController.getInstance().displaySettings("player1");
@@ -23,6 +19,14 @@ public class TopBarController {
         topBarView.player2.setOnAction(e -> {
             MainController.getInstance().displaySettings("player2");
         });
+
+        // Set Racket Size
+        topBarView.racketSize.setOnAction(e -> {
+            MainController.getInstance().displaySettings("racketSize");
+        });
+
+        // Exit Game
+        topBarView.exit.setOnAction(e -> System.exit(0));
     }
 
     public TopBarView getView() {
