@@ -1,4 +1,4 @@
-package src.controller;
+package src.controller.components;
 
 import src.model.PlayerModel;
 import src.view.components.PlayerView;
@@ -14,7 +14,20 @@ public class PlayerController {
         playerView = new PlayerView(playerModel.getName(), playerModel.getScore());
     }
 
-    public void getPlayerName() {
-        playerModel.getName();
+    public PlayerView getView() {
+        return playerView;
+    }
+
+    public String getName() {
+        return playerModel.getName();
+    }
+
+    public void updateName(String name) {
+        playerModel.setName(name);
+        this.getView().updateName(playerModel.getName());
+    }
+
+    public int getScore() {
+        return playerModel.getScore();
     }
 }

@@ -4,9 +4,11 @@ import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import src.view.MainView;
+import src.controller.MainController;
 
 public class Main extends Application {
     public MainView mainView;
+    public MainController mainController;
 
     public static void main(String[] args) {
         launch(args);
@@ -14,9 +16,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage window) {
-        mainView = new MainView();
-
-        Scene mainScene = new Scene(mainView, 1000, 700);
+        mainController = MainController.getInstance();
+        Scene mainScene = new Scene(MainView.getInstance(), 1000, 700);
 
         window.setTitle("Ping Pong Game");
 

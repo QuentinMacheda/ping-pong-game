@@ -7,12 +7,13 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.geometry.Insets;
 
-import src.controller.PlayerController;
+import src.controller.GameController;
+import src.view.components.PlayerView;
 
 public class TopBarView extends VBox {
     public BorderPane playersContainer;
-    public PlayerController playerLeftController;
-    public PlayerController playerRightController;
+    public PlayerView playerLeftView;
+    public PlayerView playerRightView;
     public MenuBar menuBar;
     public Menu gameSettings;
     public Menu playersName;
@@ -29,10 +30,10 @@ public class TopBarView extends VBox {
         // Adding players names/scores
         playersContainer = new BorderPane();
         playersContainer.setPadding(new Insets(50));
-        playerLeftController = new PlayerController("Player1", 0);
-        playerRightController = new PlayerController("Player2", 0);
-        playersContainer.setLeft(playerLeftController.playerView);
-        playersContainer.setRight(playerRightController.playerView);
+        playerLeftView = GameController.getInstance().playerLeftController.getView();
+        playerRightView = GameController.getInstance().playerRightController.getView();
+        playersContainer.setLeft(playerLeftView);
+        playersContainer.setRight(playerRightView);
 
         // Menu
         menuBar = new MenuBar();
@@ -47,8 +48,8 @@ public class TopBarView extends VBox {
         ballSpeed = new MenuItem("Set ball speed");
         increaseRate = new MenuItem("Set speed increase rate");
         exit = new MenuItem("Exit");
-        player1 = new MenuItem(playerLeftController.playerModel.getName());
-        player2 = new MenuItem(playerRightController.playerModel.getName());
+        player1 = new MenuItem(GameController.getInstance().playerLeftController.getName());
+        player2 = new MenuItem(GameController.getInstance().playerRightController.getName());
 
         // Adding to the menu items
         gameSettings.getItems().addAll(endingScore, racketsSize, ballSpeed, increaseRate, exit);

@@ -1,52 +1,52 @@
 package src.view;
 
 import javafx.scene.layout.StackPane;
-import src.controller.MainController;
+import src.controller.GameController;
 import src.controller.SettingsController;
 import src.controller.layout.TopBarController;
 
 public class MainView extends StackPane {
-    public MainController mainController;
+    public static MainView selfInstance = new MainView(); // Singleton
     public TopBarController topBarController;
     public SettingsController settingsController;
     public WelcomeView welcomeView;
     public GameView gameView;
 
     // Constructor
-    public MainView() {
-        mainController = new MainController(this);
-
+    private MainView() {
         // Set the background color
         this.setStyle("-fx-background-color: #1B1B1E");
     }
 
-    public void welcome() {
-        welcomeView = new WelcomeView(this);
+    public void displayWelcome() {
+        welcomeView = new WelcomeView();
         this.getChildren().add(welcomeView);
     }
 
-    public void startGame() {
-        gameView = new GameView(this);
-        this.getChildren().add(gameView);
-        mainController.setMainState("RUNNING");
+    public void hideWelcome() {
+        this.getChildren().remove(welcomeView);
     }
 
-    public void settings() {
-        // Remove the current view
-        switch (mainController.getMainState()) {
-            case WELCOME:
-                this.getChildren().remove(welcomeView);
-                break;
-            case RUNNING:
-                this.getChildren().remove(gameView);
-                break;
-            default:
-                break;
-        }
+    public void displayGame() {
+        gameView = GameController.getInstance().getView();
+        this.getChildren().add(gameView);
+    }
 
+    public void hideGame() {
+        this.getChildren().remove(gameView);
+    }
+
+    public void displaySettings(String type) {
         // Display the settings view
-        settingsController = new SettingsController(this);
+        settingsController = new SettingsController(type);
         this.getChildren().add(settingsController.settingsView);
-        mainController.setMainState("SETTINGS");
+    }
+
+    public void hideSettings() {
+        this.getChildren().remove(settingsController.settingsView);
+    }
+
+    public static MainView getInstance() {
+        return selfInstance; // Singleton
     }
 }

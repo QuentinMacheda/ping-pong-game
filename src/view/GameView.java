@@ -1,24 +1,19 @@
 package src.view;
 
 import javafx.scene.layout.BorderPane;
-import src.controller.GameController;
-import src.controller.layout.TopBarController;
 import src.view.components.BallView;
 import src.view.components.RacketView;
+import src.controller.layout.TopBarController;
 
 public class GameView extends BorderPane {
-    public MainView mainView;
-    public GameController gameController;
     public RacketView racketLeftView;
     public RacketView racketRightView;
     public BallView ballView;
-    public TopBarController topBarController;
 
     // Constructor
-    public GameView(MainView mainView) {
+    public GameView() {
         // Set Top Bar
-        topBarController = new TopBarController(mainView);
-        this.setTop(topBarController.topBarView);
+        this.setTop(TopBarController.getInstance().getView());
 
         // Set Game Components
         racketLeftView = new RacketView(20, 100, "Left", this);

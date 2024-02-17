@@ -18,4 +18,13 @@ public class PlayerView extends Text {
         this.setFill(Color.web("#F1E9DA"));
         this.setText(this.name + " : " + this.score);
     }
+
+    public void updateName(String newName) {
+        this.setText(newName + " : " + this.score);
+    }
+
+    public void updateScore(int score) {
+        this.score = score;
+        this.setText(this.name + " : " + this.score);
+    }
 }

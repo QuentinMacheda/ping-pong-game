@@ -1,5 +1,6 @@
 package src.view;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
@@ -11,21 +12,19 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+
+import src.controller.MainController;
 import src.controller.layout.TopBarController;
-import javafx.geometry.Insets;
 
 public class WelcomeView extends BorderPane {
-    public MainView mainView;
-    public TopBarController topBarController;
-    public Text welcomeText;
-    public Image icon;
-    public Button startButton;
-    public VBox container;
+    private Text welcomeText;
+    private Image icon;
+    private Button startButton;
+    private VBox container;
 
-    public WelcomeView(MainView mainView) {
+    public WelcomeView() {
         // Set Top Bar
-        topBarController = new TopBarController(mainView);
-        this.setTop(topBarController.topBarView);
+        this.setTop(TopBarController.getInstance().getView());
 
         // Set Welcome Content
         // Text
@@ -52,8 +51,8 @@ public class WelcomeView extends BorderPane {
 
         // Controller Actions (do not need a controller as there is only one action)
         startButton.setOnAction(e -> {
-            mainView.getChildren().remove(this); // Remove the welcome view
-            mainView.startGame(); // Start the game
+            MainView.getInstance().getChildren().remove(this); // Remove the welcome view
+            MainController.getInstance().startGame(); // Start the game
         });
     }
 }
