@@ -11,14 +11,25 @@ public class GameController {
     public PlayerController playerRightController;
     public RacketController racketLeftController;
     public RacketController racketRightController;
+    public int endGameScore;
 
     // Constructor
     private GameController() {
+        this.endGameScore = 10;
+
         playerLeftController = new PlayerController("Player1", 0);
         playerRightController = new PlayerController("Player2", 0);
 
         racketLeftController = new RacketController(20, 120);
         racketRightController = new RacketController(20, 120);
+    }
+
+    public int getEndGameScore() {
+        return this.endGameScore;
+    }
+
+    public void updateEndGameScore(int newScore) {
+        this.endGameScore = newScore;
     }
 
     public GameView getView() {

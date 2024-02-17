@@ -14,14 +14,17 @@ public class SettingsController {
 
         // Display the right setting view
         switch (type) {
+            case "endGameScore":
+                settingsView.endGameScoreView(GameController.getInstance().getEndGameScore());
+                break;
+            case "racketSize":
+                settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
+                break;
             case "player1":
                 settingsView.playerNameView();
                 break;
             case "player2":
                 settingsView.playerNameView();
-                break;
-            case "racketSize":
-                settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
                 break;
             default:
                 break;
@@ -33,17 +36,20 @@ public class SettingsController {
 
     private void save(String type) {
         switch (type) {
-            case "player1":
-                GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
-                break;
-            case "player2":
-                GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
+            case "endGameScore":
+                GameController.getInstance().updateEndGameScore((int) settingsView.endGameScoreSlider.getValue());
                 break;
             case "racketSize":
                 GameController.getInstance().racketLeftController.updateSize(settingsView.widthSlider.getValue(),
                         settingsView.heightSlider.getValue());
                 GameController.getInstance().racketRightController.updateSize(settingsView.widthSlider.getValue(),
                         settingsView.heightSlider.getValue());
+                break;
+            case "player1":
+                GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
+                break;
+            case "player2":
+                GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
                 break;
             default:
                 break;

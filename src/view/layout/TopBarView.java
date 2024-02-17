@@ -19,7 +19,7 @@ public class TopBarView extends VBox {
     public Menu playersName;
     public Menu rackets;
     public MenuItem exit;
-    public MenuItem endingScore;
+    public MenuItem endGameScore;
     public MenuItem racketSize;
     public MenuItem ballSpeed;
     public MenuItem increaseRate;
@@ -43,16 +43,16 @@ public class TopBarView extends VBox {
         playersName = new Menu("Players settings");
 
         // subItems
-        endingScore = new MenuItem("Set ending score");
-        racketSize = new MenuItem("Set rackets size");
-        ballSpeed = new MenuItem("Set ball speed");
-        increaseRate = new MenuItem("Set speed increase rate");
+        endGameScore = new MenuItem("End game score");
+        racketSize = new MenuItem("Rackets size");
+        ballSpeed = new MenuItem("Ball speed");
+        increaseRate = new MenuItem("Speed increase rate");
         exit = new MenuItem("Exit");
         player1 = new MenuItem(GameController.getInstance().playerLeftController.getName());
         player2 = new MenuItem(GameController.getInstance().playerRightController.getName());
 
         // Adding to the menu items
-        gameSettings.getItems().addAll(endingScore, racketSize, ballSpeed, increaseRate, exit);
+        gameSettings.getItems().addAll(endGameScore, racketSize, ballSpeed, increaseRate, exit);
         playersName.getItems().addAll(player1, player2);
         menuBar.getMenus().addAll(gameSettings, playersName);
 

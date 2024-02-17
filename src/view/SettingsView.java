@@ -15,9 +15,8 @@ import src.controller.layout.TopBarController;
 
 public class SettingsView extends BorderPane {
     public Button saveBtn;
+    public Slider endGameScoreSlider, widthSlider, heightSlider;
     public TextField newPlayerName;
-    public Slider widthSlider;
-    public Slider heightSlider;
 
     public SettingsView() {
         // Set Top Bar
@@ -32,16 +31,44 @@ public class SettingsView extends BorderPane {
     }
 
     /*
+     * Display settings with endGameScoreView
+     */
+    public void endGameScoreView(double currentScore) {
+        // Text End Game Score
+        Text textEndGameScore = new Text("Select the end game score");
+        textEndGameScore.setFont(Font.font("Verdana", FontWeight.LIGHT, FontPosture.REGULAR, 20));
+        textEndGameScore.setFill(Color.web("#F1E9DA"));
+
+        // End Game Score Slider
+        endGameScoreSlider = new Slider(5, 20, currentScore);
+        endGameScoreSlider.setMajorTickUnit(5);
+        endGameScoreSlider.setMinorTickCount(1);
+        endGameScoreSlider.setSnapToTicks(true);
+        endGameScoreSlider.setShowTickLabels(true);
+        endGameScoreSlider.setShowTickMarks(true);
+        endGameScoreSlider.setBlockIncrement(5);
+        endGameScoreSlider.setPrefWidth(300);
+        endGameScoreSlider.setMaxWidth(300);
+
+        // Add both to a VBox
+        VBox container = new VBox(textEndGameScore, endGameScoreSlider, saveBtn);
+        container.setSpacing(20);
+        container.setStyle("-fx-alignment: center; -fx-padding: 20px;");
+
+        this.setCenter(container);
+    }
+
+    /*
      * Display settings with racketSizeView
      */
-    public void racketSizeView(double widthValue, double heightValue) {
+    public void racketSizeView(double currentWidth, double currentHeight) {
         // Text Rackets's Width
         Text textWidth = new Text("Select the rackets's width");
         textWidth.setFont(Font.font("Verdana", FontWeight.LIGHT, FontPosture.REGULAR, 20));
         textWidth.setFill(Color.web("#F1E9DA"));
 
         // Width Slider
-        widthSlider = new Slider(10, 30, widthValue);
+        widthSlider = new Slider(10, 30, currentWidth);
         widthSlider.setMajorTickUnit(10);
         widthSlider.setMinorTickCount(1);
         widthSlider.setSnapToTicks(true);
@@ -57,7 +84,7 @@ public class SettingsView extends BorderPane {
         textHeight.setFill(Color.web("#F1E9DA"));
 
         // Height Slider
-        heightSlider = new Slider(100, 140, heightValue);
+        heightSlider = new Slider(100, 140, currentHeight);
         heightSlider.setMajorTickUnit(10);
         heightSlider.setMinorTickCount(1);
         heightSlider.setSnapToTicks(true);

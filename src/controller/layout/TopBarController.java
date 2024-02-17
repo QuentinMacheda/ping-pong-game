@@ -12,12 +12,13 @@ public class TopBarController {
     private TopBarController() {
         topBarView = new TopBarView();
 
-        // Change Players Name
-        topBarView.player1.setOnAction(e -> {
-            MainController.getInstance().displaySettings("player1");
-        });
-        topBarView.player2.setOnAction(e -> {
-            MainController.getInstance().displaySettings("player2");
+        handleButtonsActions();
+    }
+
+    public void handleButtonsActions() {
+        // Set End Game Score
+        topBarView.endGameScore.setOnAction(e -> {
+            MainController.getInstance().displaySettings("endGameScore");
         });
 
         // Set Racket Size
@@ -27,6 +28,14 @@ public class TopBarController {
 
         // Exit Game
         topBarView.exit.setOnAction(e -> System.exit(0));
+
+        // Change Players Name
+        topBarView.player1.setOnAction(e -> {
+            MainController.getInstance().displaySettings("player1");
+        });
+        topBarView.player2.setOnAction(e -> {
+            MainController.getInstance().displaySettings("player2");
+        });
     }
 
     public TopBarView getView() {
@@ -34,6 +43,6 @@ public class TopBarController {
     }
 
     public static TopBarController getInstance() {
-        return selfInstance; // Singleton
+        return selfInstance;
     }
 }

@@ -29,6 +29,9 @@ public class MainController {
     // Set the game state
     public void setMainState(MainState state) {
         switch (state) {
+            case SETTINGS:
+                mainState = MainState.SETTINGS;
+                break;
             case WELCOME:
                 mainState = MainState.WELCOME;
                 break;
@@ -40,9 +43,6 @@ public class MainController {
                 break;
             case GAMEOVER:
                 mainState = MainState.GAMEOVER;
-                break;
-            case SETTINGS:
-                mainState = MainState.SETTINGS;
                 break;
             default:
                 break;
