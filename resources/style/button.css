@@ -1,0 +1,23 @@
+.btn {
+    -fx-text-fill: #1B1B1E;
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-weight: bold;
+    -fx-font-size: 18px;
+    -fx-min-width: 120px;
+    -fx-padding: 14px 20px;
+}
+
+.red-btn {
+    -fx-background-color: #b0413e;
+    -fx-effect: dropshadow( three-pass-box , rgba(176, 65, 62, 0.5), 10, 0.0 , 0 , 1 );
+}
+
+.orange-btn {
+    -fx-background-color: #FF910A;
+    -fx-effect: dropshadow( three-pass-box , #ff910a, 10, 0.0 , 0 , 1 );
+}
+
+.btn-container {
+    -fx-alignment: center;
+    -fx-padding: 80px 0px 0px 0px;
+}

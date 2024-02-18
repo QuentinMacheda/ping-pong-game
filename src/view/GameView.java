@@ -28,5 +28,10 @@ public class GameView extends BorderPane {
 
         // Set Ball
         ballView = new BallView(20, this);
+
+        // Bottom Balance
+        VBox bottom = new VBox();
+        bottom.setMinHeight(80);
+        this.setBottom(bottom);
     }
 }

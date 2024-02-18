@@ -1,5 +1,8 @@
 package src.controller;
 
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import src.view.SettingsView;
 
 public class SettingsController {
@@ -16,15 +19,19 @@ public class SettingsController {
         switch (type) {
             case "endGameScore":
                 settingsView.endGameScoreView(GameController.getInstance().getEndGameScore());
+                enterKeyPressedSlider(type, settingsView.endGameScoreSlider);
                 break;
             case "racketSize":
                 settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
+                enterKeyPressedSlider(type, settingsView.widthSlider);
                 break;
             case "player1":
                 settingsView.playerNameView();
+                enterKeyPressedTF(type, settingsView.newPlayerName);
                 break;
             case "player2":
                 settingsView.playerNameView();
+                enterKeyPressedTF(type, settingsView.newPlayerName);
                 break;
             default:
                 break;
@@ -32,6 +39,7 @@ public class SettingsController {
 
         // Call save() function onclick save button
         settingsView.saveBtn.setOnAction(e -> save(type));
+        settingsView.backBtn.setOnAction(e -> back());
     }
 
     private void save(String type) {
@@ -46,15 +54,41 @@ public class SettingsController {
                         settingsView.heightSlider.getValue());
                 break;
             case "player1":
-                GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
+                if (settingsView.newPlayerName.getText().length() > 0) {
+                    GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
+                }
                 break;
             case "player2":
-                GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
+                if (settingsView.newPlayerName.getText().length() > 0) {
+                    GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
+                }
                 break;
             default:
                 break;
         }
 
         MainController.getInstance().hideSettings();
+    }
+
+    private void back() {
+        MainController.getInstance().hideSettings();
+    }
+
+    private void enterKeyPressedTF(String type, TextField textField) {
+        // Call save() function if key pressed ENTER
+        textField.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                save(type);
+            }
+        });
+    }
+
+    private void enterKeyPressedSlider(String type, Slider slider) {
+        // Call save() function if key pressed ENTER
+        slider.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                save(type);
+            }
+        });
     }
 }

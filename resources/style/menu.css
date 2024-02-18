@@ -1,0 +1,43 @@
+/* Menu Bar */
+.menu-bar {
+    -fx-background-color: #27272B;
+    -fx-text-fill: #f1e9da !important;
+    -fx-fill: #f1e9da !important;
+    -fx-padding: 0px;
+}
+
+/* Menu */
+.menu {
+    -fx-background-color: #27272B;
+    -fx-padding: 8px 12px;
+}
+.menu > .label {
+    -fx-text-fill: #f1e9da !important;
+    -fx-fill: #f1e9da !important;
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-weight: normal;
+    -fx-font-size: 16px;
+}
+.menu:hover {
+    -fx-background-color: #ff910a;
+}
+.context-menu {
+    -fx-background-color: #27272B;
+    -fx-min-width: 100px;
+}
+
+/* Menu items */
+.menu-item {
+    -fx-background-color: #27272B;
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-weight: normal;
+    -fx-font-size: 15px;
+    -fx-padding: 6px 10px;
+}
+.menu-item:hover {
+    -fx-background-color: #ff910a;
+}
+.menu-item > .label {
+    -fx-text-fill: #f1e9da !important;
+    -fx-fill: #f1e9da !important;
+}

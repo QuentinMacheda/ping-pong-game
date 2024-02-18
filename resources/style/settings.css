@@ -1,0 +1,29 @@
+.main-container {
+    -fx-alignment: center;
+    -fx-padding: 20px;
+}
+
+.setting-title {
+    -fx-text-fill: #f1e9da;
+    -fx-fill: #f1e9da;
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-weight: normal;
+    -fx-font-size: 28px;
+}
+
+.text-field {
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-size: 20px;
+    -fx-font-weight: lighter;
+    -fx-text-fill: #F1E9DA;
+    
+    -fx-background-color: transparent;
+    -fx-border-color: #F1E9DA;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;    
+
+    -fx-pref-width: 250px;
+    -fx-max-width: 250px;
+    
+    -fx-padding: 15px;
+}
