@@ -1,6 +1,7 @@
 package src.controller.layout;
 
 import src.view.layout.TopBarView;
+import javafx.stage.StageStyle;
 import src.controller.MainController;
 
 // SINGLETON DESIGN PATTERN USED

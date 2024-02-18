@@ -11,9 +11,6 @@ import src.controller.GameController;
 import src.view.components.PlayerView;
 
 public class TopBarView extends VBox {
-    public BorderPane playersContainer;
-    public PlayerView playerLeftView;
-    public PlayerView playerRightView;
     public MenuBar menuBar;
     public Menu gameSettings;
     public Menu playersName;
@@ -26,14 +23,14 @@ public class TopBarView extends VBox {
     public MenuItem player1;
     public MenuItem player2;
 
+    public BorderPane playersContainer;
+    public PlayerView playerLeftView;
+    public PlayerView playerRightView;
+
     public TopBarView() {
-        // Adding players names/scores
-        playersContainer = new BorderPane();
-        playersContainer.setPadding(new Insets(50));
-        playerLeftView = GameController.getInstance().playerLeftController.getView();
-        playerRightView = GameController.getInstance().playerRightController.getView();
-        playersContainer.setLeft(playerLeftView);
-        playersContainer.setRight(playerRightView);
+        /*
+         * Menu Bar
+         */
 
         // Menu
         menuBar = new MenuBar();
@@ -56,7 +53,20 @@ public class TopBarView extends VBox {
         playersName.getItems().addAll(player1, player2);
         menuBar.getMenus().addAll(gameSettings, playersName);
 
-        // Adding to the top bar
+        /*
+         * Players container
+         */
+        // Adding players names/scores
+        playersContainer = new BorderPane();
+        playersContainer.setPadding(new Insets(50));
+        playerLeftView = GameController.getInstance().playerLeftController.getView();
+        playerRightView = GameController.getInstance().playerRightController.getView();
+        playersContainer.setLeft(playerLeftView);
+        playersContainer.setRight(playerRightView);
+
+        /*
+         * Main container
+         */
         this.getChildren().add(menuBar);
         this.getChildren().add(playersContainer);
     }
