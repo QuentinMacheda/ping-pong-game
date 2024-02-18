@@ -7,7 +7,7 @@ import javafx.scene.layout.VBox;
 public class RacketView extends VBox {
     public Rectangle racket;
 
-    public RacketView(int width, int height) {
+    public RacketView(double width, double height) {
         this.racket = new Rectangle(width, height);
         this.racket.getStyleClass().addAll("racket");
 

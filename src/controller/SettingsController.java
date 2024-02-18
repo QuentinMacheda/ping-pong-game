@@ -3,6 +3,8 @@ package src.controller;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+
+import src.model.GameModel;
 import src.view.SettingsView;
 
 public class SettingsController {
@@ -20,7 +22,7 @@ public class SettingsController {
          */
         switch (type) {
             case "endGameScore":
-                settingsView.endGameScoreView(GameController.getInstance().getEndGameScore());
+                settingsView.endGameScoreView(GameModel.getInstance().getEndGameScore());
                 enterKeyPressedSlider(type, settingsView.endGameScoreSlider);
                 break;
             case "racketSize":
@@ -56,7 +58,7 @@ public class SettingsController {
     private void save(String type) {
         switch (type) {
             case "endGameScore":
-                GameController.getInstance().updateEndGameScore((int) settingsView.endGameScoreSlider.getValue());
+                GameModel.getInstance().updateEndGameScore((int) settingsView.endGameScoreSlider.getValue());
                 break;
             case "racketSize":
                 GameController.getInstance().racketLeftController.updateSize(settingsView.widthSlider.getValue(),

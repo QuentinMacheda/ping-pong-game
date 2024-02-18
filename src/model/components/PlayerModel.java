@@ -1,4 +1,4 @@
-package src.model;
+package src.model.components;
 
 public class PlayerModel {
     private String name;

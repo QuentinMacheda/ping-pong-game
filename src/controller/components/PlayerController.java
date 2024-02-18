@@ -1,6 +1,6 @@
 package src.controller.components;
 
-import src.model.PlayerModel;
+import src.model.components.PlayerModel;
 import src.view.components.PlayerView;
 
 public class PlayerController {
