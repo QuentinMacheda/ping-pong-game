@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -51,9 +52,17 @@ public class WelcomeView extends BorderPane {
         this.setBottom(bottom);
 
         // Controller Actions (do not need a controller as there is only one action)
+        // On click
         startButton.setOnAction(e -> {
             MainView.getInstance().getChildren().remove(this); // Remove the welcome view
             MainController.getInstance().startGame(); // Start the game
+        });
+        // On key pressed ENTER
+        startButton.setOnKeyPressed(e -> {
+            if (e.getCode() == KeyCode.ENTER) {
+                MainView.getInstance().getChildren().remove(this); // Remove the welcome view
+                MainController.getInstance().startGame(); // Start the game
+            }
         });
     }
 }

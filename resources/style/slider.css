@@ -1,0 +1,38 @@
+.slider {
+  -fx-pref-width: 200px;
+}
+
+.slider .track {
+  -fx-background-color: #f1e9da;
+  -fx-background-radius: 2px;
+}
+
+.slider .thumb {
+  -fx-background-color: #FF910A;
+  -fx-background-radius: 5px;
+  -fx-padding: 10px;
+  -fx-effect: dropshadow( three-pass-box , #ff910a, 5, 0.0 , 0 , 1 );
+}
+
+.slider .thumb:hover {
+  -fx-background-color: #de7e0a;
+}
+
+.slider .thumb:pressed {
+  -fx-background-color: #c36f0a;
+}
+
+.slider .thumb .thumb-label {
+  -fx-background-color: #FF910A;
+  -fx-text-fill: #f1e9da;
+  -fx-padding: 5px;
+  -fx-font-size: 12px;
+}
+
+.slider .thumb .thumb-label:hover {
+  -fx-background-color: #de7e0a;
+}
+
+.slider .thumb .thumb-label:pressed {
+  -fx-background-color: #c36f0a;
+}
