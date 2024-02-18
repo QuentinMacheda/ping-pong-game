@@ -31,6 +31,11 @@ public class TopBarController {
             MainController.getInstance().displaySettings("ballSpeed");
         });
 
+        // Set Ball Speed Increase Rate
+        topBarView.ballSpeedIncreaseRate.setOnAction(e -> {
+            MainController.getInstance().displaySettings("ballSpeedIR");
+        });
+
         // Exit Game
         topBarView.exit.setOnAction(e -> System.exit(0));
 

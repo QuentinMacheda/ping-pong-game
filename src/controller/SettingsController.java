@@ -15,7 +15,9 @@ public class SettingsController {
         racketCurrentWidth = GameController.getInstance().racketLeftController.getView().racket.getWidth();
         racketCurrentHeight = GameController.getInstance().racketLeftController.getView().racket.getHeight();
 
-        // Display the right setting view
+        /*
+         * Display the right setting view
+         */
         switch (type) {
             case "endGameScore":
                 settingsView.endGameScoreView(GameController.getInstance().getEndGameScore());
@@ -28,12 +30,15 @@ public class SettingsController {
             case "ballSpeed":
                 settingsView.ballSpeedView(GameController.getInstance().ballController.getSpeed());
                 break;
+            case "ballSpeedIR":
+                settingsView.ballSpeedIRView(GameController.getInstance().ballController.getSpeedIR());
+                break;
             case "player1":
-                settingsView.playerNameView();
+                settingsView.playerNameView(GameController.getInstance().playerLeftController.getName());
                 enterKeyPressedTF(type, settingsView.newPlayerName);
                 break;
             case "player2":
-                settingsView.playerNameView();
+                settingsView.playerNameView(GameController.getInstance().playerRightController.getName());
                 enterKeyPressedTF(type, settingsView.newPlayerName);
                 break;
             default:
@@ -45,6 +50,9 @@ public class SettingsController {
         settingsView.backBtn.setOnAction(e -> back());
     }
 
+    /*
+     * Save settings (change the values)
+     */
     private void save(String type) {
         switch (type) {
             case "endGameScore":
@@ -57,12 +65,21 @@ public class SettingsController {
                         settingsView.heightSlider.getValue());
                 break;
             case "ballSpeed":
-                if (settingsView.optSlow.isSelected() == true) {
+                if (settingsView.optSlowBallSpeed.isSelected() == true) {
                     GameController.getInstance().ballController.setSpeed("slow");
-                } else if (settingsView.optFast.isSelected() == true) {
+                } else if (settingsView.optFastBallSpeed.isSelected() == true) {
                     GameController.getInstance().ballController.setSpeed("fast");
                 } else {
                     GameController.getInstance().ballController.setSpeed("normal");
+                }
+                break;
+            case "ballSpeedIR":
+                if (settingsView.optSlowBallSpeedIR.isSelected() == true) {
+                    GameController.getInstance().ballController.setSpeedIR("slow");
+                } else if (settingsView.optFastBallSpeedIR.isSelected() == true) {
+                    GameController.getInstance().ballController.setSpeedIR("fast");
+                } else {
+                    GameController.getInstance().ballController.setSpeedIR("normal");
                 }
                 break;
             case "player1":
@@ -82,10 +99,16 @@ public class SettingsController {
         MainController.getInstance().hideSettings();
     }
 
+    /*
+     * Do not save the settings and go back
+     */
     private void back() {
         MainController.getInstance().hideSettings();
     }
 
+    /*
+     * Call save() function if key pressed ENTER for TextField
+     */
     private void enterKeyPressedTF(String type, TextField textField) {
         // Call save() function if key pressed ENTER
         textField.setOnKeyPressed(e -> {
@@ -95,6 +118,9 @@ public class SettingsController {
         });
     }
 
+    /*
+     * Call save() function if key pressed ENTER for Slider
+     */
     private void enterKeyPressedSlider(String type, Slider slider) {
         // Call save() function if key pressed ENTER
         slider.setOnKeyPressed(e -> {

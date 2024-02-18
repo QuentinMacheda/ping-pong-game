@@ -19,7 +19,8 @@ public class SettingsView extends BorderPane {
     public Button backBtn, saveBtn;
     public Slider endGameScoreSlider, widthSlider, heightSlider;
     public TextField newPlayerName;
-    public RadioButton optSlow, optNormal, optFast;
+    public RadioButton optSlowBallSpeed, optNormalBallSpeed, optFastBallSpeed, optSlowBallSpeedIR, optNormalBallSpeedIR,
+            optFastBallSpeedIR;
 
     public SettingsView() {
         // Set Top Bar
@@ -50,43 +51,13 @@ public class SettingsView extends BorderPane {
         this.setBottom(bottom);
     }
 
-    public void ballSpeedView(String optSelected) {
-        // Text End Game Score
-        Text textBallSpeed = new Text("Select the ball speed");
-        textBallSpeed.getStyleClass().add("setting-title"); // Add CSS
-
-        ToggleGroup toggleGroup = new ToggleGroup();
-
-        optSlow = new RadioButton("Slow");
-        optNormal = new RadioButton("Normal");
-        optFast = new RadioButton("Fast");
-
-        // Set the current selected option
-        if (optSelected == "slow")
-            optSlow.setSelected(true);
-        else if (optSelected == "fast")
-            optFast.setSelected(true);
-        else
-            optNormal.setSelected(true);
-
-        optSlow.setToggleGroup(toggleGroup);
-        optNormal.setToggleGroup(toggleGroup);
-        optFast.setToggleGroup(toggleGroup);
-
-        HBox optionsContainer = new HBox(new VBox(10, optSlow, optNormal, optFast));
-        optionsContainer.setAlignment(Pos.CENTER);
-
-        // Add both to a VBox
-        mainContainer.getChildren().addAll(textBallSpeed, optionsContainer, buttonsContainer);
-    }
-
     /*
      * Display settings with endGameScoreView
      */
     public void endGameScoreView(double currentScore) {
         // Text End Game Score
-        Text textEndGameScore = new Text("Select the end game score");
-        textEndGameScore.getStyleClass().add("setting-title"); // Add CSS
+        Text titleText = new Text("Select the end game score");
+        titleText.getStyleClass().add("setting-title"); // Add CSS
 
         // End Game Score Slider
         endGameScoreSlider = new Slider(5, 20, currentScore);
@@ -101,7 +72,7 @@ public class SettingsView extends BorderPane {
         endGameScoreSlider.getStyleClass().add("slider"); // Add CSS
 
         // Add both to a VBox
-        mainContainer.getChildren().addAll(textEndGameScore, endGameScoreSlider, buttonsContainer);
+        mainContainer.getChildren().addAll(titleText, endGameScoreSlider, buttonsContainer);
     }
 
     /*
@@ -145,12 +116,78 @@ public class SettingsView extends BorderPane {
     }
 
     /*
+     * Display settings with ballSpeedView
+     */
+    public void ballSpeedView(String optSelected) {
+        // Text End Game Score
+        Text titleText = new Text("Select the ball speed");
+        titleText.getStyleClass().add("setting-title"); // Add CSS
+
+        // Radio Buttons
+        ToggleGroup toggleGroup = new ToggleGroup();
+        optSlowBallSpeed = new RadioButton("Slow");
+        optNormalBallSpeed = new RadioButton("Normal");
+        optFastBallSpeed = new RadioButton("Fast");
+
+        optSlowBallSpeed.setToggleGroup(toggleGroup);
+        optNormalBallSpeed.setToggleGroup(toggleGroup);
+        optFastBallSpeed.setToggleGroup(toggleGroup);
+
+        // Set the current selected option
+        if (optSelected == "slow")
+            optSlowBallSpeed.setSelected(true);
+        else if (optSelected == "fast")
+            optFastBallSpeed.setSelected(true);
+        else
+            optNormalBallSpeed.setSelected(true);
+
+        HBox optionsContainer = new HBox(new VBox(10, optSlowBallSpeed, optNormalBallSpeed, optFastBallSpeed));
+        optionsContainer.setAlignment(Pos.CENTER);
+
+        // Add both to a VBox
+        mainContainer.getChildren().addAll(titleText, optionsContainer, buttonsContainer);
+    }
+
+    /*
+     * Display settings with ballSpeedIncreaseRateView
+     */
+    public void ballSpeedIRView(String optSelected) {
+        // Text End Game Score
+        Text titleText = new Text("Select the ball speed increase rate");
+        titleText.getStyleClass().add("setting-title"); // Add CSS
+
+        // Radio Buttons
+        ToggleGroup toggleGroup = new ToggleGroup();
+        optSlowBallSpeedIR = new RadioButton("Slow");
+        optNormalBallSpeedIR = new RadioButton("Normal");
+        optFastBallSpeedIR = new RadioButton("Fast");
+
+        optSlowBallSpeedIR.setToggleGroup(toggleGroup);
+        optNormalBallSpeedIR.setToggleGroup(toggleGroup);
+        optFastBallSpeedIR.setToggleGroup(toggleGroup);
+
+        // Set the current selected option
+        if (optSelected == "slow")
+            optSlowBallSpeedIR.setSelected(true);
+        else if (optSelected == "fast")
+            optFastBallSpeedIR.setSelected(true);
+        else
+            optNormalBallSpeedIR.setSelected(true);
+
+        HBox optionsContainer = new HBox(new VBox(10, optSlowBallSpeedIR, optNormalBallSpeedIR, optFastBallSpeedIR));
+        optionsContainer.setAlignment(Pos.CENTER);
+
+        // Add both to a VBox
+        mainContainer.getChildren().addAll(titleText, optionsContainer, buttonsContainer);
+    }
+
+    /*
      * Display settings with playerNameView
      */
-    public void playerNameView() {
+    public void playerNameView(String currentPlayerName) {
         // Text
-        Text text = new Text("Enter a new name");
-        text.getStyleClass().add("setting-title"); // Add CSS
+        Text titleText = new Text("Enter a new name for " + currentPlayerName);
+        titleText.getStyleClass().add("setting-title"); // Add CSS
 
         // Textfield
         newPlayerName = new TextField();
@@ -158,6 +195,6 @@ public class SettingsView extends BorderPane {
         newPlayerName.getStyleClass().add("text-field"); // Add CSS
 
         // Add both to a VBox
-        mainContainer.getChildren().addAll(text, newPlayerName, buttonsContainer);
+        mainContainer.getChildren().addAll(titleText, newPlayerName, buttonsContainer);
     }
 }
