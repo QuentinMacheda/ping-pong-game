@@ -25,6 +25,9 @@ public class SettingsController {
                 settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
                 enterKeyPressedSlider(type, settingsView.widthSlider);
                 break;
+            case "ballSpeed":
+                settingsView.ballSpeedView(GameController.getInstance().ballController.getSpeed());
+                break;
             case "player1":
                 settingsView.playerNameView();
                 enterKeyPressedTF(type, settingsView.newPlayerName);
@@ -52,6 +55,15 @@ public class SettingsController {
                         settingsView.heightSlider.getValue());
                 GameController.getInstance().racketRightController.updateSize(settingsView.widthSlider.getValue(),
                         settingsView.heightSlider.getValue());
+                break;
+            case "ballSpeed":
+                if (settingsView.optSlow.isSelected() == true) {
+                    GameController.getInstance().ballController.setSpeed("slow");
+                } else if (settingsView.optFast.isSelected() == true) {
+                    GameController.getInstance().ballController.setSpeed("fast");
+                } else {
+                    GameController.getInstance().ballController.setSpeed("normal");
+                }
                 break;
             case "player1":
                 if (settingsView.newPlayerName.getText().length() > 0) {

@@ -1,7 +1,6 @@
 package src.controller.layout;
 
 import src.view.layout.TopBarView;
-import javafx.stage.StageStyle;
 import src.controller.MainController;
 
 // SINGLETON DESIGN PATTERN USED
@@ -25,6 +24,11 @@ public class TopBarController {
         // Set Racket Size
         topBarView.racketSize.setOnAction(e -> {
             MainController.getInstance().displaySettings("racketSize");
+        });
+
+        // Set Ball Speed
+        topBarView.ballSpeed.setOnAction(e -> {
+            MainController.getInstance().displaySettings("ballSpeed");
         });
 
         // Exit Game

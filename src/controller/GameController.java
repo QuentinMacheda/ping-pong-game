@@ -1,7 +1,6 @@
 package src.controller;
 
-import src.controller.components.PlayerController;
-import src.controller.components.RacketController;
+import src.controller.components.*;
 import src.view.GameView;
 
 public class GameController {
@@ -11,6 +10,7 @@ public class GameController {
     public PlayerController playerRightController;
     public RacketController racketLeftController;
     public RacketController racketRightController;
+    public BallController ballController;
     public int endGameScore;
 
     // Constructor
@@ -22,6 +22,8 @@ public class GameController {
 
         racketLeftController = new RacketController(20, 120);
         racketRightController = new RacketController(20, 120);
+
+        ballController = new BallController(10);
     }
 
     public int getEndGameScore() {

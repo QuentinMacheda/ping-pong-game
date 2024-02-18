@@ -1,4 +1,17 @@
+.player-info {
+    -fx-text-fill: #f1e9da;
+    -fx-fill: #f1e9da;
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-size: 25;
+    -fx-font-weight: bold;
+}
+
 .racket {
     -fx-fill: #FF910A;
     -fx-effect: dropshadow( three-pass-box , #ff910a, 10, 0.0 , 0 , 1 );
+}
+
+.ball {
+    -fx-fill: #B0413E;
+    -fx-effect: dropshadow( three-pass-box , #b0413e, 20, 0.0 , 0 , 1 );
 }

@@ -27,7 +27,8 @@ public class GameView extends BorderPane {
         this.setRight(racketRightView);
 
         // Set Ball
-        ballView = new BallView(20, this);
+        ballView = GameController.getInstance().ballController.getView();
+        this.setCenter(ballView);
 
         // Bottom Balance
         VBox bottom = new VBox();

@@ -1,9 +1,12 @@
 package src.view;
 
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -16,6 +19,7 @@ public class SettingsView extends BorderPane {
     public Button backBtn, saveBtn;
     public Slider endGameScoreSlider, widthSlider, heightSlider;
     public TextField newPlayerName;
+    public RadioButton optSlow, optNormal, optFast;
 
     public SettingsView() {
         // Set Top Bar
@@ -44,6 +48,36 @@ public class SettingsView extends BorderPane {
         VBox bottom = new VBox();
         bottom.setMinHeight(80);
         this.setBottom(bottom);
+    }
+
+    public void ballSpeedView(String optSelected) {
+        // Text End Game Score
+        Text textBallSpeed = new Text("Select the ball speed");
+        textBallSpeed.getStyleClass().add("setting-title"); // Add CSS
+
+        ToggleGroup toggleGroup = new ToggleGroup();
+
+        optSlow = new RadioButton("Slow");
+        optNormal = new RadioButton("Normal");
+        optFast = new RadioButton("Fast");
+
+        // Set the current selected option
+        if (optSelected == "slow")
+            optSlow.setSelected(true);
+        else if (optSelected == "fast")
+            optFast.setSelected(true);
+        else
+            optNormal.setSelected(true);
+
+        optSlow.setToggleGroup(toggleGroup);
+        optNormal.setToggleGroup(toggleGroup);
+        optFast.setToggleGroup(toggleGroup);
+
+        HBox optionsContainer = new HBox(new VBox(10, optSlow, optNormal, optFast));
+        optionsContainer.setAlignment(Pos.CENTER);
+
+        // Add both to a VBox
+        mainContainer.getChildren().addAll(textBallSpeed, optionsContainer, buttonsContainer);
     }
 
     /*

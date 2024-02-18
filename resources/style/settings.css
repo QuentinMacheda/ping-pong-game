@@ -27,3 +27,39 @@
     
     -fx-padding: 15px;
 }
+
+.radio-button {
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-size: 16px;
+    -fx-font-weight: lighter;
+    -fx-text-fill: #F1E9DA;
+    
+    -fx-background-color: #1B1B1E;
+    -fx-border-color: #FF910A;
+    -fx-border-width: 1px;
+    -fx-border-radius: 5px;   
+    
+    -fx-pref-width: 250px;
+    -fx-max-width: 250px;
+    
+    -fx-padding: 10px;
+}
+.radio-button:hover {
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 145, 10, 0.6), 8, 0, 0, 1);
+}
+.radio-button:hover .radio {
+    -fx-effect: dropshadow(three-pass-box, rgba(255, 145, 10, 0.6), 5, 0, 0, 1);
+}
+.radio-button .radio {
+    -fx-background-color: transparent;
+    -fx-border-color: #FF910A;
+    -fx-border-radius: 50%; 
+
+}
+.radio-button:selected .radio > .dot {
+    -fx-background-color: #FF910A;
+    -fx-alignment: CENTER;
+    -fx-margin: 0; 
+}
+
+
