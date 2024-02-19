@@ -1,10 +1,14 @@
 package src.view.components;
 
 import javafx.scene.shape.Circle;
+import src.controller.components.BallController;
 
 public class BallView extends Circle {
-    public BallView(int radius) {
-        this.setRadius(radius);
+    private BallController ballController;
+
+    public BallView() {
+        ballController = new BallController();
+        this.setRadius(ballController.getRadius());
         this.getStyleClass().addAll("ball");
     }
 }

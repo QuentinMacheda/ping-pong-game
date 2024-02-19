@@ -1,5 +1,6 @@
 package src.controller;
 
+import javafx.scene.Node;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -14,8 +15,8 @@ public class SettingsController {
 
     public SettingsController(String type) {
         settingsView = new SettingsView();
-        racketCurrentWidth = GameController.getInstance().racketLeftController.getView().racket.getWidth();
-        racketCurrentHeight = GameController.getInstance().racketLeftController.getView().racket.getHeight();
+        racketCurrentWidth = GameController.getInstance().racketLeftController.getWidth();
+        racketCurrentHeight = GameController.getInstance().racketLeftController.getHeight();
 
         /*
          * Display the right setting view
@@ -23,11 +24,11 @@ public class SettingsController {
         switch (type) {
             case "endGameScore":
                 settingsView.endGameScoreView(GameModel.getInstance().getEndGameScore());
-                enterKeyPressedSlider(type, settingsView.endGameScoreSlider);
+                enterKeyPressed(type, settingsView.endGameScoreSlider);
                 break;
             case "racketSize":
                 settingsView.racketSizeView(racketCurrentWidth, racketCurrentHeight);
-                enterKeyPressedSlider(type, settingsView.widthSlider);
+                enterKeyPressed(type, settingsView.widthSlider);
                 break;
             case "ballSpeed":
                 settingsView.ballSpeedView(GameController.getInstance().ballController.getSpeed());
@@ -37,11 +38,11 @@ public class SettingsController {
                 break;
             case "player1":
                 settingsView.playerNameView(GameController.getInstance().playerLeftController.getName());
-                enterKeyPressedTF(type, settingsView.newPlayerName);
+                enterKeyPressed(type, settingsView.newPlayerName);
                 break;
             case "player2":
                 settingsView.playerNameView(GameController.getInstance().playerRightController.getName());
-                enterKeyPressedTF(type, settingsView.newPlayerName);
+                enterKeyPressed(type, settingsView.newPlayerName);
                 break;
             default:
                 break;
@@ -109,23 +110,11 @@ public class SettingsController {
     }
 
     /*
-     * Call save() function if key pressed ENTER for TextField
+     * Call save() function if key pressed ENTER for uiElement
      */
-    private void enterKeyPressedTF(String type, TextField textField) {
+    private <T extends Node> void enterKeyPressed(String type, T uiElement) {
         // Call save() function if key pressed ENTER
-        textField.setOnKeyPressed(e -> {
-            if (e.getCode() == KeyCode.ENTER) {
-                save(type);
-            }
-        });
-    }
-
-    /*
-     * Call save() function if key pressed ENTER for Slider
-     */
-    private void enterKeyPressedSlider(String type, Slider slider) {
-        // Call save() function if key pressed ENTER
-        slider.setOnKeyPressed(e -> {
+        uiElement.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
                 save(type);
             }

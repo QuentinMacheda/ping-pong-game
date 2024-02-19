@@ -4,9 +4,9 @@ public class PlayerModel {
     private String name;
     private int score;
 
-    public PlayerModel(String name, int score) {
-        this.name = name;
-        this.score = score;
+    public PlayerModel() {
+        this.name = "Player";
+        this.score = 0;
     }
 
     public String getName() {

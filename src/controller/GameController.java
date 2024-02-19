@@ -14,13 +14,20 @@ public class GameController {
 
     // Constructor
     private GameController() {
-        playerLeftController = new PlayerController("Player1", 0);
-        playerRightController = new PlayerController("Player2", 0);
+        playerLeftController = new PlayerController();
+        playerLeftController.initView();
+        playerLeftController.updateName("Player 1");
+        playerRightController = new PlayerController();
+        playerRightController.initView();
+        playerRightController.updateName("Player 2");
 
-        racketLeftController = new RacketController(20, 120);
-        racketRightController = new RacketController(20, 120);
+        racketLeftController = new RacketController();
+        racketLeftController.initView();
+        racketRightController = new RacketController();
+        racketRightController.initView();
 
-        ballController = new BallController(16);
+        ballController = new BallController();
+        ballController.initView();
     }
 
     public GameView getView() {

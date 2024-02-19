@@ -5,10 +5,14 @@ public class BallModel {
     private int ballSpeed;
     private int ballSpeedIR;
 
-    public BallModel(int radius) {
-        this.radius = radius;
+    public BallModel() {
+        this.radius = 16;
         setSpeed("normal");
         setSpeedIR("normal");
+    }
+
+    public int getRadius() {
+        return this.radius;
     }
 
     public String getSpeed() {

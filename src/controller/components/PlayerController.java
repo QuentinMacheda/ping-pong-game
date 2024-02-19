@@ -4,14 +4,15 @@ import src.model.components.PlayerModel;
 import src.view.components.PlayerView;
 
 public class PlayerController {
-    public PlayerModel playerModel;
-    public PlayerView playerView;
-    public String name;
-    public int score;
+    private PlayerModel playerModel;
+    private PlayerView playerView;
 
-    public PlayerController(String name, int score) {
-        playerModel = new PlayerModel(name, score);
-        playerView = new PlayerView(playerModel.getName(), playerModel.getScore());
+    public PlayerController() {
+        playerModel = new PlayerModel();
+    }
+
+    public void initView() {
+        playerView = new PlayerView();
     }
 
     public PlayerView getView() {
@@ -24,10 +25,15 @@ public class PlayerController {
 
     public void updateName(String name) {
         playerModel.setName(name);
-        this.getView().updateName(playerModel.getName());
+        this.getView().updateName(this.getName());
     }
 
     public int getScore() {
         return playerModel.getScore();
+    }
+
+    public void updateScore(int score) {
+        playerModel.setScore(score);
+        this.getView().updateScore(this.getScore());
     }
 }

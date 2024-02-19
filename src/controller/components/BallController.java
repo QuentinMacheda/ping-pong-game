@@ -4,12 +4,23 @@ import src.model.components.BallModel;
 import src.view.components.BallView;
 
 public class BallController {
-    public BallModel ballModel;
-    public BallView ballView;
+    private BallModel ballModel;
+    private BallView ballView;
 
-    public BallController(int radius) {
-        ballModel = new BallModel(radius);
-        ballView = new BallView(radius);
+    public BallController() {
+        ballModel = new BallModel();
+    }
+
+    public void initView() {
+        ballView = new BallView();
+    }
+
+    public BallView getView() {
+        return ballView;
+    }
+
+    public int getRadius() {
+        return ballModel.getRadius();
     }
 
     public String getSpeed() {
@@ -26,9 +37,5 @@ public class BallController {
 
     public void setSpeedIR(String newSpeedIR) {
         ballModel.setSpeedIR(newSpeedIR);
-    }
-
-    public BallView getView() {
-        return ballView;
     }
 }
