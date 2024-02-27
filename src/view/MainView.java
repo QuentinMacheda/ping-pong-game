@@ -28,7 +28,7 @@ public class MainView extends StackPane {
     }
 
     public void displayGame() {
-        gameView = GameController.getInstance().getView();
+        gameView = GameController.getInstance().initView();
         this.getChildren().add(gameView);
     }
 

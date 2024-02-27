@@ -3,10 +3,22 @@ package src.model.components;
 public class RacketModel {
     private double width;
     private double height;
+    private double parentHeight;
+    private double y;
 
     public RacketModel() {
         this.width = 20;
         this.height = 120;
+        this.parentHeight = 0;
+        this.y = 0;
+    }
+
+    public double getParentHeight() {
+        return this.parentHeight;
+    }
+
+    public void setParentHeight(double newParentHeight) {
+        this.parentHeight = newParentHeight;
     }
 
     public double getWidth() {
@@ -28,5 +40,25 @@ public class RacketModel {
     public void updateSize(double newWidth, double newHeight) {
         setWidth(newWidth);
         setHeight(newHeight);
+    }
+
+    public double getPosY() {
+        return this.y;
+    }
+
+    public void setPosY(double newY) {
+        this.y = newY;
+    }
+
+    public void moveUp() {
+        if (getPosY() > 0) {
+            setPosY(getPosY() - 5);
+        }
+    }
+
+    public void moveDown(double parentHeight) {
+        if (getPosY() < this.parentHeight - getHeight() - 10) {
+            setPosY(getPosY() + 5);
+        }
     }
 }

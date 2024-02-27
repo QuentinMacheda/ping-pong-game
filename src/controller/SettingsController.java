@@ -1,8 +1,6 @@
 package src.controller;
 
 import javafx.scene.Node;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 
 import src.model.GameModel;
