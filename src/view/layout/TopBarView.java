@@ -5,7 +5,6 @@ import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.geometry.Insets;
 
 import src.controller.GameController;
 import src.view.components.PlayerView;
@@ -54,20 +53,8 @@ public class TopBarView extends VBox {
         menuBar.getMenus().addAll(gameSettings, playersName);
 
         /*
-         * Players container
-         */
-        // Adding players names/scores
-        playersContainer = new BorderPane();
-        playersContainer.setPadding(new Insets(50));
-        playerLeftView = GameController.getInstance().playerLeftController.getView();
-        playerRightView = GameController.getInstance().playerRightController.getView();
-        playersContainer.setLeft(playerLeftView);
-        playersContainer.setRight(playerRightView);
-
-        /*
          * Main container
          */
         this.getChildren().add(menuBar);
-        this.getChildren().add(playersContainer);
     }
 }

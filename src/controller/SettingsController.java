@@ -2,7 +2,7 @@ package src.controller;
 
 import javafx.scene.Node;
 import javafx.scene.input.KeyCode;
-
+import src.controller.layout.TopBarController;
 import src.model.GameModel;
 import src.view.SettingsView;
 
@@ -86,11 +86,15 @@ public class SettingsController {
             case "player1":
                 if (settingsView.newPlayerName.getText().length() > 0) {
                     GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
+                    TopBarController.getInstance().topBarView.player1
+                            .setText(GameController.getInstance().playerLeftController.getName());
                 }
                 break;
             case "player2":
                 if (settingsView.newPlayerName.getText().length() > 0) {
                     GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
+                    TopBarController.getInstance().topBarView.player2
+                            .setText(GameController.getInstance().playerRightController.getName());
                 }
                 break;
             default:

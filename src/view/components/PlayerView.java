@@ -14,16 +14,16 @@ public class PlayerView extends Text {
         this.name = playerController.getName();
         this.score = playerController.getScore();
 
-        this.setText(this.name + " : " + this.score);
+        this.setText(this.name + " | " + this.score);
         this.getStyleClass().addAll("player-info");
     }
 
     public void updateName(String newName) {
-        this.setText(newName + " : " + this.score);
+        this.setText(newName + " | " + this.score);
     }
 
     public void updateScore(int score) {
         this.score = score;
-        this.setText(this.name + " : " + this.score);
+        this.setText(this.name + " | " + this.score);
     }
 }

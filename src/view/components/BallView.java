@@ -8,7 +8,12 @@ public class BallView extends Circle {
 
     public BallView() {
         ballController = new BallController();
+
         this.setRadius(ballController.getRadius());
         this.getStyleClass().addAll("ball");
+
+        // Set translation
+        this.setTranslateX(500);
+        this.setTranslateY(0);
     }
 }

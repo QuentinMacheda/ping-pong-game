@@ -1,9 +1,13 @@
 package src.view;
 
+import javafx.geometry.Insets;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import src.view.components.RacketView;
 import src.view.components.BallView;
+import src.view.components.PlayerView;
 import src.controller.GameController;
 import src.controller.layout.TopBarController;
 
@@ -11,6 +15,8 @@ public class GameView extends BorderPane {
     public BallView ballView;
     public RacketView racketLeftView;
     public RacketView racketRightView;
+    public PlayerView playerLeftView;
+    public PlayerView playerRightView;
 
     // Constructor
     public GameView() {
@@ -23,9 +29,12 @@ public class GameView extends BorderPane {
         this.setLeft(racketLeftView);
         this.setRight(racketRightView);
 
-        // Set Ball
+        // Set Ball and PlayersInfo
         ballView = GameController.getInstance().ballController.getView();
-        this.setCenter(ballView);
+        StackPane centerContainer = new StackPane(getPlayersView(), ballView);
+        centerContainer.setStyle("-fx-background-color: #000000;");
+
+        this.setCenter(centerContainer);
 
         // Rackets Keyboard Control
         this.setFocusTraversable(true);
@@ -61,5 +70,21 @@ public class GameView extends BorderPane {
                 GameController.getInstance().racketRightController.setKeyPressed(false);
             }
         });
+    }
+
+    public BorderPane getPlayersView() {
+        /*
+         * Players container
+         */
+        // Adding players names/scores
+        playerLeftView = GameController.getInstance().playerLeftController.getView();
+        playerRightView = GameController.getInstance().playerRightController.getView();
+
+        BorderPane playersContainer = new BorderPane();
+        playersContainer.getStyleClass().add("players-container");
+        playersContainer.setLeft(playerLeftView);
+        playersContainer.setRight(playerRightView);
+
+        return playersContainer;
     }
 }
