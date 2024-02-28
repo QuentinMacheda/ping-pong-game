@@ -28,16 +28,14 @@ public class MainView extends StackPane {
     }
 
     public void displayGame() {
-        gameView = GameController.getInstance().initView();
-        this.getChildren().add(gameView);
+        this.getChildren().add(GameController.getInstance().getView());
     }
 
     public void hideGame() {
-        this.getChildren().remove(gameView);
+        this.getChildren().remove(GameController.getInstance().getView());
     }
 
     public void displaySettings(String type) {
-        // Display the settings view
         settingsController = new SettingsController(type);
         this.getChildren().add(settingsController.settingsView);
     }

@@ -51,13 +51,13 @@ public class RacketModel {
     }
 
     public void moveUp() {
-        if (getPosY() > 0) {
+        if (getPosY() > -(this.parentHeight / 2 - this.height / 2)) {
             setPosY(getPosY() - 5);
         }
     }
 
     public void moveDown(double parentHeight) {
-        if (getPosY() < this.parentHeight - getHeight() - 10) {
+        if (getPosY() < (this.parentHeight / 2) - (this.height / 2)) {
             setPosY(getPosY() + 5);
         }
     }

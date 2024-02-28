@@ -9,6 +9,17 @@
     -fx-font-weight: bold;
 }
 
+.start-message {
+    -fx-text-fill: rgba(241, 233, 218, 0);
+    -fx-fill: rgba(241, 233, 218, 0);
+    -fx-font-family: "Verdana, sans-serif";
+    -fx-font-size: 58;
+    -fx-font-weight: bold;
+    -fx-text-alignment: center;
+    -fx-stroke: rgba(241, 233, 218, 0.2);
+    -fx-stroke-width: 1;
+}
+
 .racket {
     -fx-fill: #FF910A;
     -fx-effect: dropshadow( three-pass-box , #ff910a, 10, 0.0 , 0 , 1 );

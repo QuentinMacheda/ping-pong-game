@@ -54,6 +54,7 @@ public class MainController {
 
     // Start the game
     public void startGame() {
+        GameController.getInstance().initView();
         MainView.getInstance().displayGame();
         this.setMainState(MainState.RUNNING);
     }

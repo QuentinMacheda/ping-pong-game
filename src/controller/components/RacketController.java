@@ -1,6 +1,7 @@
 package src.controller.components;
 
 import javafx.scene.input.KeyCode;
+import src.controller.MainController;
 import src.model.components.RacketModel;
 import src.view.components.RacketView;
 
@@ -13,7 +14,9 @@ public class RacketController implements Runnable {
 
     public RacketController() {
         racketModel = new RacketModel();
+
         racketThread = new Thread(this);
+        racketThread.setName("Racket Thread");
         racketThread.setDaemon(true);
         racketThread.start();
     }
@@ -21,15 +24,9 @@ public class RacketController implements Runnable {
     public void initView() {
         racketView = new RacketView();
 
-        // Set the racket position when height's ready
+        // Get the racket container height to set the boundaries
         racketView.heightProperty().addListener((observable, oldValue, newValue) -> {
-            // Get the center position
             this.setParentHeight(newValue.doubleValue());
-            Double racketCenterPos = this.getParentHeight() / 2 - this.getHeight() / 2;
-
-            // Set racket position
-            racketModel.setPosY(racketCenterPos);
-            racketView.setPosY(racketCenterPos);
         });
     }
 
@@ -90,11 +87,13 @@ public class RacketController implements Runnable {
             try {
                 Thread.sleep(8);
 
-                if (isKeyPressed) {
-                    if (getRacketKeyCode() == KeyCode.UP || getRacketKeyCode() == KeyCode.Q) {
-                        moveUp();
-                    } else if (getRacketKeyCode() == KeyCode.W || getRacketKeyCode() == KeyCode.DOWN) {
-                        moveDown();
+                if (MainController.getInstance().getMainState() == MainController.MainState.RUNNING) {
+                    if (isKeyPressed) {
+                        if (getRacketKeyCode() == KeyCode.UP || getRacketKeyCode() == KeyCode.Q) {
+                            moveUp();
+                        } else if (getRacketKeyCode() == KeyCode.W || getRacketKeyCode() == KeyCode.DOWN) {
+                            moveDown();
+                        }
                     }
                 }
 

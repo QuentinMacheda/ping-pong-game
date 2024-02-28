@@ -24,6 +24,7 @@ public class WelcomeView extends BorderPane {
 
     public WelcomeView() {
         // Set Top Bar
+        TopBarController.getInstance().initView();
         this.setTop(TopBarController.getInstance().getView());
 
         // Set Welcome Content
@@ -45,11 +46,6 @@ public class WelcomeView extends BorderPane {
         container.getChildren().addAll(welcomeText, new ImageView(icon), startButton);
         container.setAlignment(Pos.CENTER);
         this.setCenter(container);
-
-        // Bottom Balance
-        VBox bottom = new VBox();
-        bottom.setMinHeight(80);
-        this.setBottom(bottom);
 
         // Controller Actions (do not need a controller as there is only one action)
         // On click

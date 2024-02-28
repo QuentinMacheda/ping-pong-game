@@ -2,9 +2,11 @@ package src.view.components;
 
 import javafx.scene.shape.Rectangle;
 import src.controller.components.RacketController;
-import javafx.scene.layout.AnchorPane;
+import javafx.application.Platform;
+import javafx.geometry.Pos;
+import javafx.scene.layout.VBox;
 
-public class RacketView extends AnchorPane {
+public class RacketView extends VBox {
     private RacketController racketController;
     private double parentRacketHeight;
     public Rectangle racket;
@@ -15,7 +17,8 @@ public class RacketView extends AnchorPane {
         this.racket = new Rectangle(racketController.getWidth(), racketController.getHeight());
         this.racket.getStyleClass().addAll("racket");
 
-        this.getChildren().add(this.racket); // Add racket to AnchorPane
+        this.getChildren().add(this.racket); // Add racket to VBox
+        this.setAlignment(Pos.CENTER);
     }
 
     public double getParentHeight() {
@@ -28,6 +31,8 @@ public class RacketView extends AnchorPane {
     }
 
     public void setPosY(double newPosition) {
-        AnchorPane.setTopAnchor(this.racket, newPosition);
+        Platform.runLater(() -> {
+            this.racket.setTranslateY(newPosition);
+        });
     }
 }

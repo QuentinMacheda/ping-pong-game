@@ -7,6 +7,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
 
 import src.controller.GameController;
+import src.controller.MainController;
 import src.view.components.PlayerView;
 
 public class TopBarView extends VBox {
@@ -56,5 +57,43 @@ public class TopBarView extends VBox {
          * Main container
          */
         this.getChildren().add(menuBar);
+
+        /*
+         * Handle buttons actions
+         */
+        handleButtonsActions();
+    }
+
+    public void handleButtonsActions() {
+        // Set End Game Score
+        this.endGameScore.setOnAction(e -> {
+            MainController.getInstance().displaySettings("endGameScore");
+        });
+
+        // Set Racket Size
+        this.racketSize.setOnAction(e -> {
+            MainController.getInstance().displaySettings("racketSize");
+        });
+
+        // Set Ball Speed
+        this.ballSpeed.setOnAction(e -> {
+            MainController.getInstance().displaySettings("ballSpeed");
+        });
+
+        // Set Ball Speed Increase Rate
+        this.ballSpeedIncreaseRate.setOnAction(e -> {
+            MainController.getInstance().displaySettings("ballSpeedIR");
+        });
+
+        // Exit Game
+        this.exit.setOnAction(e -> System.exit(0));
+
+        // Change Players Name
+        this.player1.setOnAction(e -> {
+            MainController.getInstance().displaySettings("player1");
+        });
+        this.player2.setOnAction(e -> {
+            MainController.getInstance().displaySettings("player2");
+        });
     }
 }

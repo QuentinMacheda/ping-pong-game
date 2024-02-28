@@ -1,14 +1,17 @@
 package src.model.components;
 
 public class BallModel {
-    private int radius;
+    private int x, y, radius;
     private int ballSpeed;
     private int ballSpeedIR;
 
     public BallModel() {
-        this.radius = 16;
-        setSpeed("normal");
-        setSpeedIR("normal");
+        this.x = 0;
+        this.y = 0;
+        this.radius = 14;
+
+        setSpeed("slow");
+        setSpeedIR("slow");
     }
 
     public int getRadius() {
@@ -16,11 +19,11 @@ public class BallModel {
     }
 
     public String getSpeed() {
-        if (ballSpeed == 10) {
+        if (ballSpeed == 1) {
             return "slow";
-        } else if (ballSpeed == 15) {
+        } else if (ballSpeed == 2) {
             return "normal";
-        } else if (ballSpeed == 20) {
+        } else if (ballSpeed == 3) {
             return "fast";
         } else {
             return "normal";
@@ -30,16 +33,16 @@ public class BallModel {
     public void setSpeed(String newSpeed) {
         switch (newSpeed) {
             case "slow":
-                ballSpeed = 10;
+                ballSpeed = 1;
                 break;
             case "normal":
-                ballSpeed = 15;
+                ballSpeed = 2;
                 break;
             case "fast":
-                ballSpeed = 20;
+                ballSpeed = 3;
                 break;
             default:
-                ballSpeed = 15;
+                ballSpeed = 1;
                 break;
         }
     }
@@ -71,5 +74,18 @@ public class BallModel {
                 ballSpeedIR = 2;
                 break;
         }
+    }
+
+    public double getPosX() {
+        return this.x;
+    }
+
+    public double getPosY() {
+        return this.y;
+    }
+
+    public void move() {
+        this.x += ballSpeed;
+        this.y += ballSpeed;
     }
 }

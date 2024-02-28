@@ -36,9 +36,11 @@ public class GameController {
         ballController.initView();
     }
 
-    public GameView initView() {
+    public void initView() {
         gameView = new GameView();
+    }
 
+    public GameView getView() {
         return gameView;
     }
 

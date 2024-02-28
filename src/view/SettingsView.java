@@ -24,6 +24,7 @@ public class SettingsView extends BorderPane {
 
     public SettingsView() {
         // Set Top Bar
+        TopBarController.getInstance().initView();
         this.setTop(TopBarController.getInstance().getView());
 
         // Main Container
@@ -44,11 +45,6 @@ public class SettingsView extends BorderPane {
         buttonsContainer = new HBox(backBtn, saveBtn);
         buttonsContainer.setSpacing(20);
         buttonsContainer.getStyleClass().add("btn-container");
-
-        // Bottom Balance
-        VBox bottom = new VBox();
-        bottom.setMinHeight(80);
-        this.setBottom(bottom);
     }
 
     /*

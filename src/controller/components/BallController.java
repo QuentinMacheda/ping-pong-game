@@ -1,14 +1,21 @@
 package src.controller.components;
 
+import src.controller.MainController;
 import src.model.components.BallModel;
 import src.view.components.BallView;
 
-public class BallController {
+public class BallController implements Runnable {
     private BallModel ballModel;
     private BallView ballView;
+    private Thread ballThread;
+    private boolean isKeyPressed;
 
     public BallController() {
         ballModel = new BallModel();
+
+        ballThread = new Thread(this);
+        ballThread.setName("Ball Thread");
+        ballThread.setDaemon(true);
     }
 
     public void initView() {
@@ -37,5 +44,41 @@ public class BallController {
 
     public void setSpeedIR(String newSpeedIR) {
         ballModel.setSpeedIR(newSpeedIR);
+    }
+
+    public boolean getKeyPressed() {
+        return isKeyPressed;
+    }
+
+    public void setKeyPressed(boolean status) {
+        isKeyPressed = status;
+    }
+
+    public void startThread() {
+        ballThread.start();
+    }
+
+    public void move() {
+        ballModel.move();
+        ballView.setPosX(ballModel.getPosX());
+        ballView.setPosY(ballModel.getPosY());
+    }
+
+    // Thread
+    public void run() {
+        while (true) {
+            try {
+                Thread.sleep(10);
+
+                if (MainController.getInstance().getMainState() == MainController.MainState.RUNNING) {
+                    if (isKeyPressed) {
+                        this.move();
+                    }
+                }
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
