@@ -39,7 +39,8 @@ public class SettingsController {
                 enterKeyPressed(type, settingsView.newPlayerName);
                 break;
             case "player2":
-                settingsView.playerNameView(GameController.getInstance().playerRightController.getName());
+                settingsView
+                        .playerNameView(GameController.getInstance().playerRightController.getName());
                 enterKeyPressed(type, settingsView.newPlayerName);
                 break;
             default:
@@ -60,9 +61,11 @@ public class SettingsController {
                 GameModel.getInstance().updateEndGameScore((int) settingsView.endGameScoreSlider.getValue());
                 break;
             case "racketSize":
-                GameController.getInstance().racketLeftController.updateSize(settingsView.widthSlider.getValue(),
+                GameController.getInstance().racketLeftController.updateSize(
+                        settingsView.widthSlider.getValue(),
                         settingsView.heightSlider.getValue());
-                GameController.getInstance().racketRightController.updateSize(settingsView.widthSlider.getValue(),
+                GameController.getInstance().racketRightController.updateSize(
+                        settingsView.widthSlider.getValue(),
                         settingsView.heightSlider.getValue());
                 break;
             case "ballSpeed":
@@ -85,15 +88,17 @@ public class SettingsController {
                 break;
             case "player1":
                 if (settingsView.newPlayerName.getText().length() > 0) {
-                    GameController.getInstance().playerLeftController.updateName(settingsView.newPlayerName.getText());
-                    TopBarController.getInstance().topBarView.player1
+                    GameController.getInstance().playerLeftController
+                            .updateName(settingsView.newPlayerName.getText());
+                    TopBarController.getInstance().getView().player1
                             .setText(GameController.getInstance().playerLeftController.getName());
                 }
                 break;
             case "player2":
                 if (settingsView.newPlayerName.getText().length() > 0) {
-                    GameController.getInstance().playerRightController.updateName(settingsView.newPlayerName.getText());
-                    TopBarController.getInstance().topBarView.player2
+                    GameController.getInstance().playerRightController
+                            .updateName(settingsView.newPlayerName.getText());
+                    TopBarController.getInstance().getView().player2
                             .setText(GameController.getInstance().playerRightController.getName());
                 }
                 break;

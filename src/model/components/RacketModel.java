@@ -21,6 +21,14 @@ public class RacketModel {
         this.parentHeight = newParentHeight;
     }
 
+    public double getParentWidth() {
+        return this.width;
+    }
+
+    public void setParentWidth(double newParentWidth) {
+        this.width = newParentWidth;
+    }
+
     public double getWidth() {
         return this.width;
     }
@@ -48,6 +56,10 @@ public class RacketModel {
 
     public void setPosY(double newY) {
         this.y = newY;
+    }
+
+    public void reset() {
+        setPosY(0);
     }
 
     public void moveUp() {

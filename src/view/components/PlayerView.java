@@ -5,25 +5,19 @@ import src.controller.components.PlayerController;
 
 public class PlayerView extends Text {
     public PlayerController playerController;
-    public String name;
-    public int score;
 
     public PlayerView() {
         playerController = new PlayerController();
 
-        this.name = playerController.getName();
-        this.score = playerController.getScore();
-
-        this.setText(this.name + " | " + this.score);
+        this.setText(playerController.getName() + " | " + playerController.getScore());
         this.getStyleClass().addAll("player-info");
     }
 
     public void updateName(String newName) {
-        this.setText(newName + " | " + this.score);
+        this.setText(newName + " | " + playerController.getScore());
     }
 
-    public void updateScore(int score) {
-        this.score = score;
-        this.setText(this.name + " | " + this.score);
+    public void updateScore(int newScore) {
+        this.setText(playerController.getName() + " | " + newScore);
     }
 }

@@ -32,8 +32,8 @@ public class PlayerController {
         return playerModel.getScore();
     }
 
-    public void updateScore(int score) {
-        playerModel.setScore(score);
+    public void incrementScore() {
+        playerModel.setScore(getScore() + 1);
         this.getView().updateScore(this.getScore());
     }
 }

@@ -1,8 +1,11 @@
 package src.model.components;
 
+import src.controller.GameController;
+import src.model.GameModel;
+
 public class BallModel {
     private int x, y, radius;
-    private int ballSpeed;
+    private int ballSpeedY, ballSpeedX;
     private int ballSpeedIR;
 
     public BallModel() {
@@ -10,20 +13,24 @@ public class BallModel {
         this.y = 0;
         this.radius = 14;
 
-        setSpeed("slow");
-        setSpeedIR("slow");
+        setSpeed("normal");
+        setSpeedIR("normal");
     }
 
     public int getRadius() {
         return this.radius;
     }
 
+    public double getBallSize() {
+        return getRadius() * 2;
+    }
+
     public String getSpeed() {
-        if (ballSpeed == 1) {
+        if (ballSpeedY == 2 && ballSpeedX == 2) {
             return "slow";
-        } else if (ballSpeed == 2) {
+        } else if (ballSpeedY == 4 && ballSpeedX == 4) {
             return "normal";
-        } else if (ballSpeed == 3) {
+        } else if (ballSpeedY == 6 && ballSpeedX == 6) {
             return "fast";
         } else {
             return "normal";
@@ -33,16 +40,20 @@ public class BallModel {
     public void setSpeed(String newSpeed) {
         switch (newSpeed) {
             case "slow":
-                ballSpeed = 1;
+                ballSpeedY = 2;
+                ballSpeedX = 2;
                 break;
             case "normal":
-                ballSpeed = 2;
+                ballSpeedY = 4;
+                ballSpeedX = 4;
                 break;
             case "fast":
-                ballSpeed = 3;
+                ballSpeedY = 6;
+                ballSpeedX = 6;
                 break;
             default:
-                ballSpeed = 1;
+                ballSpeedY = 2;
+                ballSpeedX = 2;
                 break;
         }
     }
@@ -84,8 +95,34 @@ public class BallModel {
         return this.y;
     }
 
+    public void reset() {
+        this.x = 0;
+        this.y = 0;
+        setSpeed("normal");
+        setSpeedIR("normal");
+    }
+
     public void move() {
-        this.x += ballSpeed;
-        this.y += ballSpeed;
+        double gameAreaHeight = GameModel.getInstance().getGameAreaHeight();
+        double gameAreaWidth = GameModel.getInstance().getGameAreaWidth();
+
+        /*
+         * Handle collisions with the top and bottom walls
+         */
+        if (this.y < -(gameAreaHeight / 2 - (getBallSize() / 2)) || this.y > gameAreaHeight / 2 - (getBallSize() / 2)) {
+            ballSpeedY = -ballSpeedY;
+        }
+
+        /*
+         * Handle collisions with the left and right walls
+         */
+        if (this.x < -(gameAreaWidth / 2 - (getBallSize() / 2))) {
+            GameController.getInstance().score("left");
+        } else if (this.x > gameAreaWidth / 2 - (getBallSize() / 2)) {
+            GameController.getInstance().score("right");
+        }
+
+        this.x += ballSpeedX;
+        this.y += ballSpeedY;
     }
 }

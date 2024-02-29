@@ -5,16 +5,16 @@ public class PlayerModel {
     private int score;
 
     public PlayerModel() {
-        this.name = "Player";
-        this.score = 0;
+        this.setName("Player");
+        this.setScore(0);
     }
 
     public String getName() {
         return this.name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setName(String newName) {
+        this.name = newName;
     }
 
     public int getScore() {

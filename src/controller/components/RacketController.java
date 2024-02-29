@@ -24,9 +24,12 @@ public class RacketController implements Runnable {
     public void initView() {
         racketView = new RacketView();
 
-        // Get the racket container height to set the boundaries
+        // Get the racket container height and width
         racketView.heightProperty().addListener((observable, oldValue, newValue) -> {
             this.setParentHeight(newValue.doubleValue());
+        });
+        racketView.widthProperty().addListener((observable, oldValue, newValue) -> {
+            this.setParentWidth(newValue.doubleValue());
         });
     }
 
@@ -36,6 +39,14 @@ public class RacketController implements Runnable {
 
     public void setParentHeight(double newParentHeight) {
         racketModel.setParentHeight(newParentHeight);
+    }
+
+    public double getParentWidth() {
+        return racketModel.getParentWidth();
+    }
+
+    public void setParentWidth(double newParentWidth) {
+        racketModel.setParentWidth(newParentWidth);
     }
 
     public RacketView getView() {
@@ -69,6 +80,11 @@ public class RacketController implements Runnable {
 
     public void setKeyPressed(boolean status) {
         isKeyPressed = status;
+    }
+
+    public void reset() {
+        racketModel.reset();
+        racketView.setPosY(racketModel.getPosY());
     }
 
     public void moveUp() {

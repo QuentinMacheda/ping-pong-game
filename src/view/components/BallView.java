@@ -25,4 +25,9 @@ public class BallView extends Circle {
             this.setTranslateX(posX);
         });
     }
+
+    public void reset() {
+        this.setPosX(ballController.getPosX());
+        this.setPosY(ballController.getPosY());
+    }
 }

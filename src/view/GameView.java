@@ -8,6 +8,8 @@ import src.view.components.RacketView;
 import src.view.components.BallView;
 import src.view.components.PlayerView;
 import src.controller.GameController;
+import src.controller.MainController;
+import src.controller.MainController.MainState;
 import src.controller.layout.TopBarController;
 
 public class GameView extends BorderPane {
@@ -17,6 +19,7 @@ public class GameView extends BorderPane {
     public PlayerView playerLeftView;
     public PlayerView playerRightView;
     public Text startMessage;
+    public StackPane centerContainer;
 
     // Constructor
     public GameView() {
@@ -40,11 +43,11 @@ public class GameView extends BorderPane {
         this.setRight(racketRightView);
 
         /*
-         * Ball & Start Message
+         * Ball & Start/Goal Message
          */
         ballView = GameController.getInstance().ballController.getView();
-        startMessage = new Text("PRESS ENTER TO\nSTART THE GAME");
-        startMessage.getStyleClass().add("start-message");
+        startMessage = new Text();
+        this.setMessageToStart();
 
         /*
          * Players container
@@ -58,8 +61,24 @@ public class GameView extends BorderPane {
         playersContainer.setLeft(playerLeftView);
         playersContainer.setRight(playerRightView);
 
-        StackPane centerContainer = new StackPane(playersContainer, startMessage, ballView);
+        centerContainer = new StackPane(playersContainer, startMessage, ballView);
         this.setCenter(centerContainer);
+    }
+
+    public void setMessageToStart() {
+        if (!startMessage.isVisible())
+            startMessage.setVisible(true);
+        startMessage.setText("PRESS ENTER TO\nSTART THE GAME");
+        startMessage.getStyleClass().remove("goal-message");
+        startMessage.getStyleClass().add("start-message");
+    }
+
+    public void setMessageToGoal(String playerName) {
+        if (!startMessage.isVisible())
+            startMessage.setVisible(true);
+        startMessage.setText(playerName.toUpperCase() + " SCORES");
+        startMessage.getStyleClass().remove("start-message");
+        startMessage.getStyleClass().add("goal-message");
     }
 
     public void handleKeyboardEvents() {
@@ -91,6 +110,7 @@ public class GameView extends BorderPane {
                     break;
                 case ENTER:
                     if (!GameController.getInstance().ballController.getKeyPressed()) {
+                        MainController.getInstance().setMainState(MainState.RUNNING);
                         GameController.getInstance().ballController.startThread();
                         GameController.getInstance().ballController.setKeyPressed(true);
 

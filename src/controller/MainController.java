@@ -69,6 +69,9 @@ public class MainController {
             case RUNNING:
                 MainView.getInstance().hideGame();
                 break;
+            case PAUSED:
+                MainView.getInstance().hideGame();
+                break;
             case SETTINGS:
                 MainView.getInstance().hideSettings();
                 break;
@@ -103,6 +106,9 @@ public class MainController {
                 MainView.getInstance().displayWelcome();
                 break;
             case RUNNING:
+                MainView.getInstance().displayGame();
+                break;
+            case PAUSED:
                 MainView.getInstance().displayGame();
                 break;
             default:

@@ -46,6 +46,14 @@ public class BallController implements Runnable {
         ballModel.setSpeedIR(newSpeedIR);
     }
 
+    public double getPosX() {
+        return ballModel.getPosX();
+    }
+
+    public double getPosY() {
+        return ballModel.getPosY();
+    }
+
     public boolean getKeyPressed() {
         return isKeyPressed;
     }
@@ -54,14 +62,22 @@ public class BallController implements Runnable {
         isKeyPressed = status;
     }
 
-    public void startThread() {
-        ballThread.start();
+    public void reset() {
+        this.setKeyPressed(false);
+        ballModel.reset();
+        ballView.reset();
     }
 
     public void move() {
         ballModel.move();
-        ballView.setPosX(ballModel.getPosX());
-        ballView.setPosY(ballModel.getPosY());
+        ballView.setPosX(this.getPosX());
+        ballView.setPosY(this.getPosY());
+    }
+
+    public void startThread() {
+        if (!ballThread.isAlive()) {
+            ballThread.start();
+        }
     }
 
     // Thread
