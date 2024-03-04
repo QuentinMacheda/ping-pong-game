@@ -10,7 +10,6 @@ import src.view.components.PlayerView;
 import src.controller.GameController;
 import src.controller.MainController;
 import src.controller.MainController.MainState;
-import src.controller.layout.TopBarController;
 
 public class GameView extends BorderPane {
     public BallView ballView;
@@ -31,8 +30,8 @@ public class GameView extends BorderPane {
         /*
          * Top Bar
          */
-        TopBarController.getInstance().initView();
-        this.setTop(TopBarController.getInstance().getView());
+        GameController.getInstance().topBarController.initView();
+        this.setTop(GameController.getInstance().topBarController.getView());
 
         /*
          * Rackets

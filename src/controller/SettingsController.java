@@ -8,10 +8,14 @@ import src.view.SettingsView;
 
 public class SettingsController {
     public SettingsView settingsView;
+    public TopBarController topBarController;
     private double racketCurrentWidth;
     private double racketCurrentHeight;
 
-    public SettingsController(String type) {
+    public SettingsController() {
+    }
+
+    public void initView(String type) {
         settingsView = new SettingsView();
         racketCurrentWidth = GameController.getInstance().racketLeftController.getWidth();
         racketCurrentHeight = GameController.getInstance().racketLeftController.getHeight();
@@ -90,16 +94,12 @@ public class SettingsController {
                 if (settingsView.newPlayerName.getText().length() > 0) {
                     GameController.getInstance().playerLeftController
                             .updateName(settingsView.newPlayerName.getText());
-                    TopBarController.getInstance().getView().player1
-                            .setText(GameController.getInstance().playerLeftController.getName());
                 }
                 break;
             case "player2":
                 if (settingsView.newPlayerName.getText().length() > 0) {
                     GameController.getInstance().playerRightController
                             .updateName(settingsView.newPlayerName.getText());
-                    TopBarController.getInstance().getView().player2
-                            .setText(GameController.getInstance().playerRightController.getName());
                 }
                 break;
             default:

@@ -1,15 +1,19 @@
 package src.view.layout;
 
 import javafx.scene.layout.VBox;
+
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
-
+import src.controller.GameController;
 import src.controller.MainController;
+import src.controller.layout.TopBarController;
 import src.view.components.PlayerView;
 
 public class TopBarView extends VBox {
+    public TopBarController topBarController;
+
     public MenuBar menuBar;
     public Menu gameSettings;
     public Menu playersName;
@@ -44,8 +48,8 @@ public class TopBarView extends VBox {
         ballSpeed = new MenuItem("Ball speed");
         ballSpeedIncreaseRate = new MenuItem("Speed increase rate");
         exit = new MenuItem("Exit");
-        player1 = new MenuItem("Player 1");
-        player2 = new MenuItem("Player 2");
+        player1 = new MenuItem(GameController.getInstance().playerLeftController.getName());
+        player2 = new MenuItem(GameController.getInstance().playerRightController.getName());
 
         // Adding to the menu items
         gameSettings.getItems().addAll(endGameScore, racketSize, ballSpeed, ballSpeedIncreaseRate, exit);

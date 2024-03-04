@@ -12,9 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-
+import src.controller.GameController;
 import src.controller.MainController;
-import src.controller.layout.TopBarController;
 
 public class WelcomeView extends BorderPane {
     private Text welcomeText;
@@ -23,9 +22,11 @@ public class WelcomeView extends BorderPane {
     private VBox container;
 
     public WelcomeView() {
-        // Set Top Bar
-        TopBarController.getInstance().initView();
-        this.setTop(TopBarController.getInstance().getView());
+        /*
+         * Top Bar
+         */
+        GameController.getInstance().topBarController.initView();
+        this.setTop(GameController.getInstance().topBarController.getView());
 
         // Set Welcome Content
         // Text

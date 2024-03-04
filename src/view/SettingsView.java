@@ -11,9 +11,12 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import src.controller.GameController;
 import src.controller.layout.TopBarController;
 
 public class SettingsView extends BorderPane {
+    public TopBarController topBarController;
+
     public VBox mainContainer;
     public HBox buttonsContainer;
     public Button backBtn, saveBtn;
@@ -23,9 +26,11 @@ public class SettingsView extends BorderPane {
             optFastBallSpeedIR;
 
     public SettingsView() {
-        // Set Top Bar
-        TopBarController.getInstance().initView();
-        this.setTop(TopBarController.getInstance().getView());
+        /*
+         * Top Bar
+         */
+        GameController.getInstance().topBarController.initView();
+        this.setTop(GameController.getInstance().topBarController.getView());
 
         // Main Container
         mainContainer = new VBox();

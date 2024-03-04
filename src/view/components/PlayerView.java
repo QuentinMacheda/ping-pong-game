@@ -6,18 +6,14 @@ import src.controller.components.PlayerController;
 public class PlayerView extends Text {
     public PlayerController playerController;
 
-    public PlayerView() {
-        playerController = new PlayerController();
+    public PlayerView(PlayerController playerController) {
+        this.playerController = playerController;
 
         this.setText(playerController.getName() + " | " + playerController.getScore());
         this.getStyleClass().addAll("player-info");
     }
 
-    public void updateName(String newName) {
-        this.setText(newName + " | " + playerController.getScore());
-    }
-
-    public void updateScore(int newScore) {
-        this.setText(playerController.getName() + " | " + newScore);
+    public void update() {
+        this.setText(playerController.getName() + " | " + this.playerController.getScore());
     }
 }

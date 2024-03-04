@@ -1,11 +1,16 @@
 package src.model.components;
 
 public class PlayerModel {
+    public enum PlayerSide {
+        LEFT,
+        RIGHT
+    }
+
     private String name;
     private int score;
+    private PlayerSide playerSide;
 
     public PlayerModel() {
-        this.setName("Player");
         this.setScore(0);
     }
 
@@ -23,5 +28,13 @@ public class PlayerModel {
 
     public void setScore(int score) {
         this.score = score;
+    }
+
+    public PlayerSide getPlayerSide() {
+        return playerSide;
+    }
+
+    public void setPlayerSide(PlayerSide playerSide) {
+        this.playerSide = playerSide;
     }
 }

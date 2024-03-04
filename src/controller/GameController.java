@@ -6,12 +6,15 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.AnchorPane;
 import src.controller.MainController.MainState;
 import src.controller.components.*;
+import src.controller.layout.TopBarController;
 import src.model.GameModel;
+import src.model.components.PlayerModel;
 import src.view.GameView;
 
 public class GameController {
     public static GameController selfInstance = new GameController();
     public GameView gameView;
+    public TopBarController topBarController;
     public PlayerController playerLeftController;
     public PlayerController playerRightController;
     public RacketController racketLeftController;
@@ -20,12 +23,16 @@ public class GameController {
 
     // Constructor
     private GameController() {
+        topBarController = new TopBarController();
+
         // Set the players name and score
         playerLeftController = new PlayerController();
         playerLeftController.initView();
+        playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
         playerLeftController.updateName("Player 1");
         playerRightController = new PlayerController();
         playerRightController.initView();
+        playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
         playerRightController.updateName("Player 2");
 
         // Set the rackets
@@ -62,11 +69,11 @@ public class GameController {
         // Increment the score of the player who scored
         // Print goal message
         if (player == "left") {
-            playerLeftController.incrementScore();
-            this.getView().setMessageToGoal(playerLeftController.getName());
-        } else {
             playerRightController.incrementScore();
             this.getView().setMessageToGoal(playerRightController.getName());
+        } else {
+            playerLeftController.incrementScore();
+            this.getView().setMessageToGoal(playerLeftController.getName());
         }
 
         // Pause the game for 2 seconds

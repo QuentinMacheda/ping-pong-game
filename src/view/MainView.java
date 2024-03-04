@@ -2,13 +2,10 @@ package src.view;
 
 import javafx.scene.layout.StackPane;
 import src.controller.GameController;
-import src.controller.SettingsController;
-import src.controller.layout.TopBarController;
+import src.controller.MainController;
 
 public class MainView extends StackPane {
     public static MainView selfInstance = new MainView(); // Singleton
-    public TopBarController topBarController;
-    public SettingsController settingsController;
     public WelcomeView welcomeView;
     public GameView gameView;
 
@@ -28,6 +25,7 @@ public class MainView extends StackPane {
     }
 
     public void displayGame() {
+        GameController.getInstance().initView();
         this.getChildren().add(GameController.getInstance().getView());
     }
 
@@ -36,12 +34,12 @@ public class MainView extends StackPane {
     }
 
     public void displaySettings(String type) {
-        settingsController = new SettingsController(type);
-        this.getChildren().add(settingsController.settingsView);
+        MainController.getInstance().settingsController.initView(type);
+        this.getChildren().add(MainController.getInstance().settingsController.settingsView);
     }
 
     public void hideSettings() {
-        this.getChildren().remove(settingsController.settingsView);
+        this.getChildren().remove(MainController.getInstance().settingsController.settingsView);
     }
 
     public static MainView getInstance() {

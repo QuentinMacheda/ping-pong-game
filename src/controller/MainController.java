@@ -6,6 +6,7 @@ import src.view.MainView;
 
 public class MainController {
     public static MainController selfInstance = new MainController(); // Singleton
+    public SettingsController settingsController;
 
     public enum MainState {
         WELCOME, RUNNING, PAUSED, SETTINGS, GAMEOVER
@@ -16,6 +17,8 @@ public class MainController {
 
     // Constructor
     private MainController() {
+        settingsController = new SettingsController();
+
         // Display welcome view
         MainView.getInstance().displayWelcome();
         this.setMainState(MainState.WELCOME);
