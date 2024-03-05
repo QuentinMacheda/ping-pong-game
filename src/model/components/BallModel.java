@@ -153,9 +153,9 @@ public class BallModel {
          * Handle collisions with the left and right walls
          */
         if (this.x < -(gameAreaWidth / 2 - (getBallSize() / 2))) {
-            GameController.getInstance().score("left");
+            GameController.getInstance().score(PlayerModel.PlayerSide.LEFT);
         } else if (this.x > gameAreaWidth / 2 - (getBallSize() / 2)) {
-            GameController.getInstance().score("right");
+            GameController.getInstance().score(PlayerModel.PlayerSide.RIGHT);
         }
 
         /*

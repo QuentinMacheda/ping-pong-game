@@ -1,6 +1,5 @@
 package src.view.components;
 
-import javafx.application.Platform;
 import javafx.scene.shape.Circle;
 import src.controller.components.BallController;
 
@@ -15,15 +14,11 @@ public class BallView extends Circle {
     }
 
     public void setPosY(double posY) {
-        Platform.runLater(() -> {
-            this.setTranslateY(posY);
-        });
+        this.setTranslateY(posY);
     }
 
     public void setPosX(double posX) {
-        Platform.runLater(() -> {
-            this.setTranslateX(posX);
-        });
+        this.setTranslateX(posX);
     }
 
     public void reset() {

@@ -7,6 +7,7 @@ import src.controller.MainController;
 public class MainView extends StackPane {
     public static MainView selfInstance = new MainView(); // Singleton
     public WelcomeView welcomeView;
+    public EndView endView;
     public GameView gameView;
 
     // Constructor
@@ -31,6 +32,15 @@ public class MainView extends StackPane {
 
     public void hideGame() {
         this.getChildren().remove(GameController.getInstance().getView());
+    }
+
+    public void displayEnd(String winnerName, String looserName) {
+        endView = new EndView(winnerName, looserName);
+        this.getChildren().add(endView);
+    }
+
+    public void hideEnd() {
+        this.getChildren().remove(endView);
     }
 
     public void displaySettings(String type) {

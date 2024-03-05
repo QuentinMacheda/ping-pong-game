@@ -117,7 +117,6 @@ public class GameView extends BorderPane {
                     }
                     break;
             }
-
         });
 
         /*

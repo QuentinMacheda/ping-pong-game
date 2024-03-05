@@ -20,6 +20,7 @@ public class Main extends Application {
 
         // Import CSS
         mainScene.getStylesheets().addAll("file:resources/style/settings.css", "file:resources/style/game.css",
+                "file:resources/style/end.css", "file:resources/style/welcome.css",
                 "file:resources/style/button.css", "file:resources/style/slider.css",
                 "file:resources/style/top-bar.css");
 

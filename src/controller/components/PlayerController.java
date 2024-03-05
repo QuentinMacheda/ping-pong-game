@@ -4,7 +4,7 @@ import src.model.components.PlayerModel;
 import src.view.components.PlayerView;
 
 public class PlayerController {
-    public PlayerModel playerModel;
+    private PlayerModel playerModel;
     private PlayerView playerView;
 
     public PlayerController() {

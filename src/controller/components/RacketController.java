@@ -1,5 +1,6 @@
 package src.controller.components;
 
+import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import javafx.scene.input.KeyCode;
 import src.controller.MainController;
@@ -118,11 +119,13 @@ public class RacketController implements Runnable {
 
                 if (MainController.getInstance().getMainState() == MainController.MainState.RUNNING) {
                     if (isKeyPressed) {
-                        if (getRacketKeyCode() == KeyCode.UP || getRacketKeyCode() == KeyCode.Q) {
-                            moveUp();
-                        } else if (getRacketKeyCode() == KeyCode.W || getRacketKeyCode() == KeyCode.DOWN) {
-                            moveDown();
-                        }
+                        Platform.runLater(() -> {
+                            if (getRacketKeyCode() == KeyCode.UP || getRacketKeyCode() == KeyCode.Q) {
+                                moveUp();
+                            } else if (getRacketKeyCode() == KeyCode.W || getRacketKeyCode() == KeyCode.DOWN) {
+                                moveDown();
+                            }
+                        });
                     }
                 }
 

@@ -2,7 +2,6 @@ package src.view.components;
 
 import javafx.scene.shape.Rectangle;
 import src.controller.components.RacketController;
-import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.layout.VBox;
 
@@ -31,8 +30,6 @@ public class RacketView extends VBox {
     }
 
     public void setPosY(double newPosition) {
-        Platform.runLater(() -> {
-            this.racket.setTranslateY(newPosition);
-        });
+        this.racket.setTranslateY(newPosition);
     }
 }

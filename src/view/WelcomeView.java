@@ -31,9 +31,8 @@ public class WelcomeView extends BorderPane {
         // Set Welcome Content
         // Text
         welcomeText = new Text();
-        welcomeText.setFont(Font.font("Verdana", FontWeight.BOLD, FontPosture.REGULAR, 40));
-        welcomeText.setFill(Color.web("#F1E9DA"));
-        welcomeText.setText("Ping Pong Game");
+        welcomeText.setText("PING PONG GAME");
+        welcomeText.getStyleClass().add("welcome-text");
 
         // Image (Icon)
         icon = new Image("/resources/icon.png", 150, 150, false, false);
@@ -51,13 +50,13 @@ public class WelcomeView extends BorderPane {
         // Controller Actions (do not need a controller as there is only one action)
         // On click
         startButton.setOnAction(e -> {
-            MainView.getInstance().getChildren().remove(this); // Remove the welcome view
+            MainView.getInstance().hideWelcome(); // Remove the welcome view
             MainController.getInstance().startGame(); // Start the game
         });
         // On key pressed ENTER
         startButton.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {
-                MainView.getInstance().getChildren().remove(this); // Remove the welcome view
+                MainView.getInstance().hideWelcome(); // Remove the welcome view
                 MainController.getInstance().startGame(); // Start the game
             }
         });

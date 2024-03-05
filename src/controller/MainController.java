@@ -17,6 +17,12 @@ public class MainController {
 
     // Constructor
     private MainController() {
+        this.fullReset();
+    }
+
+    public void fullReset() {
+        mainStateHistory.clear();
+        GameController.getInstance().fullReset();
         settingsController = new SettingsController();
 
         // Display welcome view
@@ -24,42 +30,18 @@ public class MainController {
         this.setMainState(MainState.WELCOME);
     }
 
-    // Get the game state
-    public MainState getMainState() {
-        return mainState;
-    }
-
-    // Set the game state
-    public void setMainState(MainState state) {
-        switch (state) {
-            case SETTINGS:
-                mainState = MainState.SETTINGS;
-                break;
-            case WELCOME:
-                mainState = MainState.WELCOME;
-                break;
-            case RUNNING:
-                mainState = MainState.RUNNING;
-                break;
-            case PAUSED:
-                mainState = MainState.PAUSED;
-                break;
-            case GAMEOVER:
-                mainState = MainState.GAMEOVER;
-                break;
-            default:
-                break;
-        }
-
-        // Add the state to the history
-        mainStateHistory.add(mainState);
-    }
-
     // Start the game
     public void startGame() {
         GameController.getInstance().initView();
         MainView.getInstance().displayGame();
         this.setMainState(MainState.RUNNING);
+    }
+
+    // Game over
+    public void gameOver(String winnerName, String looserName) {
+        MainView.getInstance().hideGame();
+        MainView.getInstance().displayEnd(winnerName, looserName);
+        this.setMainState(MainState.GAMEOVER);
     }
 
     // Display settings
@@ -119,6 +101,37 @@ public class MainController {
         }
 
         this.setMainState(lastState);
+    }
+
+    // Get the game state
+    public MainState getMainState() {
+        return mainState;
+    }
+
+    // Set the game state
+    public void setMainState(MainState state) {
+        switch (state) {
+            case SETTINGS:
+                mainState = MainState.SETTINGS;
+                break;
+            case WELCOME:
+                mainState = MainState.WELCOME;
+                break;
+            case RUNNING:
+                mainState = MainState.RUNNING;
+                break;
+            case PAUSED:
+                mainState = MainState.PAUSED;
+                break;
+            case GAMEOVER:
+                mainState = MainState.GAMEOVER;
+                break;
+            default:
+                break;
+        }
+
+        // Add the state to the history
+        mainStateHistory.add(mainState);
     }
 
     public static MainController getInstance() {

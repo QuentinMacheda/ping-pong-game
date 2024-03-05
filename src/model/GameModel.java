@@ -7,7 +7,13 @@ public class GameModel {
     public double gameAreaWidth;
 
     private GameModel() {
+        this.fullReset();
+    }
+
+    public void fullReset() {
         this.endGameScore = 10;
+        this.gameAreaHeight = 0;
+        this.gameAreaWidth = 0;
     }
 
     public int getEndGameScore() {

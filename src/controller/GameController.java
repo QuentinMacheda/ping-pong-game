@@ -22,28 +22,7 @@ public class GameController {
 
     // Constructor
     private GameController() {
-        topBarController = new TopBarController();
-
-        // Set the players name and score
-        playerLeftController = new PlayerController();
-        playerLeftController.initView();
-        playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
-        playerLeftController.updateName("Player 1");
-        playerRightController = new PlayerController();
-        playerRightController.initView();
-        playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
-        playerRightController.updateName("Player 2");
-
-        // Set the rackets
-        racketLeftController = new RacketController();
-        racketLeftController.initView();
-
-        racketRightController = new RacketController();
-        racketRightController.initView();
-
-        // Set the ball
-        ballController = new BallController();
-        ballController.initView();
+        this.fullReset();
     }
 
     public void initView() {
@@ -67,28 +46,71 @@ public class GameController {
         });
     }
 
-    public void score(String player) {
+    public void score(PlayerModel.PlayerSide playerSide) {
         MainController.getInstance().setMainState(MainState.PAUSED);
 
         // Increment the score of the player who scored
         // Print goal message
-        if (player == "left") {
+        if (playerSide == PlayerModel.PlayerSide.LEFT) {
             playerRightController.incrementScore();
-            this.getView().setMessageToGoal(playerRightController.getName());
-        } else {
+
+            // Check if score is less than the end game score
+            if (playerRightController.getScore() < GameModel.getInstance().getEndGameScore()) {
+                this.getView().setMessageToGoal(playerRightController.getName());
+            } else {
+                MainController.getInstance().gameOver(playerRightController.getName(), playerLeftController.getName());
+            }
+        } else if (playerSide == PlayerModel.PlayerSide.RIGHT) {
             playerLeftController.incrementScore();
-            this.getView().setMessageToGoal(playerLeftController.getName());
+
+            // Check if score is less than the end game score
+            if (playerLeftController.getScore() < GameModel.getInstance().getEndGameScore()) {
+                this.getView().setMessageToGoal(playerLeftController.getName());
+            } else {
+                MainController.getInstance().gameOver(playerLeftController.getName(), playerRightController.getName());
+            }
         }
 
-        // Pause the game for 2 seconds
-        Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
-            ballController.reset();
-            racketLeftController.reset();
-            racketRightController.reset();
-            this.getView().setMessageToStart();
-        }));
+        // Make the reset and print the message if the game is not over
+        if (playerLeftController.getScore() < GameModel.getInstance().getEndGameScore()
+                && playerRightController.getScore() < GameModel.getInstance().getEndGameScore()) {
+            // Pause the game for 2 seconds
+            Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
+                ballController.reset();
+                racketLeftController.reset();
+                racketRightController.reset();
+                this.getView().setMessageToStart();
+            }));
 
-        scorePause.play();
+            scorePause.play();
+        }
+    }
+
+    public void fullReset() {
+        GameModel.getInstance().fullReset();
+
+        topBarController = new TopBarController();
+
+        // Set the players name and score
+        playerLeftController = new PlayerController();
+        playerLeftController.initView();
+        playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
+        playerLeftController.updateName("Player 1");
+        playerRightController = new PlayerController();
+        playerRightController.initView();
+        playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
+        playerRightController.updateName("Player 2");
+
+        // Set the rackets
+        racketLeftController = new RacketController();
+        racketLeftController.initView();
+
+        racketRightController = new RacketController();
+        racketRightController.initView();
+
+        // Set the ball
+        ballController = new BallController();
+        ballController.initView();
     }
 
     public GameView getView() {

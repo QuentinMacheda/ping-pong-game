@@ -1,5 +1,6 @@
 package src.controller.components;
 
+import javafx.application.Platform;
 import javafx.geometry.Bounds;
 import src.controller.MainController;
 import src.model.components.BallModel;
@@ -93,7 +94,9 @@ public class BallController implements Runnable {
 
                 if (MainController.getInstance().getMainState() == MainController.MainState.RUNNING) {
                     if (isKeyPressed) {
-                        this.move();
+                        Platform.runLater(() -> {
+                            this.move();
+                        });
                     }
                 }
 
