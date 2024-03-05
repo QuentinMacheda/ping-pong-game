@@ -3,7 +3,6 @@ package src.controller;
 import javafx.util.Duration;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
-import javafx.scene.layout.AnchorPane;
 import src.controller.MainController.MainState;
 import src.controller.components.*;
 import src.controller.layout.TopBarController;
@@ -38,10 +37,9 @@ public class GameController {
         // Set the rackets
         racketLeftController = new RacketController();
         racketLeftController.initView();
-        AnchorPane.setLeftAnchor(racketLeftController.getView().racket, 40.0);
+
         racketRightController = new RacketController();
         racketRightController.initView();
-        AnchorPane.setRightAnchor(racketRightController.getView().racket, 40.0);
 
         // Set the ball
         ballController = new BallController();
@@ -52,7 +50,8 @@ public class GameController {
         gameView = new GameView();
 
         /*
-         * Send game area height and width values to the ball controller
+         * Set game area height and width values
+         * Set racket X position as it depends on game area width
          */
         gameView.centerContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
             GameModel.getInstance().setGameAreaHeight(newValue.doubleValue());
@@ -60,6 +59,11 @@ public class GameController {
         gameView.centerContainer.widthProperty().addListener((observable, oldValue, newValue) -> {
             GameModel.getInstance().setGameAreaWidth(newValue.doubleValue() + racketLeftController.getParentWidth()
                     + racketRightController.getParentWidth());
+
+            racketLeftController
+                    .setPosX(-(GameModel.getInstance().getGameAreaWidth() / 2) + racketLeftController.getWidth());
+            racketRightController
+                    .setPosX((GameModel.getInstance().getGameAreaWidth() / 2) - racketLeftController.getWidth());
         });
     }
 

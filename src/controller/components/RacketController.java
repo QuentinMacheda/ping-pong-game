@@ -1,5 +1,6 @@
 package src.controller.components;
 
+import javafx.geometry.Bounds;
 import javafx.scene.input.KeyCode;
 import src.controller.MainController;
 import src.model.components.RacketModel;
@@ -33,6 +34,10 @@ public class RacketController implements Runnable {
         });
     }
 
+    public RacketView getView() {
+        return racketView;
+    }
+
     public double getParentHeight() {
         return racketModel.getParentHeight();
     }
@@ -49,10 +54,6 @@ public class RacketController implements Runnable {
         racketModel.setParentWidth(newParentWidth);
     }
 
-    public RacketView getView() {
-        return racketView;
-    }
-
     public double getWidth() {
         return racketModel.getWidth();
     }
@@ -64,6 +65,18 @@ public class RacketController implements Runnable {
     public void updateSize(double newWidth, double newHeight) {
         racketModel.updateSize(newWidth, newHeight);
         racketView.updateSize(this.getWidth(), this.getHeight());
+    }
+
+    public Bounds getBounds() {
+        return racketModel.getBounds();
+    }
+
+    public double getPosX() {
+        return racketModel.getPosX();
+    }
+
+    public void setPosX(double newX) {
+        racketModel.setPosX(newX);
     }
 
     public double getPosY() {

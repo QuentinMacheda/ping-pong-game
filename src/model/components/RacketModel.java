@@ -1,10 +1,14 @@
 package src.model.components;
 
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Bounds;
+
 public class RacketModel {
     private double width;
     private double height;
     private double parentHeight;
-    private double y;
+    private double x, y;
+    private Bounds bounds;
 
     public RacketModel() {
         this.width = 20;
@@ -50,6 +54,25 @@ public class RacketModel {
         setHeight(newHeight);
     }
 
+    public Bounds getBounds() {
+        return this.bounds;
+    }
+
+    public void setBounds(Bounds newBounds) {
+        this.bounds = newBounds;
+    }
+
+    public double getPosX() {
+        return this.x;
+    }
+
+    public void setPosX(double newX) {
+        this.x = newX;
+
+        setBounds(
+                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
+    }
+
     public double getPosY() {
         return this.y;
     }
@@ -66,11 +89,17 @@ public class RacketModel {
         if (getPosY() > -(this.parentHeight / 2 - this.height / 2)) {
             setPosY(getPosY() - 5);
         }
+
+        setBounds(
+                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
     }
 
     public void moveDown(double parentHeight) {
         if (getPosY() < (this.parentHeight / 2) - (this.height / 2)) {
             setPosY(getPosY() + 5);
         }
+
+        setBounds(
+                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
     }
 }

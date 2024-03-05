@@ -1,5 +1,6 @@
 package src.controller.components;
 
+import javafx.geometry.Bounds;
 import src.controller.MainController;
 import src.model.components.BallModel;
 import src.view.components.BallView;
@@ -44,6 +45,10 @@ public class BallController implements Runnable {
 
     public void setSpeedIR(String newSpeedIR) {
         ballModel.setSpeedIR(newSpeedIR);
+    }
+
+    public Bounds getBounds() {
+        return ballModel.getBounds();
     }
 
     public double getPosX() {
