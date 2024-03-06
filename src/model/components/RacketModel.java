@@ -83,6 +83,8 @@ public class RacketModel {
 
     public void reset() {
         setPosY(0);
+        setBounds(
+                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
     }
 
     public void moveUp() {
