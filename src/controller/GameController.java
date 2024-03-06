@@ -147,8 +147,8 @@ public class GameController {
         playRacketBounceSound();
 
         Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
-            wallBounceSound.setVolume(1);
-            racketBounceSound.setVolume(1);
+            wallBounceSound.setVolume(0.1);
+            racketBounceSound.setVolume(0.5);
         }));
         delay.play();
     }
