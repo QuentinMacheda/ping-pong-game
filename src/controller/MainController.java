@@ -103,6 +103,11 @@ public class MainController {
         this.setMainState(lastState);
     }
 
+    // Get the last game state
+    public MainState getLastMainState() {
+        return mainStateHistory.get(mainStateHistory.size() - 1);
+    }
+
     // Get the game state
     public MainState getMainState() {
         return mainState;

@@ -57,7 +57,9 @@ public class GameController {
             // Check if score is less than the end game score
             if (playerRightController.getScore() < GameModel.getInstance().getEndGameScore()) {
                 this.getView().setMessageToGoal(playerRightController.getName());
+                this.resetAfterScore();
             } else {
+                this.resetAfterGameOver();
                 MainController.getInstance().gameOver(playerRightController.getName(), playerLeftController.getName());
             }
         } else if (playerSide == PlayerModel.PlayerSide.RIGHT) {
@@ -66,24 +68,31 @@ public class GameController {
             // Check if score is less than the end game score
             if (playerLeftController.getScore() < GameModel.getInstance().getEndGameScore()) {
                 this.getView().setMessageToGoal(playerLeftController.getName());
+                this.resetAfterScore();
             } else {
+                this.resetAfterGameOver();
                 MainController.getInstance().gameOver(playerLeftController.getName(), playerRightController.getName());
             }
         }
+    }
 
-        // Make the reset and print the message if the game is not over
-        if (playerLeftController.getScore() < GameModel.getInstance().getEndGameScore()
-                && playerRightController.getScore() < GameModel.getInstance().getEndGameScore()) {
-            // Pause the game for 2 seconds
-            Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
-                ballController.reset();
-                racketLeftController.reset();
-                racketRightController.reset();
-                this.getView().setMessageToStart();
-            }));
+    // Reset the game after a game over
+    public void resetAfterGameOver() {
+        ballController.reset();
+        racketLeftController.reset();
+        racketRightController.reset();
+    }
 
-            scorePause.play();
-        }
+    // Reset the game after a score (2 seconds pause)
+    public void resetAfterScore() {
+        Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
+            ballController.reset();
+            racketLeftController.reset();
+            racketRightController.reset();
+            this.getView().setMessageToStart();
+        }));
+
+        scorePause.play();
     }
 
     public void fullReset() {
