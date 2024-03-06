@@ -1,8 +1,12 @@
 package src.controller;
 
 import javafx.util.Duration;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 import src.controller.MainController.MainState;
 import src.controller.components.*;
 import src.controller.layout.TopBarController;
@@ -12,6 +16,13 @@ import src.view.GameView;
 
 public class GameController {
     public static GameController selfInstance = new GameController();
+    public final MediaPlayer wallBounceSound = new MediaPlayer(
+            new Media(GameController.class.getResource("/resources/sound-design/wall-bounce.mp3").toString()));
+    public final MediaPlayer racketBounceSound = new MediaPlayer(
+            new Media(GameController.class.getResource("/resources/sound-design/racket-bounce.mp3").toString()));
+    public final MediaPlayer scoreSound = new MediaPlayer(
+            new Media(GameController.class.getResource("/resources/sound-design/score.mp3").toString()));
+
     public GameView gameView;
     public TopBarController topBarController;
     public PlayerController playerLeftController;
@@ -23,6 +34,8 @@ public class GameController {
     // Constructor
     private GameController() {
         this.fullReset();
+
+        this.preloadSounds();
     }
 
     public void initView() {
@@ -47,6 +60,9 @@ public class GameController {
     }
 
     public void score(PlayerModel.PlayerSide playerSide) {
+        // Play the score sound
+        this.playScoreSound();
+
         MainController.getInstance().setMainState(MainState.PAUSED);
 
         // Increment the score of the player who scored
@@ -120,6 +136,42 @@ public class GameController {
         // Set the ball
         ballController = new BallController();
         ballController.initView();
+    }
+
+    public void preloadSounds() {
+        // Preload the sounds to avoid lag
+        wallBounceSound.setVolume(0);
+        racketBounceSound.setVolume(0);
+
+        playWallBounceSound();
+        playRacketBounceSound();
+
+        Timeline delay = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+            wallBounceSound.setVolume(1);
+            racketBounceSound.setVolume(1);
+        }));
+        delay.play();
+    }
+
+    public void playWallBounceSound() {
+        Platform.runLater(() -> {
+            wallBounceSound.seek(Duration.ZERO);
+            wallBounceSound.play();
+        });
+    }
+
+    public void playRacketBounceSound() {
+        Platform.runLater(() -> {
+            racketBounceSound.seek(Duration.ZERO);
+            racketBounceSound.play();
+        });
+    }
+
+    public void playScoreSound() {
+        Platform.runLater(() -> {
+            scoreSound.seek(Duration.ZERO);
+            scoreSound.play();
+        });
     }
 
     public GameView getView() {

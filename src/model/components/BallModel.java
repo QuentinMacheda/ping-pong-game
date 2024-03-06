@@ -126,6 +126,9 @@ public class BallModel {
          */
         if (this.y < -(gameAreaHeight / 2 - (getBallSize() / 2)) || this.y > gameAreaHeight / 2 - (getBallSize() / 2)) {
             ballSpeedY = -ballSpeedY;
+
+            // Play the bouncing sound
+            GameController.getInstance().playWallBounceSound();
         }
 
         /*
@@ -138,6 +141,9 @@ public class BallModel {
                             .intersects(GameController.getInstance().racketLeftController.getBounds())) {
                 ballSpeedX = -ballSpeedX;
                 this.collisionState = true; // Set collision state to true
+
+                // Play the bouncing sound
+                GameController.getInstance().playRacketBounceSound();
             }
         } else {
             // Add logic to wait until the ball is no longer in the collision state
