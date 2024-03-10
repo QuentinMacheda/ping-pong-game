@@ -7,20 +7,37 @@ import javafx.stage.Stage;
 import pingPongGame.view.MainView;
 import pingPongGame.controller.MainController;
 
+/**
+ * The main class responsible for launching the Ping Pong Game application.
+ */
 public class App extends Application {
-    public MainView mainView;
-    public MainController mainController;
+    private MainView mainView;
+    private MainController mainController;
 
+    /**
+     * The main entry point for the JavaFX application.
+     *
+     * @param args The command-line arguments.
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Initializes and starts the Ping Pong Game application.
+     *
+     * @param primaryStage The primary stage for the JavaFX application.
+     */
     @Override
-    public void start(Stage window) {
+    public void start(Stage primaryStage) {
+        // Initialize main controller and view
         mainController = MainController.getInstance();
-        Scene mainScene = new Scene(MainView.getInstance(), 1024, 668);
+        mainView = MainView.getInstance();
 
-        // Import CSS
+        // Create the main scene
+        Scene mainScene = new Scene(mainView, 1024, 668);
+
+        // Import CSS styles
         mainScene.getStylesheets().addAll(
                 App.class.getResource("/style/main.css").toExternalForm(),
                 App.class.getResource("/style/settings.css").toExternalForm(),
@@ -31,9 +48,10 @@ public class App extends Application {
                 App.class.getResource("/style/slider.css").toExternalForm(),
                 App.class.getResource("/style/top-bar.css").toExternalForm());
 
-        window.getIcons().add(new Image(App.class.getResource("/icon.png").toExternalForm()));
-        window.setTitle("Ping Pong Game");
-        window.setScene(mainScene);
-        window.show();
+        // Set window properties
+        primaryStage.getIcons().add(new Image(App.class.getResource("/icon.png").toExternalForm()));
+        primaryStage.setTitle("Ping Pong Game");
+        primaryStage.setScene(mainScene);
+        primaryStage.show();
     }
 }

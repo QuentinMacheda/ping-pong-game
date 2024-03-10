@@ -6,15 +6,26 @@ import pingPongGame.controller.layout.TopBarController;
 import pingPongGame.model.GameModel;
 import pingPongGame.view.SettingsView;
 
+/**
+ * Controller responsible for handling game settings.
+ */
 public class SettingsController {
     public SettingsView settingsView;
     public TopBarController topBarController;
     private double racketCurrentWidth;
     private double racketCurrentHeight;
 
+    /**
+     * Default constructor for the SettingsController.
+     */
     public SettingsController() {
     }
 
+    /**
+     * Initializes the settings view based on the specified type.
+     *
+     * @param type The type of settings to be displayed.
+     */
     public void initView(String type) {
         settingsView = new SettingsView();
         racketCurrentWidth = GameController.getInstance().racketLeftController.getWidth();
@@ -73,18 +84,18 @@ public class SettingsController {
                         settingsView.heightSlider.getValue());
                 break;
             case "ballSpeed":
-                if (settingsView.optSlowBallSpeed.isSelected() == true) {
+                if (settingsView.optSlowBallSpeed.isSelected()) {
                     GameController.getInstance().ballController.setSpeed("slow");
-                } else if (settingsView.optFastBallSpeed.isSelected() == true) {
+                } else if (settingsView.optFastBallSpeed.isSelected()) {
                     GameController.getInstance().ballController.setSpeed("fast");
                 } else {
                     GameController.getInstance().ballController.setSpeed("normal");
                 }
                 break;
             case "ballSpeedIR":
-                if (settingsView.optSlowBallSpeedIR.isSelected() == true) {
+                if (settingsView.optSlowBallSpeedIR.isSelected()) {
                     GameController.getInstance().ballController.setSpeedIR("slow");
-                } else if (settingsView.optFastBallSpeedIR.isSelected() == true) {
+                } else if (settingsView.optFastBallSpeedIR.isSelected()) {
                     GameController.getInstance().ballController.setSpeedIR("fast");
                 } else {
                     GameController.getInstance().ballController.setSpeedIR("normal");

@@ -4,14 +4,20 @@ import java.util.ArrayList;
 
 import pingPongGame.view.MainView;
 
+/**
+ * Controller responsible for managing the main flow of the game.
+ */
 public class MainController {
-    public static MainController selfInstance = new MainController(); // Singleton
+    // Singleton instance
+    public static MainController selfInstance = new MainController();
     public SettingsController settingsController;
 
+    // Enumeration representing the possible states of the main controller
     public enum MainState {
         WELCOME, RUNNING, PAUSED, SETTINGS, GAMEOVER
     }
 
+    // Current main state and history of main states
     public MainState mainState;
     public ArrayList<MainState> mainStateHistory = new ArrayList<MainState>();
 
@@ -20,31 +26,45 @@ public class MainController {
         this.fullReset();
     }
 
+    /**
+     * Resets the main controller to its initial state.
+     */
     public void fullReset() {
         mainStateHistory.clear();
         GameController.getInstance().fullReset();
         settingsController = new SettingsController();
 
-        // Display welcome view
+        // Display the welcome view
         MainView.getInstance().displayWelcome();
         this.setMainState(MainState.WELCOME);
     }
 
-    // Start the game
+    /**
+     * Starts the game.
+     */
     public void startGame() {
         GameController.getInstance().initView();
         MainView.getInstance().displayGame();
         this.setMainState(MainState.RUNNING);
     }
 
-    // Game over
+    /**
+     * Handles the game over scenario.
+     * 
+     * @param winnerName The name of the winner.
+     * @param looserName The name of the loser.
+     */
     public void gameOver(String winnerName, String looserName) {
         MainView.getInstance().hideGame();
         MainView.getInstance().displayEnd(winnerName, looserName);
         this.setMainState(MainState.GAMEOVER);
     }
 
-    // Display settings
+    /**
+     * Displays the settings view.
+     * 
+     * @param type The type of settings to be displayed.
+     */
     public void displaySettings(String type) {
         // Remove the current view
         switch (this.getMainState()) {
@@ -68,13 +88,18 @@ public class MainController {
         this.setMainState(MainState.SETTINGS);
     }
 
-    // Hide settings
+    /**
+     * Hides the settings view.
+     */
     public void hideSettings() {
         // Remove the settings view
         MainView.getInstance().hideSettings();
         this.displayLastViewBeforeSettings();
     }
 
+    /**
+     * Displays the last view before the settings view was shown.
+     */
     private void displayLastViewBeforeSettings() {
         // Get the last state before settings
         MainState lastState = MainState.SETTINGS;
@@ -103,17 +128,29 @@ public class MainController {
         this.setMainState(lastState);
     }
 
-    // Get the last game state
+    /**
+     * Gets the last recorded main state.
+     * 
+     * @return The last main state.
+     */
     public MainState getLastMainState() {
         return mainStateHistory.get(mainStateHistory.size() - 1);
     }
 
-    // Get the game state
+    /**
+     * Gets the current main state.
+     * 
+     * @return The current main state.
+     */
     public MainState getMainState() {
         return mainState;
     }
 
-    // Set the game state
+    /**
+     * Sets the current main state and adds it to the history.
+     * 
+     * @param state The new main state.
+     */
     public void setMainState(MainState state) {
         switch (state) {
             case SETTINGS:
@@ -139,6 +176,11 @@ public class MainController {
         mainStateHistory.add(mainState);
     }
 
+    /**
+     * Gets the singleton instance of the MainController.
+     * 
+     * @return The MainController instance.
+     */
     public static MainController getInstance() {
         return selfInstance; // Singleton
     }

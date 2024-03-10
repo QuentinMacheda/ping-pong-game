@@ -11,21 +11,39 @@ import pingPongGame.controller.GameController;
 import pingPongGame.controller.MainController;
 import pingPongGame.controller.MainController.MainState;
 
+/**
+ * The view for playing the Ping Pong Game, including rackets, ball, and player
+ * information.
+ */
 public class GameView extends BorderPane {
+    /** The view for the ball in the game. */
     public BallView ballView;
-    public RacketView racketLeftView;
-    public RacketView racketRightView;
-    public PlayerView playerLeftView;
-    public PlayerView playerRightView;
+
+    /** The view for the left and right racket in the game. */
+    public RacketView racketLeftView, racketRightView;
+
+    /** The view for the players on the left and right side. */
+    public PlayerView playerLeftView, playerRightView;
+
+    /** The text displaying start or goal messages. */
     public Text startMessage;
+
+    /** The container for players and the start/goal message. */
     public StackPane centerContainer;
 
-    // Constructor
+    /**
+     * Constructs the GameView, setting up the game components and handling keyboard
+     * events.
+     */
     public GameView() {
         setComponents(); // Set the view
         handleKeyboardEvents(); // Handle keyboard events
     }
 
+    /**
+     * Sets up the components of the game view, including rackets, ball, and player
+     * information.
+     */
     public void setComponents() {
         /*
          * Top Bar
@@ -64,6 +82,9 @@ public class GameView extends BorderPane {
         this.setCenter(centerContainer);
     }
 
+    /**
+     * Sets the message to start the game.
+     */
     public void setMessageToStart() {
         if (!startMessage.isVisible())
             startMessage.setVisible(true);
@@ -72,6 +93,11 @@ public class GameView extends BorderPane {
         startMessage.getStyleClass().add("start-message");
     }
 
+    /**
+     * Sets the message to a goal scored by a player.
+     *
+     * @param playerName The name of the player who scored.
+     */
     public void setMessageToGoal(String playerName) {
         if (!startMessage.isVisible())
             startMessage.setVisible(true);
@@ -80,6 +106,10 @@ public class GameView extends BorderPane {
         startMessage.getStyleClass().add("goal-message");
     }
 
+    /**
+     * Handles keyboard events for controlling the game, including racket movements
+     * and starting the game.
+     */
     public void handleKeyboardEvents() {
         this.setFocusTraversable(true);
 

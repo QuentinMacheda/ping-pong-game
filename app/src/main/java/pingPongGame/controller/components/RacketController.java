@@ -48,11 +48,13 @@ public class RacketController implements Runnable {
     }
 
     public double getParentWidth() {
-        return racketModel.getParentWidth();
+        // Width of the racket is the same as the parent container
+        return racketModel.getWidth();
     }
 
     public void setParentWidth(double newParentWidth) {
-        racketModel.setParentWidth(newParentWidth);
+        // Width of the racket is the same as the parent container
+        racketModel.setWidth(newParentWidth);
     }
 
     public double getWidth() {

@@ -8,12 +8,26 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import pingPongGame.controller.MainController;
 
+/**
+ * The view displayed at the end of the game, showing the winner, loser, and a
+ * play again button.
+ */
 public class EndView extends BorderPane {
-    private Text winnerText;
-    private Text looserText;
+    /** The text messages displayed at the end of the game */
+    private Text winnerText, looserText;
+
+    /** The button to play the game again. */
     private Button playAgainButton;
+
+    /** The container holding the winner text, loser text, and play again button. */
     private VBox container;
 
+    /**
+     * Constructs the EndView with the specified winner and loser names.
+     *
+     * @param winnerName The name of the winner.
+     * @param looserName The name of the loser.
+     */
     public EndView(String winnerName, String looserName) {
         // Text
         winnerText = new Text();

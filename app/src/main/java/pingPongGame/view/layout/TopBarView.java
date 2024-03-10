@@ -11,25 +11,32 @@ import pingPongGame.controller.MainController;
 import pingPongGame.controller.layout.TopBarController;
 import pingPongGame.view.components.PlayerView;
 
+/**
+ * The top bar view containing menus for game and player settings.
+ */
 public class TopBarView extends VBox {
+    /** The controller for the top bar. */
     public TopBarController topBarController;
 
+    /** The menu bar for game and player settings. */
     public MenuBar menuBar;
-    public Menu gameSettings;
-    public Menu playersName;
-    public Menu rackets;
-    public MenuItem exit;
-    public MenuItem endGameScore;
-    public MenuItem racketSize;
-    public MenuItem ballSpeed;
-    public MenuItem ballSpeedIncreaseRate;
-    public MenuItem player1;
-    public MenuItem player2;
 
+    /** Menu for game and players settings. */
+    public Menu gameSettings, playersName;
+
+    /** All the menu items */
+    public MenuItem endGameScore, exit, racketSize, ballSpeed, ballSpeedIncreaseRate, player1, player2;
+
+    /** Container holding player views. */
     public BorderPane playersContainer;
-    public PlayerView playerLeftView;
-    public PlayerView playerRightView;
 
+    /** The view for the left and right player. */
+    public PlayerView playerLeftView, playerRightView;
+
+    /**
+     * Constructs the TopBarView, initializing the menu bar and handling button
+     * actions.
+     */
     public TopBarView() {
         /*
          * Menu Bar
@@ -42,7 +49,7 @@ public class TopBarView extends VBox {
         gameSettings = new Menu("Game settings");
         playersName = new Menu("Players settings");
 
-        // subItems
+        // Sub-items
         endGameScore = new MenuItem("End game score");
         racketSize = new MenuItem("Rackets size");
         ballSpeed = new MenuItem("Ball speed");
@@ -67,6 +74,9 @@ public class TopBarView extends VBox {
         handleButtonsActions();
     }
 
+    /**
+     * Handles the actions for menu items.
+     */
     public void handleButtonsActions() {
         // Set End Game Score
         this.endGameScore.setOnAction(e -> {

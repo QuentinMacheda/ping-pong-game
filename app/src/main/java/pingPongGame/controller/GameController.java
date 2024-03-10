@@ -14,8 +14,20 @@ import pingPongGame.model.GameModel;
 import pingPongGame.model.components.PlayerModel;
 import pingPongGame.view.GameView;
 
+/**
+ * The GameController class manages the game logic, including players, rackets,
+ * ball, and game state.
+ */
 public class GameController {
+
+    /**
+     * Singleton instance of GameController.
+     */
     public static GameController selfInstance = new GameController();
+
+    /**
+     * Media player for the sound design.
+     */
     public final MediaPlayer wallBounceSound = new MediaPlayer(
             new Media(GameController.class.getResource("/sound-design/wall-bounce.mp3").toString()));
     public final MediaPlayer racketBounceSound = new MediaPlayer(
@@ -23,28 +35,45 @@ public class GameController {
     public final MediaPlayer scoreSound = new MediaPlayer(
             new Media(GameController.class.getResource("/sound-design/score.mp3").toString()));
 
+    /**
+     * The GameView instance associated with the GameController.
+     */
     public GameView gameView;
+
+    /**
+     * The TopBarController instance associated with the GameController.
+     */
     public TopBarController topBarController;
-    public PlayerController playerLeftController;
-    public PlayerController playerRightController;
-    public RacketController racketLeftController;
-    public RacketController racketRightController;
+
+    /**
+     * The PlayerController instance for the left and right player.
+     */
+    public PlayerController playerLeftController, playerRightController;
+
+    /**
+     * The RacketController instance for the left and right racket.
+     */
+    public RacketController racketLeftController, racketRightController;
+
+    /**
+     * The BallController instance associated with the GameController.
+     */
     public BallController ballController;
 
-    // Constructor
+    /**
+     * Private constructor to enforce Singleton pattern.
+     */
     private GameController() {
         this.fullReset();
-
         this.preloadSounds();
     }
 
+    /**
+     * Initializes the GameView associated with the GameController.
+     */
     public void initView() {
         gameView = new GameView();
 
-        /*
-         * Set game area height and width values
-         * Set racket X position as it depends on game area width
-         */
         gameView.centerContainer.heightProperty().addListener((observable, oldValue, newValue) -> {
             GameModel.getInstance().setGameAreaHeight(newValue.doubleValue());
         });
@@ -59,87 +88,87 @@ public class GameController {
         });
     }
 
+    /**
+     * Handles scoring based on the player who scored.
+     *
+     * @param playerSide The side of the player who scored.
+     */
     public void score(PlayerModel.PlayerSide playerSide) {
-        // Play the score sound
         this.playScoreSound();
-
         MainController.getInstance().setMainState(MainState.PAUSED);
 
-        // Increment the score of the player who scored
-        // Print goal message
         if (playerSide == PlayerModel.PlayerSide.LEFT) {
             playerRightController.incrementScore();
-
-            // Check if score is less than the end game score
             if (playerRightController.getScore() < GameModel.getInstance().getEndGameScore()) {
                 this.getView().setMessageToGoal(playerRightController.getName());
                 this.resetAfterScore();
             } else {
-                this.resetAfterGameOver();
+                this.reset();
                 MainController.getInstance().gameOver(playerRightController.getName(), playerLeftController.getName());
             }
         } else if (playerSide == PlayerModel.PlayerSide.RIGHT) {
             playerLeftController.incrementScore();
-
-            // Check if score is less than the end game score
             if (playerLeftController.getScore() < GameModel.getInstance().getEndGameScore()) {
                 this.getView().setMessageToGoal(playerLeftController.getName());
                 this.resetAfterScore();
             } else {
-                this.resetAfterGameOver();
+                this.reset();
                 MainController.getInstance().gameOver(playerLeftController.getName(), playerRightController.getName());
             }
         }
     }
 
-    // Reset the game after a game over
-    public void resetAfterGameOver() {
+    /**
+     * Resets the game
+     */
+    public void reset() {
         ballController.reset();
         racketLeftController.reset();
         racketRightController.reset();
     }
 
-    // Reset the game after a score (2 seconds pause)
+    /**
+     * Resets the game after a score with a 2-second pause.
+     */
     public void resetAfterScore() {
         Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
-            ballController.reset();
-            racketLeftController.reset();
-            racketRightController.reset();
+            this.reset();
             this.getView().setMessageToStart();
         }));
-
         scorePause.play();
     }
 
+    /**
+     * Fully resets the game, including players, rackets, and ball.
+     */
     public void fullReset() {
         GameModel.getInstance().fullReset();
-
         topBarController = new TopBarController();
 
-        // Set the players name and score
         playerLeftController = new PlayerController();
         playerLeftController.initView();
         playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
         playerLeftController.updateName("Player 1");
+
         playerRightController = new PlayerController();
         playerRightController.initView();
         playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
         playerRightController.updateName("Player 2");
 
-        // Set the rackets
         racketLeftController = new RacketController();
         racketLeftController.initView();
 
         racketRightController = new RacketController();
         racketRightController.initView();
 
-        // Set the ball
         ballController = new BallController();
         ballController.initView();
     }
 
+    /**
+     * Preloads game sounds to avoid lag during gameplay.
+     */
     public void preloadSounds() {
-        // Preload the sounds to avoid lag
         wallBounceSound.setVolume(0);
         racketBounceSound.setVolume(0);
 
@@ -153,6 +182,9 @@ public class GameController {
         delay.play();
     }
 
+    /**
+     * Plays the wall bounce sound.
+     */
     public void playWallBounceSound() {
         Platform.runLater(() -> {
             wallBounceSound.seek(Duration.ZERO);
@@ -160,6 +192,9 @@ public class GameController {
         });
     }
 
+    /**
+     * Plays the racket bounce sound.
+     */
     public void playRacketBounceSound() {
         Platform.runLater(() -> {
             racketBounceSound.seek(Duration.ZERO);
@@ -167,6 +202,9 @@ public class GameController {
         });
     }
 
+    /**
+     * Plays the score sound.
+     */
     public void playScoreSound() {
         Platform.runLater(() -> {
             scoreSound.seek(Duration.ZERO);
@@ -174,10 +212,20 @@ public class GameController {
         });
     }
 
+    /**
+     * Gets the GameView associated with the GameController.
+     *
+     * @return The GameView instance.
+     */
     public GameView getView() {
         return gameView;
     }
 
+    /**
+     * Gets the singleton instance of GameController.
+     *
+     * @return The GameController instance.
+     */
     public static GameController getInstance() {
         return selfInstance;
     }

@@ -11,12 +11,25 @@ import javafx.scene.text.Text;
 import pingPongGame.controller.GameController;
 import pingPongGame.controller.MainController;
 
+/**
+ * The view responsible for displaying the welcome screen of the Ping Pong Game.
+ */
 public class WelcomeView extends BorderPane {
+    /** The welcome text displayed on the screen. */
     private Text welcomeText;
+
+    /** The game icon image. */
     private Image icon;
+
+    /** The button to start the game. */
     private Button startButton;
+
+    /** The container holding the welcome content. */
     private VBox container;
 
+    /**
+     * Constructs a new instance of WelcomeView.
+     */
     public WelcomeView() {
         /*
          * Top Bar
@@ -49,6 +62,7 @@ public class WelcomeView extends BorderPane {
             MainView.getInstance().hideWelcome(); // Remove the welcome view
             MainController.getInstance().startGame(); // Start the game
         });
+
         // On key pressed ENTER
         startButton.setOnKeyPressed(e -> {
             if (e.getCode() == KeyCode.ENTER) {

@@ -14,17 +14,34 @@ import javafx.scene.text.Text;
 import pingPongGame.controller.GameController;
 import pingPongGame.controller.layout.TopBarController;
 
+/**
+ * The view responsible for displaying the game settings.
+ */
 public class SettingsView extends BorderPane {
+    /** The top bar controller instance. */
     public TopBarController topBarController;
 
+    /** The main container holding various settings. */
     public VBox mainContainer;
+
+    /** The container holding buttons and the buttons */
     public HBox buttonsContainer;
     public Button backBtn, saveBtn;
-    public Slider endGameScoreSlider, widthSlider, heightSlider;
-    public TextField newPlayerName;
-    public RadioButton optSlowBallSpeed, optNormalBallSpeed, optFastBallSpeed, optSlowBallSpeedIR, optNormalBallSpeedIR,
-            optFastBallSpeedIR;
 
+    /** The slider for end game score */
+    public Slider endGameScoreSlider;
+
+    /** The sliders for racket width and height */
+    public Slider widthSlider, heightSlider;
+    public TextField newPlayerName;
+
+    /** The radio buttons for ballSpeed and ballSpeedIR */
+    public RadioButton optSlowBallSpeed, optNormalBallSpeed, optFastBallSpeed;
+    public RadioButton optSlowBallSpeedIR, optNormalBallSpeedIR, optFastBallSpeedIR;
+
+    /**
+     * Constructs a new instance of SettingsView.
+     */
     public SettingsView() {
         /*
          * Top Bar
@@ -52,8 +69,10 @@ public class SettingsView extends BorderPane {
         buttonsContainer.getStyleClass().add("btn-container");
     }
 
-    /*
-     * Display settings with endGameScoreView
+    /**
+     * Displays the end game score settings.
+     *
+     * @param currentScore The current end game score.
      */
     public void endGameScoreView(double currentScore) {
         // Text End Game Score
@@ -76,8 +95,11 @@ public class SettingsView extends BorderPane {
         mainContainer.getChildren().addAll(titleText, endGameScoreSlider, buttonsContainer);
     }
 
-    /*
-     * Display settings with racketSizeView
+    /**
+     * Displays the racket size settings.
+     *
+     * @param currentWidth  The current racket width.
+     * @param currentHeight The current racket height.
      */
     public void racketSizeView(double currentWidth, double currentHeight) {
         // Text Rackets's Width
@@ -116,8 +138,10 @@ public class SettingsView extends BorderPane {
         mainContainer.getChildren().addAll(textWidth, widthSlider, textHeight, heightSlider, buttonsContainer);
     }
 
-    /*
-     * Display settings with ballSpeedView
+    /**
+     * Displays the ball speed settings.
+     *
+     * @param optSelected The currently selected ball speed option.
      */
     public void ballSpeedView(String optSelected) {
         // Text End Game Score
@@ -134,10 +158,12 @@ public class SettingsView extends BorderPane {
         optNormalBallSpeed.setToggleGroup(toggleGroup);
         optFastBallSpeed.setToggleGroup(toggleGroup);
 
+        System.out.println(optSelected);
+
         // Set the current selected option
-        if (optSelected == "slow")
+        if (optSelected.equals("slow"))
             optSlowBallSpeed.setSelected(true);
-        else if (optSelected == "fast")
+        else if (optSelected.equals("fast"))
             optFastBallSpeed.setSelected(true);
         else
             optNormalBallSpeed.setSelected(true);
@@ -149,8 +175,10 @@ public class SettingsView extends BorderPane {
         mainContainer.getChildren().addAll(titleText, optionsContainer, buttonsContainer);
     }
 
-    /*
-     * Display settings with ballSpeedIncreaseRateView
+    /**
+     * Displays the ball speed increase rate settings.
+     *
+     * @param optSelected The currently selected ball speed increase rate option.
      */
     public void ballSpeedIRView(String optSelected) {
         // Text End Game Score
@@ -168,9 +196,9 @@ public class SettingsView extends BorderPane {
         optFastBallSpeedIR.setToggleGroup(toggleGroup);
 
         // Set the current selected option
-        if (optSelected == "slow")
+        if ("slow".equals(optSelected))
             optSlowBallSpeedIR.setSelected(true);
-        else if (optSelected == "fast")
+        else if ("fast".equals(optSelected))
             optFastBallSpeedIR.setSelected(true);
         else
             optNormalBallSpeedIR.setSelected(true);
@@ -182,8 +210,10 @@ public class SettingsView extends BorderPane {
         mainContainer.getChildren().addAll(titleText, optionsContainer, buttonsContainer);
     }
 
-    /*
-     * Display settings with playerNameView
+    /**
+     * Displays the player name settings.
+     *
+     * @param currentPlayerName The current player name.
      */
     public void playerNameView(String currentPlayerName) {
         // Text
