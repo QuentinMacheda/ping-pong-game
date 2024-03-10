@@ -12,13 +12,19 @@ public class PlayerModel {
         RIGHT
     }
 
-    // Player's name
+    /*
+     * The name of the player.
+     */
     private String name;
 
-    // Player's score
+    /*
+     * The score of the player.
+     */
     private int score;
 
-    // Player's side (LEFT or RIGHT)
+    /*
+     * The side of the player (LEFT or RIGHT).
+     */
     private PlayerSide playerSide;
 
     /**

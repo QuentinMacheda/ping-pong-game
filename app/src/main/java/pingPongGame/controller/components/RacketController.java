@@ -8,10 +8,30 @@ import pingPongGame.model.components.RacketModel;
 import pingPongGame.view.components.RacketView;
 
 public class RacketController implements Runnable {
+
+    /*
+     * The model of the racket.
+     */
     private RacketModel racketModel;
+
+    /*
+     * The view of the racket.
+     */
     private RacketView racketView;
+
+    /*
+     * The thread of the racket.
+     */
     public Thread racketThread;
+
+    /*
+     * The key code of the racket.
+     */
     public KeyCode racketKeyCode;
+
+    /*
+     * The status of the key pressed.
+     */
     public boolean isKeyPressed;
 
     public RacketController() {

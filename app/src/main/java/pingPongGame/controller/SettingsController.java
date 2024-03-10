@@ -10,9 +10,24 @@ import pingPongGame.view.SettingsView;
  * Controller responsible for handling game settings.
  */
 public class SettingsController {
+    /**
+     * The view for game settings.
+     */
     public SettingsView settingsView;
+
+    /**
+     * The controller for the top bar.
+     */
     public TopBarController topBarController;
+
+    /**
+     * The current width of the racket.
+     */
     private double racketCurrentWidth;
+
+    /**
+     * The current height of the racket.
+     */
     private double racketCurrentHeight;
 
     /**

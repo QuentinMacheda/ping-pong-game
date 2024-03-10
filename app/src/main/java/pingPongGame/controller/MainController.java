@@ -8,8 +8,15 @@ import pingPongGame.view.MainView;
  * Controller responsible for managing the main flow of the game.
  */
 public class MainController {
-    // Singleton instance
+
+    /*
+     * The singleton instance of the MainController.
+     */
     public static MainController selfInstance = new MainController();
+
+    /**
+     * The controller for the settings.
+     */
     public SettingsController settingsController;
 
     // Enumeration representing the possible states of the main controller
@@ -17,8 +24,14 @@ public class MainController {
         WELCOME, RUNNING, PAUSED, SETTINGS, GAMEOVER
     }
 
-    // Current main state and history of main states
+    /*
+     * The current state of the main controller.
+     */
     public MainState mainState;
+
+    /*
+     * The history of the main state.
+     */
     public ArrayList<MainState> mainStateHistory = new ArrayList<MainState>();
 
     // Constructor

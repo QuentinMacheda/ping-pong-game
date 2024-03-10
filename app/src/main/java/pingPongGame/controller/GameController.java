@@ -30,8 +30,16 @@ public class GameController {
      */
     public final MediaPlayer wallBounceSound = new MediaPlayer(
             new Media(GameController.class.getResource("/sound-design/wall-bounce.mp3").toString()));
+
+    /**
+     * Media player for the sound design.
+     */
     public final MediaPlayer racketBounceSound = new MediaPlayer(
             new Media(GameController.class.getResource("/sound-design/racket-bounce.mp3").toString()));
+
+    /**
+     * Media player for the sound design.
+     */
     public final MediaPlayer scoreSound = new MediaPlayer(
             new Media(GameController.class.getResource("/sound-design/score.mp3").toString()));
 

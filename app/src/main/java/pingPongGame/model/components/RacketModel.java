@@ -7,7 +7,14 @@ import javafx.geometry.Bounds;
  * Model representing the properties and state of a racket in the game.
  */
 public class RacketModel {
+    /*
+     * Variables representing the position, width, height, and height of the parent
+     */
     private double x, y, width, height, parentHeight;
+
+    /*
+     * Bounding box representing the bounds of the racket
+     */
     private Bounds bounds;
 
     /**

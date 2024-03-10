@@ -9,25 +9,29 @@ import pingPongGame.model.GameModel;
  * Model representing the properties and behavior of the game ball.
  */
 public class BallModel {
-    // Position coordinates of the ball
+    /*
+     * Position coordinates of the ball
+     */
     private int x, y;
 
-    // Radius of the ball
+    /*
+     * Radius of the ball
+     */
     private int radius;
 
-    // Bounding box representing the bounds of the ball
+    /*
+     * Bounding box representing the bounds of the ball
+     */
     private Bounds bounds;
 
-    // Speed of the ball in the Y direction
-    private int ballSpeedY;
+    /*
+     * Speed in the X and Y directions & Speed increase rate
+     */
+    private int ballSpeedX, ballSpeedY, ballSpeedIR;
 
-    // Speed of the ball in the X direction
-    private int ballSpeedX;
-
-    // Speed increase rate of the ball
-    private int ballSpeedIR;
-
-    // State indicating whether the ball is currently in collision with a racket
+    /*
+     * State of the ball collision
+     */
     private boolean collisionState;
 
     /**

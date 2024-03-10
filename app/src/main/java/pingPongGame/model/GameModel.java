@@ -4,13 +4,19 @@ package pingPongGame.model;
  * The model representing the game state and settings.
  */
 public class GameModel {
-    // Singleton instance of GameModel
+    /*
+     * The singleton instance of the GameModel.
+     */
     public static GameModel selfInstance = new GameModel();
 
-    // The score at which the game ends
+    /*
+     * The score required to end the game.
+     */
     public int endGameScore;
 
-    // The height and width of the game area
+    /*
+     * The height and width of the game area.
+     */
     public double gameAreaHeight, gameAreaWidth;
 
     /**

@@ -8,11 +8,30 @@ import pingPongGame.view.MainView;
 import pingPongGame.controller.MainController;
 
 /**
- * The main class responsible for launching the Ping Pong Game application.
+ * The main application class for the Ping Pong game.
+ * Extend this class to create a JavaFX application.
  */
 public class App extends Application {
+
+    /*
+     * The main view of the Ping Pong Game application.
+     */
     private MainView mainView;
+
+    /*
+     * The main controller of the Ping Pong Game application.
+     */
     private MainController mainController;
+
+    /**
+     * Default constructor.
+     * Constructs an instance of the App class.
+     */
+    public App() {
+        // Initialize main controller and view
+        mainController = MainController.getInstance();
+        mainView = MainView.getInstance();
+    }
 
     /**
      * The main entry point for the JavaFX application.
@@ -30,10 +49,6 @@ public class App extends Application {
      */
     @Override
     public void start(Stage primaryStage) {
-        // Initialize main controller and view
-        mainController = MainController.getInstance();
-        mainView = MainView.getInstance();
-
         // Create the main scene
         Scene mainScene = new Scene(mainView, 1024, 668);
 

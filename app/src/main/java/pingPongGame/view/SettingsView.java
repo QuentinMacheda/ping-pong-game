@@ -158,8 +158,6 @@ public class SettingsView extends BorderPane {
         optNormalBallSpeed.setToggleGroup(toggleGroup);
         optFastBallSpeed.setToggleGroup(toggleGroup);
 
-        System.out.println(optSelected);
-
         // Set the current selected option
         if (optSelected.equals("slow"))
             optSlowBallSpeed.setSelected(true);

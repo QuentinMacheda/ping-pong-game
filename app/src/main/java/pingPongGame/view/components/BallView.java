@@ -7,6 +7,10 @@ import pingPongGame.controller.components.BallController;
  * The visual representation of the game ball.
  */
 public class BallView extends Circle {
+    /**
+     * The controller responsible for controlling the behavior of the ball in the
+     * game.
+     */
     private BallController ballController;
 
     /**
