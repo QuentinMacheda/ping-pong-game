@@ -32,7 +32,7 @@ This is a simple Ping Pong game developed in Java with JavaFX.
      git clone [repository_url]
      ```
      
-     Replace ```bash [repository_url]``` with the actual URL of your Git repository.
+     Replace `[repository_url]` with the actual URL of your Git repository.
 
 3. **Open the project directory:**
    - Run:
