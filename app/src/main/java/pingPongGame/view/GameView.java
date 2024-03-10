@@ -14,6 +14,10 @@ import pingPongGame.controller.MainController.MainState;
 /**
  * The view for playing the Ping Pong Game, including rackets, ball, and player
  * information.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class GameView extends BorderPane {
     /** The view for the ball in the game. */

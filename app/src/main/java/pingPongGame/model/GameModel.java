@@ -2,6 +2,10 @@ package pingPongGame.model;
 
 /**
  * The model representing the game state and settings.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class GameModel {
     /*

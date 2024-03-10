@@ -7,6 +7,10 @@ import pingPongGame.controller.MainController;
 /**
  * The main view of the Ping Pong Game application, managing the display of
  * different game views.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class MainView extends StackPane {
     /** The singleton instance of MainView. */

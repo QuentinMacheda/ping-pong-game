@@ -6,6 +6,10 @@ import pingPongGame.controller.components.PlayerController;
 /**
  * The visual representation of a player's information, including name and
  * score.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class PlayerView extends Text {
     // Associated controller managing player logic

@@ -7,6 +7,10 @@ import javafx.scene.layout.VBox;
 
 /**
  * The visual representation of a racket in the game.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class RacketView extends VBox {
     // Associated controller managing racket logic

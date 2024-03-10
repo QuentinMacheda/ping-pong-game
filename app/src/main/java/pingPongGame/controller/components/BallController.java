@@ -8,7 +8,12 @@ import pingPongGame.view.components.BallView;
 
 /**
  * The BallController class manages the ball logic in the game.
- * It implements the Runnable interface for multi-threading.
+ * It implements the Runnable interface for multi-threading and allow the ball
+ * to move independently.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class BallController implements Runnable {
 

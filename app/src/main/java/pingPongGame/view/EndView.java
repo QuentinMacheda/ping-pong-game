@@ -11,6 +11,10 @@ import pingPongGame.controller.MainController;
 /**
  * The view displayed at the end of the game, showing the winner, loser, and a
  * play again button.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class EndView extends BorderPane {
     /** The text messages displayed at the end of the game */

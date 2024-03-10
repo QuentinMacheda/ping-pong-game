@@ -10,6 +10,10 @@ import pingPongGame.controller.MainController;
 /**
  * The main application class for the Ping Pong game.
  * Extend this class to create a JavaFX application.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class App extends Application {
 

@@ -13,6 +13,10 @@ import pingPongGame.view.components.PlayerView;
 
 /**
  * The top bar view containing menus for game and player settings.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class TopBarView extends VBox {
     /** The controller for the top bar. */

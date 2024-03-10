@@ -13,6 +13,10 @@ import pingPongGame.controller.MainController;
 
 /**
  * The view responsible for displaying the welcome screen of the Ping Pong Game.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class WelcomeView extends BorderPane {
     /** The welcome text displayed on the screen. */

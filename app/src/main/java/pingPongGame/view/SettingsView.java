@@ -16,6 +16,10 @@ import pingPongGame.controller.layout.TopBarController;
 
 /**
  * The view responsible for displaying the game settings.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class SettingsView extends BorderPane {
     /** The top bar controller instance. */

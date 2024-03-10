@@ -4,6 +4,10 @@ import pingPongGame.view.layout.TopBarView;
 
 /**
  * The TopBarController class manages the top bar layout in the game.
+ * 
+ * @author Quentin Macheda
+ * @version 1.4
+ * @since 2024-03-09
  */
 public class TopBarController {
     /**
