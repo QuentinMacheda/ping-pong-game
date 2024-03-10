@@ -56,7 +56,7 @@ public class SettingsView extends BorderPane {
         // Main Container
         mainContainer = new VBox();
         mainContainer.setSpacing(20);
-        mainContainer.getStyleClass().add("main-container");
+        mainContainer.getStyleClass().add("main-settings-container");
         this.setCenter(mainContainer);
 
         // Back Button

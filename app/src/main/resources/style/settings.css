@@ -1,4 +1,4 @@
-.main-container {
+.main-settings-container {
     -fx-alignment: center;
     -fx-padding: 20px;
 }
@@ -7,7 +7,7 @@
     -fx-text-fill: #f1e9da;
     -fx-fill: #f1e9da;
     -fx-font-family: "Verdana, sans-serif";
-    -fx-font-weight: normal;
+    -fx-font-weight: bold;
     -fx-font-size: 24px;
 }
 
