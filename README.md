@@ -6,8 +6,7 @@ This is a simple Ping Pong game developed in Java with JavaFX.
 
 - [Requirements](#requirements)
 - [Installation](#installation)
-- [How to Run the App](#how-to-run-the-app)
-- [How to Generate JavaDoc](#how-to-generate-javadoc)
+- [JavaDoc](#javadoc)
 - [License](#license)
 
 
@@ -57,22 +56,15 @@ This is a simple Ping Pong game developed in Java with JavaFX.
     ```
 
 5. **Build and run the project:**
-   - Run: `gradle run`
+   - Run:
+     ```bash
+     gradle run
+     ```
+     
      This will build and run the Ping Pong game. Ensure you have configured paths and dependencies correctly.
 
 
-## How to Run the App
-
-To run the application, use the following Gradle command:
-
-```bash
-gradle run
-```
-
-This command will build and run the Ping Pong game. Make sure you have Gradle installed on your machine.
-
-
-## How to Generate JavaDoc
+## JavaDoc
 
 To generate JavaDoc documentation for the project, use the following command:
 
