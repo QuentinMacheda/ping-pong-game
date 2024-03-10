@@ -56,7 +56,8 @@ This is a simple Ping Pong game developed in Java with JavaFX.
      ```
 
 5. **Build and run the project:**
-   - Run: ```bash
+   - Run:
+     ```bash
      gradle run
      ```
      
