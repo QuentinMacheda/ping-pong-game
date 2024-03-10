@@ -18,10 +18,11 @@ public class App extends Application {
     @Override
     public void start(Stage window) {
         mainController = MainController.getInstance();
-        Scene mainScene = new Scene(MainView.getInstance(), 1200, 700);
+        Scene mainScene = new Scene(MainView.getInstance(), 1024, 668);
 
         // Import CSS
         mainScene.getStylesheets().addAll(
+                App.class.getResource("/style/main.css").toExternalForm(),
                 App.class.getResource("/style/settings.css").toExternalForm(),
                 App.class.getResource("/style/game.css").toExternalForm(),
                 App.class.getResource("/style/end.css").toExternalForm(),

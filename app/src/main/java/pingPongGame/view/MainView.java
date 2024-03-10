@@ -13,7 +13,7 @@ public class MainView extends StackPane {
     // Constructor
     private MainView() {
         // Set the background color
-        this.setStyle("-fx-background-color: #1B1B1E");
+        this.getStyleClass().add("main-container");
     }
 
     public void displayWelcome() {

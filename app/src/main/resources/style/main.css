@@ -1,0 +1,8 @@
+.main-container {
+    -fx-background-image: url('../images/bg.jpg');
+    -fx-background-size: cover;
+
+    -fx-padding: 0 !important;
+    -fx-margin: 0 !important;
+}
+

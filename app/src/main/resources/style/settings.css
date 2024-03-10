@@ -8,12 +8,12 @@
     -fx-fill: #f1e9da;
     -fx-font-family: "Verdana, sans-serif";
     -fx-font-weight: normal;
-    -fx-font-size: 28px;
+    -fx-font-size: 24px;
 }
 
 .text-field {
     -fx-font-family: "Verdana, sans-serif";
-    -fx-font-size: 20px;
+    -fx-font-size: 14px;
     -fx-font-weight: lighter;
     -fx-text-fill: #F1E9DA;
     
@@ -30,7 +30,7 @@
 
 .radio-button {
     -fx-font-family: "Verdana, sans-serif";
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-font-weight: lighter;
     -fx-text-fill: #F1E9DA;
     

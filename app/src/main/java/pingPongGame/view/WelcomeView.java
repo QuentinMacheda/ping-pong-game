@@ -31,7 +31,7 @@ public class WelcomeView extends BorderPane {
         welcomeText.getStyleClass().add("welcome-text");
 
         // Image (Icon)
-        icon = new Image(WelcomeView.class.getResource("/icon.png").toExternalForm(), 150, 150, false, false);
+        icon = new Image(WelcomeView.class.getResource("/icon.png").toExternalForm(), 120, 120, false, false);
 
         // Start button
         startButton = new Button("Start the game");

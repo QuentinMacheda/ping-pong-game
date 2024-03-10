@@ -1,6 +1,6 @@
 /* Menu Bar */
 .menu-bar {
-    -fx-background-color: #27272B;
+    -fx-background-color: rgba(241, 233, 218, 0.05);
     -fx-text-fill: #f1e9da !important;
     -fx-fill: #f1e9da !important;
     -fx-padding: 0px;
@@ -8,37 +8,37 @@
 
 /* Menu */
 .menu {
-    -fx-background-color: #27272B;
-    -fx-padding: 8px 12px;
+    -fx-background-color: transparent;
+    -fx-padding: 10px 14px;
 }
 .menu > .label {
     -fx-text-fill: #f1e9da !important;
     -fx-fill: #f1e9da !important;
     -fx-font-family: "Verdana, sans-serif";
     -fx-font-weight: normal;
-    -fx-font-size: 16px;
+    -fx-font-size: 12px;
 }
 .menu:hover {
     -fx-background-color: rgba(241, 233, 218, 0.1);
 }
 .context-menu {
-    -fx-background-color: #27272B;
+    -fx-background-color: rgba(241, 233, 218, 0.05);
     -fx-min-width: 100px;
     -fx-padding: 0;
 }
 
 /* Menu items */
 .menu-item {
-    -fx-background-color: #27272B;
+    -fx-background-color: transparent;
     -fx-font-family: "Verdana, sans-serif";
     -fx-font-weight: normal;
-    -fx-font-size: 15px;
+    -fx-font-size: 12px;
     -fx-padding: 8px 12px;
 }
 .menu-item:hover {
     -fx-background-color: rgba(241, 233, 218, 0.1);
 }
 .menu-item > .label {
-    -fx-text-fill: #f1e9da !important;
+    -fx-text-fill: #aaa59e !important;
     -fx-fill: #f1e9da !important;
 }

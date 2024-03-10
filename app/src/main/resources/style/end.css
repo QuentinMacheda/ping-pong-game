@@ -2,7 +2,7 @@
     -fx-text-fill: #FF910A;
     -fx-fill: #FF910A;
     -fx-font-family: "Verdana, sans-serif";
-    -fx-font-size: 52;
+    -fx-font-size: 48;
     -fx-font-weight: bold;
     -fx-text-alignment: center;
     -fx-effect: dropshadow( three-pass-box , rgba(255, 145, 10, 0.3), 20, 0.0 , 0 , 1 );
@@ -14,7 +14,7 @@
     -fx-text-fill: #f1e9da;
     -fx-fill: #f1e9da;
     -fx-font-family: "Verdana, sans-serif";
-    -fx-font-size: 24;
+    -fx-font-size: 20;
     /* -fx-font-weight: bold; */
     -fx-text-alignment: center;
 }
