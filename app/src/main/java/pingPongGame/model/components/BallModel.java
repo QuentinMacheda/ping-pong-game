@@ -16,7 +16,7 @@ public class BallModel {
     /*
      * Position coordinates of the ball
      */
-    private int x, y;
+    private double x, y;
 
     /*
      * Radius of the ball
@@ -29,9 +29,19 @@ public class BallModel {
     private Bounds bounds;
 
     /*
-     * Speed in the X and Y directions & Speed increase rate
+     * Speed in the X and Y directions
      */
-    private int ballSpeedX, ballSpeedY, ballSpeedIR;
+    private double ballSpeedX, ballSpeedY;
+
+    /*
+     * Speed increase rate of the ball
+     */
+    private double ballSpeedIR;
+
+    /*
+     * Number of racket collisions
+     */
+    private int racketColCount;
 
     /*
      * State of the ball collision
@@ -49,6 +59,7 @@ public class BallModel {
 
         setSpeed("normal");
         setSpeedIR("normal");
+        this.racketColCount = 0;
 
         this.collisionState = false;
     }
@@ -142,11 +153,11 @@ public class BallModel {
     public String getSpeedIR() {
         // Determine the speed increase rate category based on the ball speed increase
         // rate
-        if (ballSpeedIR == 1) {
+        if (ballSpeedIR == 0.1) {
             return "slow";
-        } else if (ballSpeedIR == 2) {
+        } else if (ballSpeedIR == 0.2) {
             return "normal";
-        } else if (ballSpeedIR == 3) {
+        } else if (ballSpeedIR == 0.3) {
             return "fast";
         } else {
             return "normal";
@@ -164,17 +175,28 @@ public class BallModel {
         // category
         switch (newSpeedIR) {
             case "slow":
-                ballSpeedIR = 1;
+                ballSpeedIR = 0.1;
                 break;
             case "normal":
-                ballSpeedIR = 2;
+                ballSpeedIR = 0.2;
                 break;
             case "fast":
-                ballSpeedIR = 3;
+                ballSpeedIR = 0.3;
                 break;
             default:
-                ballSpeedIR = 2;
+                ballSpeedIR = 0.2;
                 break;
+        }
+    }
+
+    /**
+     * Increases the speed of the ball every 4 racket collisions.
+     *
+     */
+    public void increaseBallSpeed() {
+        if (racketColCount % 4 == 0 && racketColCount != 0) {
+            ballSpeedX = (ballSpeedX > 0) ? ballSpeedX + ballSpeedIR : ballSpeedX - ballSpeedIR;
+            ballSpeedY = (ballSpeedY > 0) ? ballSpeedY + ballSpeedIR : ballSpeedY - ballSpeedIR;
         }
     }
 
@@ -202,6 +224,12 @@ public class BallModel {
     public void reset() {
         this.x = 0;
         this.y = 0;
+        this.racketColCount = 0;
+
+        setSpeed("normal");
+        setSpeedIR("normal");
+
+        this.collisionState = false;
     }
 
     /**
@@ -231,17 +259,21 @@ public class BallModel {
      * Handles collisions with the rackets.
      */
     public void handleRacketCollisions() {
-        // Check for collisions with the rackets
+        // Check the collision state to avoid multiple collisions
         if (!this.collisionState) {
+            // Check for collisions with the rackets
             if (GameController.getInstance().ballController.getBounds()
                     .intersects(GameController.getInstance().racketRightController.getBounds())
                     || GameController.getInstance().ballController.getBounds()
                             .intersects(GameController.getInstance().racketLeftController.getBounds())) {
                 ballSpeedX = -ballSpeedX;
                 this.collisionState = true;
+                this.racketColCount++;
+                increaseBallSpeed();
                 GameController.getInstance().playRacketBounceSound();
             }
         } else {
+            // Check if the ball is no longer colliding with the rackets
             if (!GameController.getInstance().ballController.getBounds()
                     .intersects(GameController.getInstance().racketRightController.getBounds())
                     && !GameController.getInstance().ballController.getBounds()

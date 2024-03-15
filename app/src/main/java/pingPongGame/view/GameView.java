@@ -52,8 +52,8 @@ public class GameView extends BorderPane {
         /*
          * Top Bar
          */
-        GameController.getInstance().topBarController.initView();
-        this.setTop(GameController.getInstance().topBarController.getView());
+        // GameController.getInstance().topBarController.initView();
+        // this.setTop(GameController.getInstance().topBarController.getView());
 
         /*
          * Rackets
