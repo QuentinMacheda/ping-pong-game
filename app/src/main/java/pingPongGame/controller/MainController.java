@@ -2,6 +2,7 @@ package pingPongGame.controller;
 
 import java.util.ArrayList;
 
+import pingPongGame.controller.layout.TopBarController;
 import pingPongGame.view.MainView;
 
 /**
@@ -18,14 +19,9 @@ public class MainController {
      */
     public static MainController selfInstance = new MainController();
 
-    /**
-     * The controller for the settings.
-     */
-    public SettingsController settingsController;
-
     // Enumeration representing the possible states of the main controller
     public enum MainState {
-        WELCOME, RUNNING, PAUSED, SETTINGS, GAMEOVER
+        WELCOME, RUNNING, SCORED, PAUSED, SETTINGS, GAMEOVER
     }
 
     /*
@@ -38,9 +34,20 @@ public class MainController {
      */
     public ArrayList<MainState> mainStateHistory = new ArrayList<MainState>();
 
+    /**
+     * The controller for the settings.
+     */
+    public SettingsController settingsController;
+
+    /**
+     * The controller for the top bar.
+     */
+    public TopBarController topBarController;
+
     // Constructor
     private MainController() {
         this.fullReset();
+        topBarController = new TopBarController();
     }
 
     /**
@@ -62,7 +69,6 @@ public class MainController {
     public void startGame() {
         GameController.getInstance().initView();
         MainView.getInstance().displayGame();
-        this.setMainState(MainState.RUNNING);
     }
 
     /**
@@ -87,12 +93,6 @@ public class MainController {
         switch (this.getMainState()) {
             case WELCOME:
                 MainView.getInstance().hideWelcome();
-                break;
-            case RUNNING:
-                MainView.getInstance().hideGame();
-                break;
-            case PAUSED:
-                MainView.getInstance().hideGame();
                 break;
             case SETTINGS:
                 MainView.getInstance().hideSettings();
@@ -131,12 +131,6 @@ public class MainController {
         switch (lastState) {
             case WELCOME:
                 MainView.getInstance().displayWelcome();
-                break;
-            case RUNNING:
-                MainView.getInstance().displayGame();
-                break;
-            case PAUSED:
-                MainView.getInstance().displayGame();
                 break;
             default:
                 break;
@@ -181,6 +175,9 @@ public class MainController {
                 break;
             case PAUSED:
                 mainState = MainState.PAUSED;
+                break;
+            case SCORED:
+                mainState = MainState.SCORED;
                 break;
             case GAMEOVER:
                 mainState = MainState.GAMEOVER;

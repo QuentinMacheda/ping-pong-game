@@ -50,7 +50,7 @@ public class BallView extends Circle {
     /**
      * Resets the position of the ball to its initial coordinates.
      */
-    public void reset() {
+    public void resetPos() {
         // Set the position of the ball to its initial coordinates
         this.setPosX(ballController.getPosX());
         this.setPosY(ballController.getPosY());

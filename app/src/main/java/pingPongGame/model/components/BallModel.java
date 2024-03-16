@@ -194,7 +194,7 @@ public class BallModel {
      *
      */
     public void increaseBallSpeed() {
-        if (racketColCount % 4 == 0 && racketColCount != 0) {
+        if (racketColCount % 2 == 0 && racketColCount != 0) {
             ballSpeedX = (ballSpeedX > 0) ? ballSpeedX + ballSpeedIR : ballSpeedX - ballSpeedIR;
             ballSpeedY = (ballSpeedY > 0) ? ballSpeedY + ballSpeedIR : ballSpeedY - ballSpeedIR;
         }

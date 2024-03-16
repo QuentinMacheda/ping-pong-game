@@ -1,11 +1,10 @@
 package pingPongGame.view.layout;
 
-import javafx.scene.layout.VBox;
-
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import pingPongGame.controller.GameController;
 import pingPongGame.controller.MainController;
 import pingPongGame.controller.layout.TopBarController;
@@ -38,14 +37,18 @@ public class TopBarView extends VBox {
     public PlayerView playerLeftView, playerRightView;
 
     /**
-     * Constructs the TopBarView, initializing the menu bar and handling button
+     * Constructs the TopBarView, initializes the menu bar and handles button
      * actions.
      */
     public TopBarView() {
-        /*
-         * Menu Bar
-         */
+        displayMenu();
+        handleButtonsActions();
+    }
 
+    /**
+     * Initializes the settings menu view for the top bar.
+     */
+    private void displayMenu() {
         // Menu
         menuBar = new MenuBar();
 
@@ -67,21 +70,13 @@ public class TopBarView extends VBox {
         playersName.getItems().addAll(player1, player2);
         menuBar.getMenus().addAll(gameSettings, playersName);
 
-        /*
-         * Main container
-         */
         this.getChildren().add(menuBar);
-
-        /*
-         * Handle buttons actions
-         */
-        handleButtonsActions();
     }
 
     /**
      * Handles the actions for menu items.
      */
-    public void handleButtonsActions() {
+    private void handleButtonsActions() {
         // Set End Game Score
         this.endGameScore.setOnAction(e -> {
             MainController.getInstance().displaySettings("endGameScore");

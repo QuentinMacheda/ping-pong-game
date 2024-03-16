@@ -160,7 +160,7 @@ public class BallController implements Runnable {
     public void reset() {
         this.setKeyPressed(false);
         ballModel.reset();
-        ballView.reset();
+        ballView.resetPos();
     }
 
     /**
