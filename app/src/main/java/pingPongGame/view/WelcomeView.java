@@ -8,8 +8,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import pingPongGame.controller.GameController;
 import pingPongGame.controller.MainController;
+import pingPongGame.controller.layout.TopBarController;
 
 /**
  * The view responsible for displaying the welcome screen of the Ping Pong Game.
@@ -19,6 +19,8 @@ import pingPongGame.controller.MainController;
  * @since 2024-03-09
  */
 public class WelcomeView extends BorderPane {
+    private TopBarController topBarController;
+
     /** The welcome text displayed on the screen. */
     private Text welcomeText;
 
@@ -38,8 +40,9 @@ public class WelcomeView extends BorderPane {
         /*
          * Top Bar
          */
-        GameController.getInstance().topBarController.initView();
-        this.setTop(GameController.getInstance().topBarController.getView());
+        topBarController = new TopBarController();
+        topBarController.initView();
+        this.setTop(topBarController.getView());
 
         // Set Welcome Content
         // Text
@@ -48,7 +51,7 @@ public class WelcomeView extends BorderPane {
         welcomeText.getStyleClass().add("welcome-text");
 
         // Image (Icon)
-        icon = new Image(WelcomeView.class.getResource("/icon.png").toExternalForm(), 120, 120, false, false);
+        icon = new Image(WelcomeView.class.getResource("/icon.png").toExternalForm(), 120, 120, true, true);
 
         // Start button
         startButton = new Button("Start the game");

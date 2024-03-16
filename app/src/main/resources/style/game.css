@@ -1,5 +1,5 @@
-.players-container {
-    -fx-padding: 50px 70px;
+.top-container {
+    -fx-padding: 20px 70px;
 }
 .player-info {
     -fx-text-fill: rgba(241, 233, 218, 0.3);
@@ -39,4 +39,8 @@
 .ball {
     -fx-fill: #B0413E;
     -fx-effect: dropshadow( three-pass-box , #b0413e, 20, 0.0 , 0 , 1 );
+}
+
+.game-control-button {
+    -fx-effect: dropshadow( three-pass-box , rgba(255, 145, 10, 0.5), 15, 0.0 , 0 , 1 );
 }

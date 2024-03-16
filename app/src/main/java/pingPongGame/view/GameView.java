@@ -50,10 +50,9 @@ public class GameView extends BorderPane {
      */
     public void setComponents() {
         /*
-         * Top Bar
+         * Game controls
          */
-        GameController.getInstance().topBarController.initView();
-        this.setTop(GameController.getInstance().topBarController.getView());
+        GameController.getInstance().gameControlsController.initView();
 
         /*
          * Rackets
@@ -77,12 +76,14 @@ public class GameView extends BorderPane {
         playerLeftView = GameController.getInstance().playerLeftController.getView();
         playerRightView = GameController.getInstance().playerRightController.getView();
 
-        BorderPane playersContainer = new BorderPane();
-        playersContainer.getStyleClass().add("players-container");
-        playersContainer.setLeft(playerLeftView);
-        playersContainer.setRight(playerRightView);
+        BorderPane topContainer = new BorderPane();
+        topContainer.getStyleClass().add("top-container");
+        topContainer.setLeft(playerLeftView);
+        topContainer.setRight(playerRightView);
+        topContainer.setTop(GameController.getInstance().gameControlsController.getView());
 
-        centerContainer = new StackPane(playersContainer, startMessage, ballView);
+        centerContainer = new StackPane(topContainer,
+                startMessage, ballView);
         this.setCenter(centerContainer);
     }
 

@@ -9,7 +9,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import pingPongGame.controller.MainController.MainState;
 import pingPongGame.controller.components.*;
-import pingPongGame.controller.layout.TopBarController;
+import pingPongGame.controller.layout.GameControlsController;
 import pingPongGame.model.GameModel;
 import pingPongGame.model.components.PlayerModel;
 import pingPongGame.view.GameView;
@@ -53,9 +53,10 @@ public class GameController {
     public GameView gameView;
 
     /**
-     * The TopBarController instance associated with the GameController.
+     * The GameControlsController instance for the controls of the game :
+     * PLAY, PAUSE & RESTART.
      */
-    public TopBarController topBarController;
+    public GameControlsController gameControlsController;
 
     /**
      * The PlayerController instance for the left and right player.
@@ -68,7 +69,7 @@ public class GameController {
     public RacketController racketLeftController, racketRightController;
 
     /**
-     * The BallController instance associated with the GameController.
+     * The BallController instance for the ball.
      */
     public BallController ballController;
 
@@ -106,8 +107,8 @@ public class GameController {
      * @param playerSide The side of the player who scored.
      */
     public void score(PlayerModel.PlayerSide playerSide) {
+        MainController.getInstance().setMainState(MainState.SCORED);
         this.playScoreSound();
-        MainController.getInstance().setMainState(MainState.PAUSED);
 
         if (playerSide == PlayerModel.PlayerSide.LEFT) {
             playerRightController.incrementScore();
@@ -146,6 +147,7 @@ public class GameController {
         Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
             this.reset();
             this.getView().setMessageToStart();
+            MainController.getInstance().setMainState(MainState.PAUSED);
         }));
         scorePause.play();
     }
@@ -155,7 +157,7 @@ public class GameController {
      */
     public void fullReset() {
         GameModel.getInstance().fullReset();
-        topBarController = new TopBarController();
+        gameControlsController = new GameControlsController();
 
         playerLeftController = new PlayerController();
         playerLeftController.initView();

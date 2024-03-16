@@ -11,7 +11,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import pingPongGame.controller.GameController;
 import pingPongGame.controller.layout.TopBarController;
 
 /**
@@ -50,8 +49,9 @@ public class SettingsView extends BorderPane {
         /*
          * Top Bar
          */
-        GameController.getInstance().topBarController.initView();
-        this.setTop(GameController.getInstance().topBarController.getView());
+        topBarController = new TopBarController();
+        topBarController.initView();
+        this.setTop(topBarController.getView());
 
         // Main Container
         mainContainer = new VBox();
