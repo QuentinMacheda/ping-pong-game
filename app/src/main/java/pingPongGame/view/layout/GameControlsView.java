@@ -88,6 +88,10 @@ public class GameControlsView extends BorderPane {
             MainController.getInstance().fullReset();
             MainView.getInstance().hideGame();
         } else {
+            if (MainController.getInstance().getMainState() == MainController.MainState.PAUSED) {
+                gameControlsController.play();
+                playPauseButton.setImage(playImage);
+            }
             alertRestart.close();
         }
     }
@@ -114,7 +118,16 @@ public class GameControlsView extends BorderPane {
         });
 
         Platform.runLater(() -> {
-            restartButton.setOnMouseClicked(e -> this.restartConfirm());
+            restartButton.setOnMouseClicked(e -> {
+                if (MainController.getInstance().getMainState() != MainController.MainState.SCORED) {
+                    if (MainController.getInstance().getMainState() == MainController.MainState.RUNNING) {
+                        gameControlsController.pause();
+                        playPauseButton.setImage(pauseImage);
+                    }
+
+                    this.restartConfirm();
+                }
+            });
         });
     }
 }

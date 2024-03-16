@@ -52,16 +52,9 @@ public class BallModel {
      * Constructor to initialize the ball model with default values.
      */
     public BallModel() {
-        this.x = 0;
-        this.y = 0;
+        this.reset();
         this.radius = 14;
         this.bounds = new BoundingBox(this.x - this.radius, this.y - this.radius, getBallSize(), getBallSize());
-
-        setSpeed("normal");
-        setSpeedIR("normal");
-        this.racketColCount = 0;
-
-        this.collisionState = false;
     }
 
     /**

@@ -147,6 +147,7 @@ public class GameController {
         Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
             this.reset();
             this.getView().setMessageToStart();
+            MainController.getInstance().setMainState(MainState.PAUSED);
         }));
         scorePause.play();
     }
