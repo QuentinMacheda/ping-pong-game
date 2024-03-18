@@ -1,5 +1,7 @@
 package pingPongGame.model.components;
 
+import pingPongGame.model.GameModel;
+
 /**
  * Model representing the properties and state of a player in the game.
  * 
@@ -54,6 +56,14 @@ public class PlayerModel {
      */
     public void setName(String newName) {
         this.name = newName;
+
+        // Save the new data into settings properties
+        if (this.playerSide == PlayerSide.LEFT) {
+            GameModel.getInstance().settingsProperties.setProperty("player1", newName);
+        } else {
+            GameModel.getInstance().settingsProperties.setProperty("player2", newName);
+        }
+        GameModel.getInstance().saveSettings("Set players's name");
     }
 
     /**

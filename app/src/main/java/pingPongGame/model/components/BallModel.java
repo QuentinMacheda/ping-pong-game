@@ -52,9 +52,36 @@ public class BallModel {
      * Constructor to initialize the ball model with default values.
      */
     public BallModel() {
-        this.reset();
+        this.init();
+    }
+
+    /**
+     * Initializes the ball (only once)
+     */
+    public void init() {
+        this.x = 0;
+        this.y = 0;
+        this.racketColCount = 0;
+        this.collisionState = false;
         this.radius = 14;
         this.bounds = new BoundingBox(this.x - this.radius, this.y - this.radius, getBallSize(), getBallSize());
+
+        setSpeed(GameModel.getInstance().settingsProperties.getProperty("ballSpeed"));
+        setSpeedIR(GameModel.getInstance().settingsProperties.getProperty("ballSpeedIR"));
+    }
+
+    /**
+     * Resets the ball to its default position and speed values.
+     */
+    public void reset() {
+        this.x = 0;
+        this.y = 0;
+        this.racketColCount = 0;
+
+        setSpeed(GameModel.getInstance().settingsProperties.getProperty("ballSpeed"));
+        setSpeedIR(GameModel.getInstance().settingsProperties.getProperty("ballSpeedIR"));
+
+        this.collisionState = false;
     }
 
     /**
@@ -136,6 +163,10 @@ public class BallModel {
                 ballSpeedX = 2;
                 break;
         }
+
+        // Save the new data into settings properties
+        GameModel.getInstance().settingsProperties.setProperty("ballSpeed", newSpeed);
+        GameModel.getInstance().saveSettings("Set ball speed");
     }
 
     /**
@@ -180,6 +211,9 @@ public class BallModel {
                 ballSpeedIR = 0.2;
                 break;
         }
+
+        GameModel.getInstance().settingsProperties.setProperty("ballSpeedIR", newSpeedIR);
+        GameModel.getInstance().saveSettings("Set ball speed increase rate");
     }
 
     /**
@@ -209,20 +243,6 @@ public class BallModel {
      */
     public double getPosY() {
         return this.y;
-    }
-
-    /**
-     * Resets the ball to its default position and speed values.
-     */
-    public void reset() {
-        this.x = 0;
-        this.y = 0;
-        this.racketColCount = 0;
-
-        setSpeed("normal");
-        setSpeedIR("normal");
-
-        this.collisionState = false;
     }
 
     /**
@@ -262,7 +282,7 @@ public class BallModel {
                 ballSpeedX = -ballSpeedX;
                 this.collisionState = true;
                 this.racketColCount++;
-                increaseBallSpeed();
+                this.increaseBallSpeed();
                 GameController.getInstance().playRacketBounceSound();
             }
         } else {

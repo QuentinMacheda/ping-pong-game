@@ -77,8 +77,31 @@ public class GameController {
      * Private constructor to enforce Singleton pattern.
      */
     private GameController() {
-        this.fullReset();
+        this.init();
         this.preloadSounds();
+    }
+
+    public void init() {
+        gameControlsController = new GameControlsController();
+
+        playerLeftController = new PlayerController();
+        playerLeftController.initView();
+        playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
+        playerLeftController.updateName(GameModel.getInstance().settingsProperties.getProperty("player1"));
+
+        playerRightController = new PlayerController();
+        playerRightController.initView();
+        playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
+        playerRightController.updateName(GameModel.getInstance().settingsProperties.getProperty("player2"));
+
+        racketLeftController = new RacketController();
+        racketLeftController.initView();
+
+        racketRightController = new RacketController();
+        racketRightController.initView();
+
+        ballController = new BallController();
+        ballController.initView();
     }
 
     /**
@@ -99,6 +122,36 @@ public class GameController {
             racketRightController
                     .setPosX((GameModel.getInstance().getGameAreaWidth() / 2) - racketLeftController.getWidth());
         });
+    }
+
+    /**
+     * Resets the game and the players' scores.
+     */
+    public void fullReset() {
+        playerLeftController.reset();
+        playerRightController.reset();
+        this.reset();
+    }
+
+    /**
+     * Resets the game
+     */
+    public void reset() {
+        ballController.reset();
+        racketLeftController.reset();
+        racketRightController.reset();
+    }
+
+    /**
+     * Resets the game after a score with a 2-second pause.
+     */
+    public void resetAfterScore() {
+        Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
+            this.reset();
+            this.getView().setMessageToStart();
+            MainController.getInstance().setMainState(MainState.PAUSED);
+        }));
+        scorePause.play();
     }
 
     /**
@@ -129,54 +182,6 @@ public class GameController {
                 MainController.getInstance().gameOver(playerLeftController.getName(), playerRightController.getName());
             }
         }
-    }
-
-    /**
-     * Resets the game
-     */
-    public void reset() {
-        ballController.reset();
-        racketLeftController.reset();
-        racketRightController.reset();
-    }
-
-    /**
-     * Resets the game after a score with a 2-second pause.
-     */
-    public void resetAfterScore() {
-        Timeline scorePause = new Timeline(new KeyFrame(Duration.millis(2000), event -> {
-            this.reset();
-            this.getView().setMessageToStart();
-            MainController.getInstance().setMainState(MainState.PAUSED);
-        }));
-        scorePause.play();
-    }
-
-    /**
-     * Fully resets the game, including players, rackets, and ball.
-     */
-    public void fullReset() {
-        GameModel.getInstance().fullReset();
-        gameControlsController = new GameControlsController();
-
-        playerLeftController = new PlayerController();
-        playerLeftController.initView();
-        playerLeftController.setPlayerSide(PlayerModel.PlayerSide.LEFT);
-        playerLeftController.updateName("Player 1");
-
-        playerRightController = new PlayerController();
-        playerRightController.initView();
-        playerRightController.setPlayerSide(PlayerModel.PlayerSide.RIGHT);
-        playerRightController.updateName("Player 2");
-
-        racketLeftController = new RacketController();
-        racketLeftController.initView();
-
-        racketRightController = new RacketController();
-        racketRightController.initView();
-
-        ballController = new BallController();
-        ballController.initView();
     }
 
     /**

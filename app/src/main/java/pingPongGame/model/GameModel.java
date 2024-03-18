@@ -1,5 +1,12 @@
 package pingPongGame.model;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Properties;
+
 /**
  * The model representing the game state and settings.
  * 
@@ -16,29 +23,64 @@ public class GameModel {
     /*
      * The score required to end the game.
      */
-    public int endGameScore;
+    private int endGameScore;
 
     /*
      * The height and width of the game area.
      */
-    public double gameAreaHeight, gameAreaWidth;
+    private double gameAreaHeight, gameAreaWidth;
+
+    /*
+     * The settings properties file.
+     */
+    public Properties settingsProperties;
+
+    /*
+     * The path to the settings properties file.
+     */
+    private String settingsPropertiesPath = "src/main/resources/data/settings.properties";
 
     /**
      * Private constructor to enforce singleton pattern and initialize default
      * values.
      */
     private GameModel() {
-        this.fullReset();
+        // Load settings properties
+        settingsProperties = new Properties();
+
+        // Create file if does not exists
+        if (!Files.exists(Paths.get(settingsPropertiesPath))) {
+            try {
+                Files.createFile(Paths.get(settingsPropertiesPath));
+
+                // Setting default values
+                settingsProperties.setProperty("ballSpeed", "normal");
+                settingsProperties.setProperty("ballSpeedIR", "normal");
+                settingsProperties.setProperty("endGameScore", "10");
+                settingsProperties.setProperty("player1", "Player 1");
+                settingsProperties.setProperty("player2", "Player 2");
+                settingsProperties.setProperty("racketHeight", "120.0");
+                settingsProperties.setProperty("racketWidth", "20.0");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+        try (FileInputStream input = new FileInputStream(settingsPropertiesPath)) {
+            settingsProperties.load(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Initializes the data
+        this.updateEndGameScore(Integer.parseInt(settingsProperties.getProperty("endGameScore")));
+        this.setGameAreaHeight(0);
+        this.setGameAreaWidth(0);
     }
 
     /**
      * Resets the game model to its default values.
      */
-    public void fullReset() {
-        this.endGameScore = 10;
-        this.gameAreaHeight = 0;
-        this.gameAreaWidth = 0;
-    }
 
     /**
      * Gets the end game score.
@@ -56,6 +98,10 @@ public class GameModel {
      */
     public void updateEndGameScore(int newScore) {
         this.endGameScore = newScore;
+
+        // Save the new data into settings properties
+        settingsProperties.setProperty("endGameScore", Integer.toString(endGameScore));
+        saveSettings("Set end game score");
     }
 
     /**
@@ -92,6 +138,19 @@ public class GameModel {
      */
     public void setGameAreaWidth(double newWidth) {
         this.gameAreaWidth = newWidth;
+    }
+
+    /**
+     * Saves the settings to the settings properties file.
+     * 
+     * @param comments The comments to add to the properties file.
+     */
+    public void saveSettings(String comments) {
+        try (FileOutputStream output = new FileOutputStream(settingsPropertiesPath)) {
+            settingsProperties.store(output, "Last save:" + comments);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**

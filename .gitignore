@@ -5,3 +5,6 @@
 build
 
 .vscode
+
+# Ignore the user data
+app/src/main/resources/data/

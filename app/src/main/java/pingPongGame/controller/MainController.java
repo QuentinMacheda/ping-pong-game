@@ -46,8 +46,19 @@ public class MainController {
 
     // Constructor
     private MainController() {
-        this.fullReset();
+        this.init();
+    }
+
+    /**
+     * Initializes the main controller.
+     */
+    public void init() {
+        settingsController = new SettingsController();
         topBarController = new TopBarController();
+
+        // Display the welcome view
+        MainView.getInstance().displayWelcome();
+        this.setMainState(MainState.WELCOME);
     }
 
     /**
@@ -56,7 +67,6 @@ public class MainController {
     public void fullReset() {
         mainStateHistory.clear();
         GameController.getInstance().fullReset();
-        settingsController = new SettingsController();
 
         // Display the welcome view
         MainView.getInstance().displayWelcome();
