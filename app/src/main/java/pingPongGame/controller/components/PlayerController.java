@@ -29,6 +29,14 @@ public class PlayerController {
         playerModel = new PlayerModel();
     }
 
+    /*
+     * Reset the player to its initial state.
+     */
+    public void reset() {
+        playerModel.resetScore();
+        this.getView().update();
+    }
+
     /**
      * Initializes the PlayerView associated with the PlayerController.
      */

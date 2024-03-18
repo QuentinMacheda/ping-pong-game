@@ -2,6 +2,7 @@ package pingPongGame.model.components;
 
 import javafx.geometry.BoundingBox;
 import javafx.geometry.Bounds;
+import pingPongGame.model.GameModel;
 
 /**
  * Model representing the properties and state of a racket in the game.
@@ -26,10 +27,20 @@ public class RacketModel {
      * and position.
      */
     public RacketModel() {
-        this.width = 20;
-        this.height = 120;
         this.parentHeight = 0;
-        this.y = 0;
+        this.setPosY(0);
+
+        this.setWidth(Double.parseDouble(GameModel.getInstance().settingsProperties.getProperty("racketWidth")));
+        this.setHeight(Double.parseDouble(GameModel.getInstance().settingsProperties.getProperty("racketHeight")));
+    }
+
+    /**
+     * Resets the racket's position and updates the bounds.
+     */
+    public void reset() {
+        this.setPosY(0);
+        this.setBounds(
+                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
     }
 
     /**
@@ -65,8 +76,12 @@ public class RacketModel {
      * @param newWidth The new width of the racket.
      * @return The updated width of the racket.
      */
-    public double setWidth(double newWidth) {
-        return this.width = newWidth;
+    public void setWidth(double newWidth) {
+        this.width = newWidth;
+
+        // Save the new data into settings properties
+        GameModel.getInstance().settingsProperties.setProperty("racketWidth", Double.toString(newWidth));
+        GameModel.getInstance().saveSettings("Set racket width");
     }
 
     /**
@@ -84,8 +99,11 @@ public class RacketModel {
      * @param newHeight The new height of the racket.
      * @return The updated height of the racket.
      */
-    public double setHeight(double newHeight) {
-        return this.height = newHeight;
+    public void setHeight(double newHeight) {
+        this.height = newHeight;
+
+        GameModel.getInstance().settingsProperties.setProperty("racketHeight", Double.toString(newHeight));
+        GameModel.getInstance().saveSettings("Set racket height");
     }
 
     /**
@@ -154,15 +172,6 @@ public class RacketModel {
      */
     public void setPosY(double newY) {
         this.y = newY;
-    }
-
-    /**
-     * Resets the racket's position and updates the bounds.
-     */
-    public void reset() {
-        setPosY(0);
-        setBounds(
-                new BoundingBox(getPosX() - (getWidth() / 2), getPosY() - (getHeight() / 2), getWidth(), getHeight()));
     }
 
     /**
