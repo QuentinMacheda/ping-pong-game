@@ -7,4 +7,5 @@ build
 .vscode
 
 # Ignore the user data
-app/src/main/resources/data/
+app/src/main/resources/data/*
+!app/src/main/resources/data/settings.ex.properties
