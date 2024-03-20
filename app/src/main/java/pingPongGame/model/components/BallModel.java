@@ -246,6 +246,24 @@ public class BallModel {
     }
 
     /**
+     * Sets the X-coordinate of the ball's position.
+     *
+     * @param x The new X-coordinate of the ball's position.
+     */
+    public void setPosX(double x) {
+        this.x = x;
+    }
+
+    /**
+     * Sets the Y-coordinate of the ball's position.
+     *
+     * @param y The new Y-coordinate of the ball's position.
+     */
+    public void setPosY(double y) {
+        this.y = y;
+    }
+
+    /**
      * Moves the ball, handling collisions and updating its position.
      */
     public void move() {
