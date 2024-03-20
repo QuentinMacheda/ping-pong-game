@@ -14,7 +14,14 @@ public class PlayerModel {
      * Enumeration representing the player's side (LEFT or RIGHT).
      */
     public enum PlayerSide {
+        /**
+         * The left side of the player.
+         */
         LEFT,
+
+        /**
+         * The right side of the player.
+         */
         RIGHT
     }
 

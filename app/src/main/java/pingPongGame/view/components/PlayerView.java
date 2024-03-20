@@ -12,7 +12,9 @@ import pingPongGame.controller.components.PlayerController;
  * @since 2024-03-09
  */
 public class PlayerView extends Text {
-    // Associated controller managing player logic
+    /**
+     * The PlayerController associated with the PlayerView.
+     */
     public PlayerController playerController;
 
     /**
