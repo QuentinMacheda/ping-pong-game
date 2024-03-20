@@ -33,29 +33,13 @@ This is a simple Ping Pong game developed in Java with JavaFX.
      
      Replace `[repository_url]` with the actual URL of your Git repository.
 
-3. **Open the project directory:**
+2. **Open the project directory:**
    - Run:
      ```bash
      cd ping-pong-game
      ```
 
-4. **Configure JavaFX SDK in `build.gradle`:**
-   - Open the `build.gradle` file.
-   - Make sure JavaFX is included in the project with the following code : 
-     ```bash
-     plugins {
-         // Apply the application plugin to add support for building a CLI application in Java.
-         application
-     
-         id("org.openjfx.javafxplugin") version "0.1.0"
-     }
-     
-     javafx {
-         modules("javafx.controls", "javafx.fxml", "javafx.media")
-     }
-     ```
-
-5. **Build and run the project:**
+3. **Build and run the project:**
    - Run:
      ```bash
      gradle run
