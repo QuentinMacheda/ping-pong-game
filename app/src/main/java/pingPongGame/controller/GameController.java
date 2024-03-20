@@ -54,7 +54,7 @@ public class GameController {
 
     /**
      * The GameControlsController instance for the controls of the game :
-     * PLAY, PAUSE & RESTART.
+     * PLAY, PAUSE, RESTART.
      */
     public GameControlsController gameControlsController;
 
@@ -81,6 +81,11 @@ public class GameController {
         this.preloadSounds();
     }
 
+    /**
+     * Initializes the GameControlsController, PlayerController, RacketController,
+     * and
+     * BallController.
+     */
     public void init() {
         gameControlsController = new GameControlsController();
 

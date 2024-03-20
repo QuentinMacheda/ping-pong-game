@@ -14,22 +14,53 @@ import pingPongGame.view.MainView;
  */
 public class MainController {
 
-    /*
+    /**
      * The singleton instance of the MainController.
      */
     public static MainController selfInstance = new MainController();
 
-    // Enumeration representing the possible states of the main controller
+    /**
+     * Enum representing the different states of the main application.
+     */
     public enum MainState {
-        WELCOME, RUNNING, SCORED, PAUSED, SETTINGS, GAMEOVER
+        /**
+         * The welcome state, displayed when the application is first launched.
+         */
+        WELCOME,
+
+        /**
+         * The running state, indicating that the game is in progress and the player can
+         * interact with it.
+         */
+        RUNNING,
+
+        /**
+         * The scored state, displayed when a point is scored in the game.
+         */
+        SCORED,
+
+        /**
+         * The paused state, allowing the user to take a break without ending the game.
+         */
+        PAUSED,
+
+        /**
+         * The settings state, where the user can modify various options for the game.
+         */
+        SETTINGS,
+
+        /**
+         * The gameover state, indicating that the game has ended due to loss or win.
+         */
+        GAMEOVER
     }
 
-    /*
+    /**
      * The current state of the main controller.
      */
     public MainState mainState;
 
-    /*
+    /**
      * The history of the main state.
      */
     public ArrayList<MainState> mainStateHistory = new ArrayList<MainState>();
@@ -44,7 +75,9 @@ public class MainController {
      */
     public TopBarController topBarController;
 
-    // Constructor
+    /**
+     * Constructs a new MainController.
+     */
     private MainController() {
         this.init();
     }

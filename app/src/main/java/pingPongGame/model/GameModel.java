@@ -15,27 +15,27 @@ import java.util.Properties;
  * @since 2024-03-09
  */
 public class GameModel {
-    /*
+    /**
      * The singleton instance of the GameModel.
      */
     public static GameModel selfInstance = new GameModel();
 
-    /*
+    /**
      * The score required to end the game.
      */
     private int endGameScore;
 
-    /*
+    /**
      * The height and width of the game area.
      */
     private double gameAreaHeight, gameAreaWidth;
 
-    /*
+    /**
      * The settings properties file.
      */
     public Properties settingsProperties;
 
-    /*
+    /**
      * The path to the settings properties file.
      */
     private String settingsPropertiesPath = "src/main/resources/data/settings.properties";

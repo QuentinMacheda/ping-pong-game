@@ -29,7 +29,7 @@ public class PlayerController {
         playerModel = new PlayerModel();
     }
 
-    /*
+    /**
      * Reset the player to its initial state.
      */
     public void reset() {

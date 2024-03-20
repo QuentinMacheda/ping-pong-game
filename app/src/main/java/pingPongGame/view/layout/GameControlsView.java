@@ -18,7 +18,7 @@ import pingPongGame.view.MainView;
 
 /**
  * The GameControlsView containing controls view for the game :
- * PLAY, PAUSE & RESTART.
+ * PLAY, PAUSE, RESTART.
  * 
  * @author Quentin Macheda
  * @version 1.4

@@ -74,7 +74,6 @@ public class RacketModel {
      * Sets the width of the racket.
      *
      * @param newWidth The new width of the racket.
-     * @return The updated width of the racket.
      */
     public void setWidth(double newWidth) {
         this.width = newWidth;
@@ -97,7 +96,6 @@ public class RacketModel {
      * Sets the height of the racket.
      *
      * @param newHeight The new height of the racket.
-     * @return The updated height of the racket.
      */
     public void setHeight(double newHeight) {
         this.height = newHeight;

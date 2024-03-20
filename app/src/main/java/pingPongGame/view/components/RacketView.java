@@ -13,13 +13,19 @@ import javafx.scene.layout.VBox;
  * @since 2024-03-09
  */
 public class RacketView extends VBox {
-    // Associated controller managing racket logic
+    /**
+     * The RacketController associated with the RacketView.
+     */
     private RacketController racketController;
 
-    // Height of the parent container (used for positioning)
+    /**
+     * The height of the parent container (used for positioning the racket).
+     */
     private double parentRacketHeight;
 
-    // Rectangle representing the racket
+    /**
+     * Rectangle representing the racket
+     */
     public Rectangle racket;
 
     /**

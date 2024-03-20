@@ -21,24 +21,54 @@ import pingPongGame.controller.layout.TopBarController;
  * @since 2024-03-09
  */
 public class SettingsView extends BorderPane {
-    /** The top bar controller instance. */
-    public TopBarController topBarController;
+    /**
+     * The top bar controller instance.
+     */
+    private TopBarController topBarController;
 
-    /** The main container holding various settings. */
-    public VBox mainContainer;
+    /**
+     * The main container holding various settings.
+     */
+    private VBox mainContainer;
 
-    /** The container holding buttons and the buttons */
-    public HBox buttonsContainer;
-    public Button backBtn, saveBtn;
+    /**
+     * The container holding buttons and the buttons
+     */
+    private HBox buttonsContainer;
 
-    /** The slider for end game score */
+    /**
+     * A GUI component representing the 'Back' button.
+     */
+    public Button backBtn;
+
+    /**
+     * A GUI component representing the 'Save' button.
+     */
+    public Button saveBtn;
+
+    /**
+     * The slider for end game score
+     */
     public Slider endGameScoreSlider;
 
-    /** The sliders for racket width and height */
-    public Slider widthSlider, heightSlider;
+    /**
+     * A GUI component representing the 'Width' slider.
+     */
+    public Slider widthSlider;
+
+    /**
+     * A GUI component representing the 'Height' slider.
+     */
+    public Slider heightSlider;
+
+    /**
+     * The textfield for the new player name
+     */
     public TextField newPlayerName;
 
-    /** The radio buttons for ballSpeed and ballSpeedIR */
+    /**
+     * The radio buttons for ballSpeed and ballSpeedIR
+     */
     public RadioButton optSlowBallSpeed, optNormalBallSpeed, optFastBallSpeed;
     public RadioButton optSlowBallSpeedIR, optNormalBallSpeedIR, optFastBallSpeedIR;
 
@@ -46,9 +76,7 @@ public class SettingsView extends BorderPane {
      * Constructs a new instance of SettingsView.
      */
     public SettingsView() {
-        /*
-         * Top Bar
-         */
+        // Top Bar
         topBarController = new TopBarController();
         topBarController.initView();
         this.setTop(topBarController.getView());
